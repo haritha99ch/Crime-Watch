@@ -1,8 +1,8 @@
-import IReport from "../Models/IReport";
-import IWitness from "../Models/IWitness";
+import Report from "../Models/Report";
+import Witness from "../Models/Witness";
 
-interface ReportViewModel extends Omit<IReport, "Author" | "Evidences"> {
+interface ReportViewModel extends Omit<Report, "Author" | "Evidences"> {
     _id: string;
-    Author: IWitness & { _id: string };
+    Author: Witness & { _id: string };
 }
 export default ReportViewModel;
