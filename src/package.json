@@ -1,0 +1,14 @@
+{
+    "name": "crime-watch-src",
+    "version": "1.0.0",
+    "description": "IMS src",
+    "main": "index.js",
+    "workspaces": [
+        "Crimewatch-*"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Haritha Rathnayake",
+    "license": "ISC"
+}
