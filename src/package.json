@@ -4,7 +4,7 @@
     "description": "IMS src",
     "main": "index.js",
     "workspaces": [
-        "Crimewatch-*"
+        "Crimewatch*"
     ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
