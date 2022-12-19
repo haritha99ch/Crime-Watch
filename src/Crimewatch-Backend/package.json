@@ -9,6 +9,8 @@
   "author": "Haritha Rathnayake",
   "license": "ISC",
   "dependencies": {
-    "crimewatch-shared": "^1.0.0"
+    "@typegoose/typegoose": "^10.0.0",
+    "crimewatch-shared": "^1.0.0",
+    "mongoose": "^6.8.0"
   }
 }

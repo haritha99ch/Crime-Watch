@@ -1,5 +1,5 @@
 interface IAccount {
-    Email: string;
+    Email?: string;
     Password: string;
     IsModerator: boolean;
 }
