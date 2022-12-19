@@ -14,7 +14,7 @@ export interface IReport {
     File: IFile;
     Evidences: IEvidence[];
     Status: Status;
-    Moderator: string;
+    Moderator: Schema.Types.ObjectId;
     ModeratorNote: string;
 }
 export default IReport;
