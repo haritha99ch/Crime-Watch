@@ -4,7 +4,8 @@
     "description": "IMS backend",
     "main": "index.js",
     "scripts": {
-        "test": "mocha --require ts-node/register --watch-extentions ts 'test/**/*.test.ts'"
+        "test": "mocha --require ts-node/register --watch-extentions ts 'test/**/*.test.ts'",
+        "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
     },
     "author": "Haritha Rathnayake",
     "license": "ISC",
