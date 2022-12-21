@@ -1,6 +1,6 @@
 import Evidence, { EvidenceDocument } from "crimewatch-shared/Models/Evidence";
 import { ReportDocument } from "crimewatch-shared/Models/Report";
-import { UpdateQuery } from "mongoose";
+import { FilterQuery, UpdateQuery } from "mongoose";
 import EvidenceModel from "../Models/EvidenceModel";
 import ReportModel from "../Models/ReportModel";
 import IRepository from "./IRepository";
@@ -29,6 +29,18 @@ class ReportEvidenceService {
             update
         );
         return newEvidence;
+    }
+    public async GetAllEvidenceForReport(
+        reportId: string
+    ): Promise<EvidenceDocument[]> {
+        const evidencesIds = await (
+            await this._reportRepository.GetById(reportId)
+        ).Evidences;
+        const filter: FilterQuery<EvidenceDocument> = {
+            _id: { $in: evidencesIds },
+        };
+        const evidences = await this._evidenceRepository.GetAllByFilter(filter);
+        return evidences;
     }
     public async RemoveEvidence(
         reportId: string,

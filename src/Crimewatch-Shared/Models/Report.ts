@@ -12,7 +12,7 @@ class Report {
     Location!: Location;
     Categories!: string[];
     File!: File;
-    Evidences?: Evidence[];
+    Evidences?: Schema.Types.ObjectId[];
     Status!: Status;
     Moderator?: Schema.Types.ObjectId;
     ModeratorNote?: string;

@@ -66,5 +66,22 @@ class ModeratorReportService {
             });
         return reportRereviewing;
     }
+    public async ModeratorNote(
+        evidenceId: string,
+        note: string
+    ): Promise<boolean> {
+        const update: UpdateQuery<ReportDocument> = {
+            $set: { ModeratorNote: note },
+        };
+        const reportNoted = await this._reportRepository
+            .UpdateById(evidenceId, update)
+            .then(() => {
+                return true;
+            })
+            .catch(() => {
+                return false;
+            });
+        return reportNoted;
+    }
 }
 export default ModeratorReportService;
