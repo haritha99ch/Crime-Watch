@@ -67,14 +67,14 @@ class ModeratorReportService {
         return reportRereviewing;
     }
     public async ModeratorNote(
-        evidenceId: string,
+        reportId: string,
         note: string
     ): Promise<boolean> {
         const update: UpdateQuery<ReportDocument> = {
             $set: { ModeratorNote: note },
         };
         const reportNoted = await this._reportRepository
-            .UpdateById(evidenceId, update)
+            .UpdateById(reportId, update)
             .then(() => {
                 return true;
             })
