@@ -5,6 +5,7 @@ import WitnessModel from "../Models/WitnessModel";
 import IRepository from "../Services/IRepository";
 import Repository from "../Services/Repository";
 import WitnessAccountService from "../Services/WitnessAccountService";
+import jwt from "jsonwebtoken";
 
 class WitnessController {
     private readonly _witnessRepository: IRepository<WitnessDocument>;
@@ -44,11 +45,13 @@ class WitnessController {
     }
     public async Signin(
         request: Request<{}, {}, SigninViewModel>,
-        response: Response<WitnessDocument>,
+        response: Response<{token:string}>,
         next: NextFunction
     ) {
         const witness = await this.witnessAccountService.Signin(request.body);
-        return response.send(witness);
+        if (!witness) return response.status(404).send();
+        const token = jwt.sign({ user: witness }, "key");
+        return response.send({ token });
     }
 }
 export default WitnessController;
