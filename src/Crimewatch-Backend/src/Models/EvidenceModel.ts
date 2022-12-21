@@ -36,7 +36,6 @@ const EvidenceSchema: Schema = new Schema<EvidenceDocument>({
         type: String,
         required: true,
         default: Status.Pending,
-        autopopulate: true,
     },
     Moderator: {
         type: Schema.Types.ObjectId,
