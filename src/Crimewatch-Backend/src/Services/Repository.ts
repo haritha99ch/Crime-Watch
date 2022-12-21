@@ -63,3 +63,4 @@ class Repository<T> implements IRepository<T> {
         return docDeleted;
     }
 }
+export default Repository;
