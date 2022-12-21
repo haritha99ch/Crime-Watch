@@ -1,6 +1,6 @@
 import Evidence, { EvidenceDocument } from "crimewatch-shared/Models/Evidence";
 import { ReportDocument } from "crimewatch-shared/Models/Report";
-import { BooleanExpression, UpdateQuery } from "mongoose";
+import { UpdateQuery } from "mongoose";
 import EvidenceModel from "../Models/EvidenceModel";
 import ReportModel from "../Models/ReportModel";
 import IRepository from "./IRepository";
@@ -33,7 +33,7 @@ class ReportEvidenceService {
     public async RemoveEvidence(
         reportId: string,
         evidenceId: string
-    ): Promise<BooleanExpression> {
+    ): Promise<boolean> {
         const update: UpdateQuery<ReportDocument> = {
             $pull: { Evidences: evidenceId },
         };
