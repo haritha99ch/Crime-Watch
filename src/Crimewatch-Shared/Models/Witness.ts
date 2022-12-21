@@ -1,4 +1,5 @@
 import User from "./User";
+import { Document } from "mongoose";
 
 class Witness {
     User!: User;

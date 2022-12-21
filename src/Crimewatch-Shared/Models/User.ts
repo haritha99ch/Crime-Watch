@@ -1,4 +1,5 @@
 import Account from "./Account";
+import { Document } from "mongoose";
 
 class User {
     FirstName!: string;

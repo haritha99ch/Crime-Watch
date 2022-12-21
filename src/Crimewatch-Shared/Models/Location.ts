@@ -1,4 +1,5 @@
 import Province from "../Enums/Province";
+import { Document } from "mongoose";
 
 class Location {
     No?: string;

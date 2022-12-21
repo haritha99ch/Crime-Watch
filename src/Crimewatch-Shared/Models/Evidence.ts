@@ -2,6 +2,7 @@ import { Schema } from "mongoose";
 import File from "./File";
 import Status from "../Enums/Status";
 import Location from "./Location";
+import { Document } from "mongoose";
 
 class Evidence {
     Author!: Schema.Types.ObjectId;

@@ -1,3 +1,5 @@
+import { Document } from "mongoose";
+
 class Account {
     Email!: string;
     Password!: string;

@@ -1,3 +1,5 @@
+import { Document } from "mongoose";
+
 class File {
     File!: string;
     Type?: string;
