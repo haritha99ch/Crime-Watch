@@ -5,7 +5,7 @@ import EvidenceModel from "../Models/EvidenceModel";
 import IRepository from "./IRepository";
 import Repository from "./Repository";
 
-class ModeratorReportService {
+class ModeratorEvidenceService {
     private readonly _evidenceRepository: IRepository<EvidenceDocument>;
     constructor() {
         this._evidenceRepository = new Repository<EvidenceDocument>(
@@ -86,4 +86,4 @@ class ModeratorReportService {
         return evidenceNoted;
     }
 }
-export default ModeratorReportService;
+export default ModeratorEvidenceService;

@@ -2,12 +2,15 @@ import Report, { ReportDocument } from "crimewatch-shared/Models/Report";
 import { Request, Response, NextFunction } from "express";
 import ReportModel from "../Models/ReportModel";
 import IRepository from "../Services/IRepository";
+import ModeratorReportService from "../Services/ModeratorReportService";
 import Repository from "../Services/Repository";
 
 class ReportController {
     private readonly _reportRepository: IRepository<ReportDocument>;
+    private readonly moderatorReportService: ModeratorReportService;
     constructor() {
         this._reportRepository = new Repository<ReportDocument>(ReportModel);
+        this.moderatorReportService = new ModeratorReportService();
     }
 
     public async Create(
@@ -54,6 +57,47 @@ class ReportController {
             request.params.id
         );
         return response.send(reportDeleted);
+    }
+    public async BeModeratorById(
+        request: Request<{ moderatorId: string; reportId: string }>,
+        response: Response<ReportDocument>,
+        next: NextFunction
+    ) {
+        const report = await this.moderatorReportService.BeModerator(
+            request.params.moderatorId,
+            request.params.reportId
+        );
+        return response.send(report);
+    }
+    public async ApproveById(
+        request: Request<{ reportId: string }>,
+        response: Response<boolean>,
+        next: NextFunction
+    ) {
+        const reportApproved = await this.moderatorReportService.Approve(
+            request.params.reportId
+        );
+        return response.send(reportApproved);
+    }
+    public async DeclineById(
+        request: Request<{ reportId: string }>,
+        response: Response<boolean>,
+        next: NextFunction
+    ) {
+        const reportDeclined = await this.moderatorReportService.Decline(
+            request.params.reportId
+        );
+        return response.send(reportDeclined);
+    }
+    public async RereviewById(
+        request: Request<{ reportId: string }>,
+        response: Response<boolean>,
+        next: NextFunction
+    ) {
+        const reportRereviewing = await this.moderatorReportService.Rereview(
+            request.params.reportId
+        );
+        return response.send(reportRereviewing);
     }
 }
 export default ReportController;
