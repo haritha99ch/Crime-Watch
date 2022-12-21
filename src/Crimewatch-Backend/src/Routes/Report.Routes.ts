@@ -5,6 +5,7 @@ const ReportRouter = express.Router();
 
 const reportController = new ReportController();
 
+// /API/Report
 const _create = "/Create";
 const _getAll = "/GetAll";
 const _get = "/Details/:id";

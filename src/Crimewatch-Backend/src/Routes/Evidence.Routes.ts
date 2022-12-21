@@ -5,6 +5,7 @@ const EvidenceRouter = express.Router();
 
 const evidenceController = new EvidenceController();
 
+// /API/Evidence
 const _create = "/Create/:reportId";
 const _getAll = "/GetAll/:reportId";
 const _delete = "/Delete/:reportId/:evidenceId";

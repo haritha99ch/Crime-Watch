@@ -4,7 +4,7 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
 export default (request: Request, response: Response, next: NextFunction) => {
-    next();
+    // next();
     const bearerHeader = request.headers["authorization"];
     if (typeof bearerHeader === "undefined") return response.sendStatus(403);
     try {

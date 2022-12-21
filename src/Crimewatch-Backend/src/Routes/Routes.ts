@@ -7,6 +7,7 @@ import WitnessRouter from "./Witness.Routes";
 
 const Routes = express.Router();
 
+// /API
 Routes.use("/Witness", WitnessRouter);
 Routes.use("/Moderator", ModeratorRouter);
 Routes.use("/Report", ReportRouter);

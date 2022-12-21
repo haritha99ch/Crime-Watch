@@ -3,6 +3,7 @@ import WitnessController from "../Controllers/WitnessController";
 
 const witnessController = new WitnessController();
 
+// /API/Witness
 const _create = "/Create";
 const _details = "/Details/:id";
 const _delete = "/Delete/:id";

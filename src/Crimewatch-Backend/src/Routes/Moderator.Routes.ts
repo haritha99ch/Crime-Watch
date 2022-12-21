@@ -10,6 +10,7 @@ const _signin = "/Signin";
 
 const ModeratorRouter = express.Router();
 
+// /API/Moderator
 ModeratorRouter.post(
     _create,
     moderatorController.Create.bind(moderatorController)
