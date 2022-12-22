@@ -7,7 +7,7 @@ import Image1 from "./Image1";
 export const evidencePayload: Evidence = {
     Author: null!,
     Caption: faker.lorem.sentence(10),
-    Body: faker.lorem.paragraph(2),
+    Body: faker.lorem.paragraph(10),
     Date: new Date(),
     Location: {
         No: faker.address.buildingNumber(),

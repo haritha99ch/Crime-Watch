@@ -13,6 +13,7 @@ export class ReportIndexPageComponent implements OnInit {
     ngOnInit(): void {
         this.reportService.GetAll().subscribe((reports) => {
             this.reportList = reports;
+            console.log(reports);
         });
     }
 }
