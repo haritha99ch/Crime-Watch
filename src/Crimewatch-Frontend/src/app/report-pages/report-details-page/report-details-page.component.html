@@ -1,0 +1,78 @@
+<div class="row h-100 p-2">
+    <div class="col-xl-6">
+        <mat-card>
+            <mat-card-title-group>
+                <mat-card-title>{{ reportDetails.Caption }}</mat-card-title>
+                <mat-card-subtitle>
+                    {{ reportDetails.Author.User.FirstName }}
+                    {{ reportDetails.Author.User.LastName }} -
+                    {{ reportDetails.Date }}</mat-card-subtitle
+                >
+            </mat-card-title-group>
+            <mat-card-content>
+                <img
+                    class="rounded mx-auto d-block"
+                    [src]="reportDetails.File.File"
+                />
+            </mat-card-content>
+            <hr />
+            <mat-card-footer>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>{{ reportDetails.Location.No }}</p>
+                            <p>
+                                {{ reportDetails.Location.Street1 }},
+                                {{ reportDetails.Location.Street2 }}
+                            </p>
+                            <p>{{ reportDetails.Location.Street3 }}</p>
+                            <p>
+                                {{ reportDetails.Location.City }},
+                                {{ reportDetails.Location.Province }}
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="fs-6">Moderated By:</label
+                            ><label
+                                class="fs-6"
+                                for="moderator"
+                                *ngIf="reportDetails.Moderator"
+                            >
+                                {{ reportDetails.Moderator.User.FirstName }}
+                                {{
+                                    reportDetails.Moderator.User.LastName
+                                }}</label
+                            >
+                            <div *ngIf="reportDetails.Status === 'Under Review'">
+                            <mat-icon
+                                fontIcon="preview"
+                                color="warn"
+                            ></mat-icon>
+                            Under Review
+                        </div>
+                        <div *ngIf="reportDetails.Status === 'Pending'">
+                            <mat-icon
+                                fontIcon="pending"
+                                color="accent"
+                            ></mat-icon>
+                            Pending
+                        </div>
+                        <div *ngIf="reportDetails.Status === 'Approved'">
+                            <mat-icon
+                                fontIcon="check-circle"
+                                color="primary"
+                            ></mat-icon>
+                            Approved
+                        </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <hr>
+                <mat-card-content>
+                    <p>{{ reportDetails.Body }}</p>
+                </mat-card-content>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+    <div class="col-xl-6">Hello there</div>
+</div>

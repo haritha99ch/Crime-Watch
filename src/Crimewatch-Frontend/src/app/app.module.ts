@@ -16,12 +16,14 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatRippleModule } from "@angular/material/core";
+import { ReportDetailsPageComponent } from './report-pages/report-details-page/report-details-page.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         ReportIndexPageComponent,
         ReportListItemComponent,
+        ReportDetailsPageComponent,
     ],
     imports: [
         BrowserModule,
