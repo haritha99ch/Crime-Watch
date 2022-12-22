@@ -30,7 +30,7 @@ describe("Test moderator services", () => {
             note
         );
         expect(newnote).is.true;
-        const reportApprvoe = await moderatorReportService.Decline(reportId);
-        expect(reportDeclined).is.true;
+        const reportApprvoe = await moderatorReportService.Approve(reportId);
+        expect(reportApprvoe).is.true;
     });
 });
