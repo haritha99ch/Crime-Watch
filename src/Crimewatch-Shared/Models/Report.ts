@@ -7,7 +7,7 @@ import Moderator from "./Moderator";
 import Witness from "./Witness";
 
 class Report {
-    Author!: Schema.Types.ObjectId | (Witness & { _id: string });
+    Author!: Schema.Types.ObjectId | (Witness & { _id: Schema.Types.ObjectId });
     Caption!: string;
     Body!: string;
     Date!: Date;
@@ -16,10 +16,12 @@ class Report {
     File!: File;
     Evidences?:
         | Schema.Types.ObjectId[]
-        | (Evidence[] & { _id: string })
+        | (Evidence & { _id: Schema.Types.ObjectId })[]
         | number;
     Status!: Status;
-    Moderator?: Schema.Types.ObjectId | (Moderator & { _id: string });
+    Moderator?:
+        | Schema.Types.ObjectId
+        | (Moderator & { _id: Schema.Types.ObjectId });
     ModeratorNote?: string;
 }
 export default Report;

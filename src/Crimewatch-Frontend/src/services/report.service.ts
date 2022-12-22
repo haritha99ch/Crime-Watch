@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 import Report, { ReportDocument } from "crimewatch-shared/Models/Report";
+import ReportViewModel from "crimewatch-shared/ViewModels/ReportViewModel";
+import ReportDetailsViewModel from "crimewatch-shared/ViewModels/ReportDetailsViewModel";
 import { Observable } from "rxjs";
 
 const httpOptions = {
@@ -16,21 +18,21 @@ const httpOptions = {
 export class ReportService {
     constructor(private readonly http: HttpClient) {}
 
-    public Create(report: Report): Observable<ReportDocument> {
-        return this.http.post<ReportDocument>(
+    public Create(report: Report): Observable<ReportDetailsViewModel> {
+        return this.http.post<ReportDetailsViewModel>(
             `/API/Report/Create`,
             report,
             httpOptions
         );
     }
-    public GetAll(): Observable<ReportDocument[]> {
-        return this.http.get<ReportDocument[]>(
+    public GetAll(): Observable<ReportViewModel[]> {
+        return this.http.get<ReportViewModel[]>(
             `/API/Report/GetAll`,
             httpOptions
         );
     }
-    public Details(reportId: string): Observable<ReportDocument> {
-        return this.http.get<ReportDocument>(
+    public Details(reportId: string): Observable<ReportDetailsViewModel> {
+        return this.http.get<ReportDetailsViewModel>(
             `/API/Report/Details/${reportId}`,
             httpOptions
         );
@@ -38,8 +40,8 @@ export class ReportService {
     public Update(
         reportId: string,
         update: Report
-    ): Observable<ReportDocument> {
-        return this.http.patch<ReportDocument>(
+    ): Observable<ReportDetailsViewModel> {
+        return this.http.patch<ReportDetailsViewModel>(
             `/API/Report/Update/${reportId}`,
             update,
             httpOptions
@@ -48,8 +50,8 @@ export class ReportService {
     public BeModerator(
         moderatorId: string,
         reportId: string
-    ): Observable<ReportDocument> {
-        return this.http.patch<ReportDocument>(
+    ): Observable<ReportDetailsViewModel> {
+        return this.http.patch<ReportDetailsViewModel>(
             `/API/Report/Moderator/${moderatorId}/${reportId}`,
             {},
             httpOptions
