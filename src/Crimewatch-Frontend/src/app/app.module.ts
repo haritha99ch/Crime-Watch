@@ -11,6 +11,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
+import { MatSelectModule } from "@angular/material/select";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatIconModule } from "@angular/material/icon";
 import { MatChipsModule } from "@angular/material/chips";
@@ -19,6 +23,9 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatRippleModule } from "@angular/material/core";
 import { ReportDetailsPageComponent } from "./report-pages/report-details-page/report-details-page.component";
 import { ReportEvidenceItemComponent } from "./report-pages/report-evidence-item/report-evidence-item.component";
+import { ReportDataFormComponent } from "./report-pages/report-data-form/report-data-form.component";
+import { FormsModule, NgModel } from "@angular/forms";
+import { ReportCreatePageComponent } from "./report-pages/report-create-page/report-create-page.component";
 
 @NgModule({
     declarations: [
@@ -27,6 +34,8 @@ import { ReportEvidenceItemComponent } from "./report-pages/report-evidence-item
         ReportListItemComponent,
         ReportDetailsPageComponent,
         ReportEvidenceItemComponent,
+        ReportDataFormComponent,
+        ReportCreatePageComponent,
     ],
     imports: [
         BrowserModule,
@@ -42,6 +51,11 @@ import { ReportEvidenceItemComponent } from "./report-pages/report-evidence-item
         MatChipsModule,
         MatIconModule,
         MatExpansionModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatButtonModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

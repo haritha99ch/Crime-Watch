@@ -8,7 +8,7 @@ import Moderator from "./Moderator";
 import Witness from "./Witness";
 
 class Report {
-    Author!: Schema.Types.ObjectId | (Witness & { _id: Schema.Types.ObjectId });
+    Author!: Schema.Types.ObjectId | (Witness & { _id: string });
     Caption!: string;
     Body!: string;
     Date!: Date;

@@ -7,7 +7,7 @@ import EvidenceViewModel from "./EvidenceViewModel";
 
 class ReportViewModel extends Report {
     _id?: string;
-    override Author!: Witness & { _id: Schema.Types.ObjectId };
+    override Author!: Witness & { _id: string };
     override Evidences?: EvidenceViewModel[] | Schema.Types.ObjectId[];
     override Moderator?: Moderator & { _id: Schema.Types.ObjectId };
 }
