@@ -43,36 +43,43 @@
                                     reportDetails.Moderator.User.LastName
                                 }}</label
                             >
-                            <div *ngIf="reportDetails.Status === 'Under Review'">
-                            <mat-icon
-                                fontIcon="preview"
-                                color="warn"
-                            ></mat-icon>
-                            Under Review
-                        </div>
-                        <div *ngIf="reportDetails.Status === 'Pending'">
-                            <mat-icon
-                                fontIcon="pending"
-                                color="accent"
-                            ></mat-icon>
-                            Pending
-                        </div>
-                        <div *ngIf="reportDetails.Status === 'Approved'">
-                            <mat-icon
-                                fontIcon="check-circle"
-                                color="primary"
-                            ></mat-icon>
-                            Approved
-                        </div>
+                            <div
+                                *ngIf="reportDetails.Status === 'Under Review'"
+                            >
+                                <mat-icon
+                                    fontIcon="preview"
+                                    color="warn"
+                                ></mat-icon>
+                                Under Review
+                            </div>
+                            <div *ngIf="reportDetails.Status === 'Pending'">
+                                <mat-icon
+                                    fontIcon="pending"
+                                    color="accent"
+                                ></mat-icon>
+                                Pending
+                            </div>
+                            <div *ngIf="reportDetails.Status === 'Approved'">
+                                <mat-icon
+                                    fontIcon="check-circle"
+                                    color="primary"
+                                ></mat-icon>
+                                Approved
+                            </div>
                         </div>
                     </div>
                 </mat-card-content>
-                <hr>
+                <hr />
                 <mat-card-content>
                     <p>{{ reportDetails.Body }}</p>
                 </mat-card-content>
             </mat-card-footer>
         </mat-card>
     </div>
-    <div class="col-xl-6">Hello there</div>
+    <div class="col-xl-6">
+        <app-report-evidence-item
+            *ngFor="let evidence of reportDetails.Evidences"
+            [evidenceItem]="evidence"
+        ></app-report-evidence-item>
+    </div>
 </div>

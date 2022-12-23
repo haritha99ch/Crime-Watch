@@ -1,5 +1,6 @@
 import { Document, Schema } from "mongoose";
 import Status from "../Enums/Status";
+import EvidenceViewModel from "../ViewModels/EvidenceViewModel";
 import Evidence from "./Evidence";
 import File from "./File";
 import Location from "./Location";
@@ -14,10 +15,7 @@ class Report {
     Location!: Location;
     Categories!: string[];
     File!: File;
-    Evidences?:
-        | Schema.Types.ObjectId[]
-        | (Evidence & { _id: Schema.Types.ObjectId })[]
-        | number;
+    Evidences?: Schema.Types.ObjectId[] | String[] | EvidenceViewModel[];
     Status!: Status;
     Moderator?:
         | Schema.Types.ObjectId

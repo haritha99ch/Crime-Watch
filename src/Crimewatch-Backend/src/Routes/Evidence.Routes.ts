@@ -8,6 +8,7 @@ const evidenceController = new EvidenceController();
 // /API/Evidence
 const _create = "/Create/:reportId";
 const _getAll = "/GetAll/:reportId";
+const _get = "/Get/:evidenceId";
 const _delete = "/Delete/:reportId/:evidenceId";
 const _beMod = "/Moderator/:moderatorId/:evidenceId";
 const _approve = "/Approve/:evidenceId";
@@ -21,6 +22,10 @@ EvidenceRouter.post(
 EvidenceRouter.get(
     _getAll,
     evidenceController.GetAllForReport.bind(evidenceController)
+);
+EvidenceRouter.get(
+    _get,
+    evidenceController.GetEvidenceById.bind(evidenceController)
 );
 EvidenceRouter.delete(
     _delete,

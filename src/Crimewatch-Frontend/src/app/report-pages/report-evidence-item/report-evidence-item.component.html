@@ -1,0 +1,77 @@
+<mat-card class="d-inline-flex p-2">
+    <div>
+        <mat-card-header>
+            <mat-card-title>{{ evidenceItem.Caption }}</mat-card-title>
+            <mat-card-subtitle>
+                {{ evidenceItem.Author.User.FirstName }}
+                {{ evidenceItem.Author.User.LastName }} -
+                {{ evidenceItem.Date }} |
+                <mat-icon fontIcon="location_on"></mat-icon>
+                {{ evidenceItem.Location.Street1 }} -
+                {{ evidenceItem.Location.City }} -{{
+                    evidenceItem.Location.Province
+                }}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{ evidenceItem.Body }}</p>
+        </mat-card-content>
+    </div>
+    <mat-card-footer>
+        <div class="row">
+            <div class="col-sm-6">
+                <p>{{ evidenceItem.Location.No }}</p>
+                <p>
+                    {{ evidenceItem.Location.Street1 }},
+                    {{ evidenceItem.Location.Street2 }}
+                </p>
+                <p>{{ evidenceItem.Location.Street3 }}</p>
+                <p>
+                    {{ evidenceItem.Location.City }},
+                    {{ evidenceItem.Location.Province }}
+                </p>
+            </div>
+            <div class="col-sm-4">
+                <label class="fs-6">Moderated By:</label
+                            ><label
+                                class="fs-6"
+                                for="moderator"
+                                *ngIf="evidenceItem.Moderator"
+                            >
+                                {{ evidenceItem.Moderator.User.FirstName }}
+                                {{
+                                    evidenceItem.Moderator.User.LastName
+                                }}</label
+                            >
+                <div *ngIf="evidenceItem.Status === 'Under Review'">
+                    <mat-icon fontIcon="preview" color="warn"></mat-icon>
+                    Under Review
+                </div>
+                <div *ngIf="evidenceItem.Status === 'Pending'">
+                    <mat-icon fontIcon="pending" color="accent"></mat-icon>
+                    Pending
+                </div>
+                <div *ngIf="evidenceItem.Status === 'Approved'">
+                    <mat-icon
+                        fontIcon="check-circle"
+                        color="primary"
+                    ></mat-icon>
+                    Approved
+                </div>
+            </div>
+        </div>
+    </mat-card-footer>
+</mat-card>
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title> See Photos </mat-panel-title>
+        </mat-expansion-panel-header>
+        <img *ngFor="let file of evidenceItem.Files" [src]="file.File"/>
+    </mat-expansion-panel>
+    <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+    >
+    </mat-expansion-panel
+></mat-accordion>

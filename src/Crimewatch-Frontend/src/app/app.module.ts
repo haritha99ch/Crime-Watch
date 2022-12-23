@@ -11,12 +11,14 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { MatCardModule } from "@angular/material/card";
+import { MatExpansionModule } from "@angular/material/expansion";
 import { MatIconModule } from "@angular/material/icon";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatRippleModule } from "@angular/material/core";
-import { ReportDetailsPageComponent } from './report-pages/report-details-page/report-details-page.component';
+import { ReportDetailsPageComponent } from "./report-pages/report-details-page/report-details-page.component";
+import { ReportEvidenceItemComponent } from "./report-pages/report-evidence-item/report-evidence-item.component";
 
 @NgModule({
     declarations: [
@@ -24,6 +26,7 @@ import { ReportDetailsPageComponent } from './report-pages/report-details-page/r
         ReportIndexPageComponent,
         ReportListItemComponent,
         ReportDetailsPageComponent,
+        ReportEvidenceItemComponent,
     ],
     imports: [
         BrowserModule,
@@ -38,6 +41,7 @@ import { ReportDetailsPageComponent } from './report-pages/report-details-page/r
         MatGridListModule,
         MatChipsModule,
         MatIconModule,
+        MatExpansionModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

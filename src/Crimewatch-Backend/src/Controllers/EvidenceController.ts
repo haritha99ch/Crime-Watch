@@ -2,13 +2,20 @@ import ReportEvidenceService from "../Services/ReportEvidenceService";
 import { Request, Response, NextFunction } from "express";
 import Evidence, { EvidenceDocument } from "crimewatch-shared/Models/Evidence";
 import ModeratorEvidenceService from "../Services/ModeratorEvidenceService";
+import IRepository from "../Services/IRepository";
+import Repository from "../Services/Repository";
+import EvidenceModel from "../Models/EvidenceModel";
 
 class EvidenceController {
     private readonly reportEvidenceService: ReportEvidenceService;
     private readonly moderatorEvidenceService: ModeratorEvidenceService;
+    private readonly _evidenceRepository: IRepository<EvidenceDocument>;
     constructor() {
         this.reportEvidenceService = new ReportEvidenceService();
         this.moderatorEvidenceService = new ModeratorEvidenceService();
+        this._evidenceRepository = new Repository<EvidenceDocument>(
+            EvidenceModel
+        );
     }
 
     public async CreateForReport(
@@ -21,6 +28,18 @@ class EvidenceController {
                 request.params.reportId,
                 request.body
             );
+        return response.send(evidence);
+    }
+    public async GetEvidenceById(
+        request: Request<{ evidenceId: string }>,
+        response: Response<EvidenceDocument>,
+        next: NextFunction
+    ) {
+        console.log("pass");
+
+        const evidence = await this._evidenceRepository.GetById(
+            request.params.evidenceId
+        );
         return response.send(evidence);
     }
     public async GetAllForReport(
