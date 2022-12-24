@@ -28,6 +28,10 @@ class ReportEvidenceService {
             reportId,
             update
         );
+        console.log(reportId);
+
+        console.log(report);
+
         return newEvidence;
     }
     public async GetAllEvidenceForReport(

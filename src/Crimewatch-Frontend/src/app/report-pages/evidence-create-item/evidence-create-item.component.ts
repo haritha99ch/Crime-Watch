@@ -1,22 +1,19 @@
-import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
-import { Router } from "@angular/router";
-import Province from "crimewatch-shared/Enums/Province";
+import { Component, EventEmitter, Output } from "@angular/core";
 import Status from "crimewatch-shared/Enums/Status";
-import ReportViewModel from "crimewatch-shared/ViewModels/ReportViewModel";
+import EvidenceViewModel from "crimewatch-shared/ViewModels/EvidenceViewModel";
 
 @Component({
-    selector: "app-report-data-form",
-    templateUrl: "./report-data-form.component.html",
-    styleUrls: ["./report-data-form.component.css"],
+    selector: "app-evidence-create-item",
+    templateUrl: "./evidence-create-item.component.html",
+    styleUrls: ["./evidence-create-item.component.css"],
 })
-export class ReportDataFormComponent implements OnInit {
-    @Input()
-    public reportDetails: ReportViewModel;
-    @Output()
-    public onSubmit = new EventEmitter<ReportViewModel>();
+export class EvidenceCreateItemComponent {
+    public newEvidence: EvidenceViewModel;
     public provinces: string[] = [];
+    @Output()
+    public onSubmit = new EventEmitter<EvidenceViewModel>();
     constructor() {
-        this.reportDetails = {
+        this.newEvidence = {
             Author: {
                 User: {
                     FirstName: "",
@@ -39,10 +36,7 @@ export class ReportDataFormComponent implements OnInit {
                 City: "",
                 Province: null!,
             },
-            Categories: [],
-            File: {
-                File: "../../../assets/imgPlaceholder.png",
-            },
+            Files: [],
             Status: Status.Pending,
         };
         this.provinces.push("Central");
@@ -55,17 +49,17 @@ export class ReportDataFormComponent implements OnInit {
         this.provinces.push("Uva");
         this.provinces.push("West");
     }
-    ngOnInit(): void {}
 
-    public onButtonClicked(): void {
-        this.onSubmit.emit(this.reportDetails);
+    public onButtonClicked() {
+        this.onSubmit.emit(this.newEvidence);
     }
-    public SetImage(event: any): void {
+    public SetImage(event: any) {
         if (!event.target.files) return;
         const file = event.target.files[0];
         const reader = new FileReader();
         reader.onload = (e) => {
-            this.reportDetails.File.File = reader.result?.toString()!;
+            const image = reader.result?.toString()!;
+            this.newEvidence.Files.push({ File: image });
         };
         reader.readAsDataURL(file);
     }

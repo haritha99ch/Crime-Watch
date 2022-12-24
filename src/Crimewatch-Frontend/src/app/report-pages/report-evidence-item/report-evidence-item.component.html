@@ -1,4 +1,4 @@
-<mat-card class="d-inline-flex p-2">
+<mat-card class="p-2 mb-1 mt-1">
     <div>
         <mat-card-header>
             <mat-card-title>{{ evidenceItem.Caption }}</mat-card-title>
@@ -33,16 +33,14 @@
             </div>
             <div class="col-sm-4">
                 <label class="fs-6">Moderated By:</label
-                            ><label
-                                class="fs-6"
-                                for="moderator"
-                                *ngIf="evidenceItem.Moderator"
-                            >
-                                {{ evidenceItem.Moderator.User.FirstName }}
-                                {{
-                                    evidenceItem.Moderator.User.LastName
-                                }}</label
-                            >
+                ><label
+                    class="fs-6"
+                    for="moderator"
+                    *ngIf="evidenceItem.Moderator"
+                >
+                    {{ evidenceItem.Moderator.User.FirstName }}
+                    {{ evidenceItem.Moderator.User.LastName }}</label
+                >
                 <div *ngIf="evidenceItem.Status === 'Under Review'">
                     <mat-icon fontIcon="preview" color="warn"></mat-icon>
                     Under Review
@@ -61,17 +59,17 @@
             </div>
         </div>
     </mat-card-footer>
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title> See Photos </mat-panel-title>
+            </mat-expansion-panel-header>
+            <img *ngFor="let file of evidenceItem.Files" [src]="file.File" />
+        </mat-expansion-panel>
+        <mat-expansion-panel
+            (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false"
+        >
+        </mat-expansion-panel
+    ></mat-accordion>
 </mat-card>
-<mat-accordion>
-    <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-            <mat-panel-title> See Photos </mat-panel-title>
-        </mat-expansion-panel-header>
-        <img *ngFor="let file of evidenceItem.Files" [src]="file.File"/>
-    </mat-expansion-panel>
-    <mat-expansion-panel
-        (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false"
-    >
-    </mat-expansion-panel
-></mat-accordion>

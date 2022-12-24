@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import Status from "crimewatch-shared/Enums/Status";
 import User from "crimewatch-shared/Models/User";
+import EvidenceViewModel from "crimewatch-shared/ViewModels/EvidenceViewModel";
 import { ReportDetailsViewModel } from "crimewatch-shared/ViewModels/ReportDetailsViewModel";
 import { EvidenceService } from "src/services/evidence.service";
 import { ReportService } from "src/services/report.service";
@@ -41,6 +42,7 @@ export class ReportDetailsPageComponent implements OnInit {
         },
         Status: Status.Pending,
     };
+    panelOpenState = false;
     constructor(
         private readonly route: ActivatedRoute,
         private readonly reportService: ReportService,
@@ -55,5 +57,14 @@ export class ReportDetailsPageComponent implements OnInit {
         this.evidenceService.GetAllForReport(id!).subscribe((evidences) => {
             this.reportDetails.Evidences = evidences;
         });
+    }
+
+    onSubmit(newEvidence: any) {
+        newEvidence.Author = "63a46f8ceb230701cc95d719";
+        this.evidenceService
+            .CreateForReport(this.reportDetails._id!, newEvidence)
+            .subscribe((evidence) => {
+                this.reportDetails.Evidences?.push(evidence);
+            });
     }
 }

@@ -26,6 +26,7 @@ import { ReportEvidenceItemComponent } from "./report-pages/report-evidence-item
 import { ReportDataFormComponent } from "./report-pages/report-data-form/report-data-form.component";
 import { FormsModule, NgModel } from "@angular/forms";
 import { ReportCreatePageComponent } from "./report-pages/report-create-page/report-create-page.component";
+import { EvidenceCreateItemComponent } from './report-pages/evidence-create-item/evidence-create-item.component';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { ReportCreatePageComponent } from "./report-pages/report-create-page/rep
         ReportEvidenceItemComponent,
         ReportDataFormComponent,
         ReportCreatePageComponent,
+        EvidenceCreateItemComponent,
     ],
     imports: [
         BrowserModule,
