@@ -11,6 +11,10 @@ const UserSchema: Schema = new Schema<UserDocument>({
         type: String,
         required: true,
     },
+    Gender: {
+        type: String,
+        required: true,
+    },
     DOB: {
         type: Date,
         required: true,
