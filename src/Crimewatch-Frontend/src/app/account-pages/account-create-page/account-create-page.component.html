@@ -1,0 +1,156 @@
+<div class="container p-5">
+    <form (ngSubmit)="onSubmit()">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input
+                    matInput
+                    placeholder="First Name"
+                    name="firstname"
+                    [(ngModel)]="newUser.FirstName"
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input
+                    matInput
+                    placeholder="First Name"
+                    name="lastname"
+                    [(ngModel)]="newUser.LastName"
+                    required
+                />
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Select</mat-label>
+                <mat-select name="gender" [(ngModel)]="newUser.Gender" required>
+                    <mat-option value="Male">Male</mat-option>
+                    <mat-option value="Female">Female</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Date Of Birth</mat-label>
+                <input
+                    matInput
+                    placeholder="MM/DD/YYYY"
+                    [matDatepicker]="picker"
+                    name="dob"
+                    [(ngModel)]="newUser.DOB"
+                    required
+                />
+                <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Phone Number</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    placeholder="Phone Number"
+                    name="phonenumber"
+                    [(ngModel)]="newUser.PhoneNumber"
+                    required
+                />
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Emali</mat-label>
+                <input
+                    matInput
+                    placeholder="Email"
+                    name="account.email"
+                    [(ngModel)]="newUser.Account.Email"
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input
+                    matInput
+                    [type]="hide ? 'password' : 'text'"
+                    name="account.password"
+                    [(ngModel)]="newUser.Account.Password"
+                />
+                <button
+                    mat-icon-button
+                    matSuffix
+                    (click)="hide = !hide"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide"
+                    required
+                >
+                    <mat-icon>{{
+                        hide ? "visibility_off" : "visibility"
+                    }}</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Re-Enter Password</mat-label>
+                <input
+                    matInput
+                    [type]="rhide ? 'password' : 'text'"
+                    name="account.repassword"
+                    [(ngModel)]="reEnterPassword"
+                />
+                <button
+                    mat-icon-button
+                    matSuffix
+                    (click)="rhide = !rhide"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="rhide"
+                    required
+                >
+                    <mat-icon>{{
+                        hide ? "visibility_off" : "visibility"
+                    }}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-slide-toggle
+                name="account.ismoderator"
+                [(ngModel)]="newUser.Account.IsModerator"
+            >
+                Moderator Account
+            </mat-slide-toggle>
+            <div *ngIf="newUser.Account.IsModerator">
+                <div class="row mt-2">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Police Id</mat-label>
+                        <input
+                            matInput
+                            placeholder="Police Id"
+                            name="moderator.policeid"
+                            [(ngModel)]="moderator.PoliceId"
+                            required
+                        />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label> Province </mat-label>
+                        <mat-select
+                            required
+                            [(ngModel)]="moderator.Province"
+                            name="moderator.province"
+                        >
+                            <mat-option
+                                *ngFor="let province of provinces"
+                                [value]="province"
+                            >
+                                {{ province }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <button mat-raised-button type="submit">Create Account</button>
+    </form>
+</div>

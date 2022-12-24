@@ -10,7 +10,10 @@ import { ReportListItemComponent } from "./report-pages/report-list-item/report-
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
+import { MatRippleModule, MatNativeDateModule } from "@angular/material/core";
 import { MatCardModule } from "@angular/material/card";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSelectModule } from "@angular/material/select";
 import { MatInputModule } from "@angular/material/input";
@@ -20,13 +23,13 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
-import { MatRippleModule } from "@angular/material/core";
 import { ReportDetailsPageComponent } from "./report-pages/report-details-page/report-details-page.component";
 import { ReportEvidenceItemComponent } from "./report-pages/report-evidence-item/report-evidence-item.component";
 import { ReportDataFormComponent } from "./report-pages/report-data-form/report-data-form.component";
 import { FormsModule, NgModel } from "@angular/forms";
 import { ReportCreatePageComponent } from "./report-pages/report-create-page/report-create-page.component";
 import { EvidenceCreateItemComponent } from './report-pages/evidence-create-item/evidence-create-item.component';
+import { AccountCreatePageComponent } from './account-pages/account-create-page/account-create-page.component';
 
 @NgModule({
     declarations: [
@@ -38,6 +41,7 @@ import { EvidenceCreateItemComponent } from './report-pages/evidence-create-item
         ReportDataFormComponent,
         ReportCreatePageComponent,
         EvidenceCreateItemComponent,
+        AccountCreatePageComponent,
     ],
     imports: [
         BrowserModule,
@@ -58,6 +62,9 @@ import { EvidenceCreateItemComponent } from './report-pages/evidence-create-item
         MatInputModule,
         MatSelectModule,
         MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSlideToggleModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

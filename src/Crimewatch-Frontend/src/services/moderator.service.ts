@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import Moderator, { ModeratorDocument } from "crimewatch-shared/Models/Moderator";
+import Moderator, {
+    ModeratorDocument,
+} from "crimewatch-shared/Models/Moderator";
 import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
 import { Observable } from "rxjs";
 
@@ -19,26 +21,26 @@ export class ModeratorService {
 
     public Create(moderator: Moderator): Observable<ModeratorDocument> {
         return this.http.post<ModeratorDocument>(
-            `/API/Witness/Create`,
+            `/API/Moderator/Create`,
             moderator,
             httpOptions
         );
     }
     public Details(id: string): Observable<ModeratorDocument> {
         return this.http.get<ModeratorDocument>(
-            `/API/Details/${id}`,
+            `/API/Moderator/Details/${id}`,
             httpOptions
         );
     }
     public Delete(id: string): Observable<boolean> {
         return this.http.delete<boolean>(
-            `/API/Witness/Delete/${id}`,
+            `/API/Moderator/Delete/${id}`,
             httpOptions
         );
     }
     public Signin(login: SigninViewModel): Observable<{ token: string }> {
         return this.http.get<{ token: string }>(
-            `/API/Witness/Signin`,
+            `/API/Moderator/Signin`,
             httpOptions
         );
     }

@@ -19,6 +19,7 @@ export class EvidenceCreateItemComponent {
                     FirstName: "",
                     LastName: "",
                     DOB: null!,
+                    Gender: null!,
                     Age: null!,
                     PhoneNumber: null!,
                     Account: null!,
