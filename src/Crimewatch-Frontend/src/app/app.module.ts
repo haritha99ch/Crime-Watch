@@ -32,6 +32,7 @@ import { ReportCreatePageComponent } from "./report-pages/report-create-page/rep
 import { EvidenceCreateItemComponent } from "./report-pages/evidence-create-item/evidence-create-item.component";
 import { AccountCreatePageComponent } from "./account-pages/account-create-page/account-create-page.component";
 import { AccountSigninPageComponent } from "./account-pages/account-signin-page/account-signin-page.component";
+import { AccountIndexPageComponent } from './account-pages/account-index-page/account-index-page.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { AccountSigninPageComponent } from "./account-pages/account-signin-page/
         EvidenceCreateItemComponent,
         AccountCreatePageComponent,
         AccountSigninPageComponent,
+        AccountIndexPageComponent,
     ],
     imports: [
         BrowserModule,

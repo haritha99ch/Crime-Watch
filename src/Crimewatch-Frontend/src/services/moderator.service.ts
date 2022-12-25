@@ -54,4 +54,8 @@ export class ModeratorService {
         });
         return response;
     }
+    public SignOut(): boolean {
+        const signOut = this.authenticationService.RemoveToken();
+        return false;
+    }
 }
