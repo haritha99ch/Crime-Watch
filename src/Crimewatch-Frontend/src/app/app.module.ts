@@ -30,6 +30,7 @@ import { FormsModule, NgModel } from "@angular/forms";
 import { ReportCreatePageComponent } from "./report-pages/report-create-page/report-create-page.component";
 import { EvidenceCreateItemComponent } from './report-pages/evidence-create-item/evidence-create-item.component';
 import { AccountCreatePageComponent } from './account-pages/account-create-page/account-create-page.component';
+import { AccountSigninPageComponent } from './account-pages/account-signin-page/account-signin-page.component';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { AccountCreatePageComponent } from './account-pages/account-create-page/
         ReportCreatePageComponent,
         EvidenceCreateItemComponent,
         AccountCreatePageComponent,
+        AccountSigninPageComponent,
     ],
     imports: [
         BrowserModule,

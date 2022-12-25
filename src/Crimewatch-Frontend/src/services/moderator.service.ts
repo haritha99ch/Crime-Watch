@@ -39,8 +39,9 @@ export class ModeratorService {
         );
     }
     public Signin(login: SigninViewModel): Observable<{ token: string }> {
-        return this.http.get<{ token: string }>(
+        return this.http.post<{ token: string }>(
             `/API/Moderator/Signin`,
+            login,
             httpOptions
         );
     }

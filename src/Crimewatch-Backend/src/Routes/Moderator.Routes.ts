@@ -23,7 +23,7 @@ ModeratorRouter.delete(
     _delete,
     moderatorController.DeleteById.bind(moderatorController)
 );
-ModeratorRouter.get(
+ModeratorRouter.post(
     _signin,
     moderatorController.Signin.bind(moderatorController)
 );

@@ -17,5 +17,5 @@ WitnessRouter.delete(
     _delete,
     witnessController.DeleteById.bind(witnessController)
 );
-WitnessRouter.get(_signin, witnessController.Signin.bind(witnessController));
+WitnessRouter.post(_signin, witnessController.Signin.bind(witnessController));
 export default WitnessRouter;

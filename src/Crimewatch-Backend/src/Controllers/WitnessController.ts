@@ -45,11 +45,11 @@ class WitnessController {
     }
     public async Signin(
         request: Request<{}, {}, SigninViewModel>,
-        response: Response<{token:string}>,
+        response: Response<{ token: string }>,
         next: NextFunction
     ) {
         const witness = await this.witnessAccountService.Signin(request.body);
-        if (!witness) return response.status(404).send();
+        if (!witness) return response.send(null!);
         const token = jwt.sign({ user: witness }, "key");
         return response.send({ token });
     }

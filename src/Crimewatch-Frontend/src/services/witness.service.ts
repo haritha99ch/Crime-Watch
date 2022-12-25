@@ -37,8 +37,9 @@ export class WitnessService {
         );
     }
     public Signin(login: SigninViewModel): Observable<{ token: string }> {
-        return this.http.get<{ token: string }>(
+        return this.http.post<{ token: string }>(
             `/API/Witness/Signin`,
+            login,
             httpOptions
         );
     }
