@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
+import { AuthenticationService } from "src/services/authentication.service";
 import { ModeratorService } from "src/services/moderator.service";
 import { WitnessService } from "src/services/witness.service";
 
@@ -16,7 +17,8 @@ export class AccountSigninPageComponent {
     constructor(
         private readonly witnessService: WitnessService,
         private readonly moderatorService: ModeratorService,
-        private readonly router: Router
+        private readonly router: Router,
+        private readonly authenticationService: AuthenticationService
     ) {
         this.signinInfo = {
             Email: "",
@@ -25,13 +27,22 @@ export class AccountSigninPageComponent {
     }
 
     public onSubmit(): void {
+        this.authenticationService.RemoveToken();
+        let userfound: boolean = false;
         this.moderatorService.Signin(this.signinInfo).subscribe((token) => {
-            if (token) this.router.navigateByUrl("Report/Index");
+            if (!token) return;
+            userfound = true;
+            this.router.navigateByUrl("Report/Index");
+            return;
         });
+        if (userfound) return;
         this.witnessService.Signin(this.signinInfo).subscribe((token) => {
-            if (token) this.router.navigateByUrl("Report/Index");
+            if (!token) return;
+            userfound = true;
+            this.router.navigateByUrl("Report/Index");
+            return true;
         });
-
+        if (userfound) return;
         this.inValideLogin = true;
     }
 }

@@ -1,5 +1,6 @@
 import express from "express";
 import ReportController from "../Controllers/ReportController";
+import VerifyToken from "../Middlewares/VerifyToken";
 
 const ReportRouter = express.Router();
 
@@ -18,7 +19,11 @@ const _reReview = "/Review/:reportId";
 
 ReportRouter.post(_create, reportController.Create.bind(reportController));
 ReportRouter.get(_getAll, reportController.GetAll.bind(reportController));
-ReportRouter.get(_get, reportController.GetById.bind(reportController));
+ReportRouter.get(
+    _get,
+    VerifyToken,
+    reportController.GetById.bind(reportController)
+);
 ReportRouter.patch(_update, reportController.UpdateById.bind(reportController));
 ReportRouter.delete(
     _delete,

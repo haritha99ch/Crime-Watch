@@ -7,6 +7,7 @@ import IRepository from "../Services/IRepository";
 import Repository from "../Services/Repository";
 import ModeratorAccountService from "../Services/ModeratorAccountService";
 import ModeratorModel from "../Models/ModeratorModel";
+import jwt from "jsonwebtoken";
 
 class ModeratorController {
     private readonly _moderatorRepository: IRepository<ModeratorDocument>;
@@ -48,13 +49,15 @@ class ModeratorController {
     }
     public async Signin(
         request: Request<{}, {}, SigninViewModel>,
-        response: Response<ModeratorDocument>,
+        response: Response<{ token: string }>,
         next: NextFunction
     ) {
         const moderator = await this.moderatorAccountService.Signin(
             request.body
         );
-        return response.send(moderator);
+        if (!moderator) return response.send(null!);
+        const token = jwt.sign({ user: moderator }, "key");
+        return response.send({ token });
     }
 }
 export default ModeratorController;

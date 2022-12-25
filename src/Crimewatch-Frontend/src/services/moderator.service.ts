@@ -6,6 +6,7 @@ import Moderator, {
 } from "crimewatch-shared/Models/Moderator";
 import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
 import { Observable } from "rxjs";
+import { AuthenticationService } from "./authentication.service";
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -17,7 +18,10 @@ const httpOptions = {
     providedIn: "root",
 })
 export class ModeratorService {
-    constructor(private readonly http: HttpClient) {}
+    constructor(
+        private readonly http: HttpClient,
+        private readonly authenticationService: AuthenticationService
+    ) {}
 
     public Create(moderator: Moderator): Observable<ModeratorDocument> {
         return this.http.post<ModeratorDocument>(
@@ -39,10 +43,15 @@ export class ModeratorService {
         );
     }
     public Signin(login: SigninViewModel): Observable<{ token: string }> {
-        return this.http.post<{ token: string }>(
+        const response = this.http.post<{ token: string }>(
             `/API/Moderator/Signin`,
             login,
             httpOptions
         );
+        response.subscribe((result) => {
+            if (!result) return;
+            this.authenticationService.SetToken(result.token);
+        });
+        return response;
     }
 }

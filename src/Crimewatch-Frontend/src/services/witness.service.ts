@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
 import Witness, { WitnessDocument } from "crimewatch-shared/Models/Witness";
 import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
 import { Observable } from "rxjs";
+import { AuthenticationService } from "./authentication.service";
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -15,7 +16,10 @@ const httpOptions = {
     providedIn: "root",
 })
 export class WitnessService {
-    constructor(private readonly http: HttpClient) {}
+    constructor(
+        private readonly http: HttpClient,
+        private readonly authenticationService: AuthenticationService
+    ) {}
 
     public Create(witness: Witness): Observable<WitnessDocument> {
         return this.http.post<WitnessDocument>(
@@ -37,10 +41,19 @@ export class WitnessService {
         );
     }
     public Signin(login: SigninViewModel): Observable<{ token: string }> {
-        return this.http.post<{ token: string }>(
+        const response = this.http.post<{ token: string }>(
             `/API/Witness/Signin`,
             login,
             httpOptions
         );
+        response.subscribe((result) => {
+            if (!result) return;
+            this.authenticationService.SetToken(result.token);
+        });
+        return response;
+    }
+    public SignOut(): boolean{
+        const signOut = this.authenticationService.RemoveToken()
+        return false
     }
 }

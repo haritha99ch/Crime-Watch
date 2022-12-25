@@ -9,6 +9,7 @@ import { CommonModule, formatDate } from "@angular/common";
 import { ReportListItemComponent } from "./report-pages/report-list-item/report-list-item.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { JwtModule } from "@auth0/angular-jwt";
 
 import { MatRippleModule, MatNativeDateModule } from "@angular/material/core";
 import { MatCardModule } from "@angular/material/card";
@@ -28,9 +29,9 @@ import { ReportEvidenceItemComponent } from "./report-pages/report-evidence-item
 import { ReportDataFormComponent } from "./report-pages/report-data-form/report-data-form.component";
 import { FormsModule, NgModel } from "@angular/forms";
 import { ReportCreatePageComponent } from "./report-pages/report-create-page/report-create-page.component";
-import { EvidenceCreateItemComponent } from './report-pages/evidence-create-item/evidence-create-item.component';
-import { AccountCreatePageComponent } from './account-pages/account-create-page/account-create-page.component';
-import { AccountSigninPageComponent } from './account-pages/account-signin-page/account-signin-page.component';
+import { EvidenceCreateItemComponent } from "./report-pages/evidence-create-item/evidence-create-item.component";
+import { AccountCreatePageComponent } from "./account-pages/account-create-page/account-create-page.component";
+import { AccountSigninPageComponent } from "./account-pages/account-signin-page/account-signin-page.component";
 
 @NgModule({
     declarations: [
@@ -52,6 +53,14 @@ import { AccountSigninPageComponent } from './account-pages/account-signin-page/
         CommonModule,
         BrowserAnimationsModule,
         NgbModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: () => {
+                    return localStorage.getItem("token");
+                },
+                allowedDomains: ["http://localhost:9090"],
+            },
+        }),
         MatRippleModule,
         MatCardModule,
         MatProgressBarModule,
