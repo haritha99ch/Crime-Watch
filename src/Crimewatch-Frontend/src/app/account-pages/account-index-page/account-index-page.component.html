@@ -1,1 +1,86 @@
-<p>account-index-page works!</p>
+<div class="row h-100 p-5">
+    <div class="col-6 ">
+        <mat-card>
+            <mat-card-title-group>
+                <mat-card-title>Account Infomation</mat-card-title>
+                <mat-card-subtitle *ngIf="currentUser!.User.Account.IsModerator"
+                    >Moderator Account
+                </mat-card-subtitle>
+                <mat-card-subtitle
+                    *ngIf="!currentUser!.User.Account.IsModerator"
+                    >Witness Account
+                </mat-card-subtitle>
+            </mat-card-title-group>
+            <mat-card-content class="mt-5 account-info">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Fisrt Name:</label>
+                        </div>
+                        <div class="col">
+                            {{ currentUser!.User.FirstName }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Last Name:</label>
+                        </div>
+                        <div class="col">
+                            {{ currentUser!.User.LastName }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Date of Birth:</label>
+                        </div>
+                        <div class="col">
+                            {{ currentUser!.User.DOB }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Age:</label>
+                        </div>
+                        <div class="col">
+                            {{ currentUser!.User.Age }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Email:</label>
+                        </div>
+                        <div class="col">
+                            {{ currentUser!.User.Account.Email }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Phone Number:</label>
+                        </div>
+                        <div class="col">
+                            {{ currentUser!.User.PhoneNumber }}
+                        </div>
+                    </div>
+                    <div *ngIf="currentUser!.User.Account.IsModerator">
+                        <div class="row">
+                            <div class="col-2">
+                                <label>PoliceId:</label>
+                            </div>
+                            <div class="col">
+                                {{ moderator!.PoliceId }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <label>Porvince:</label>
+                            </div>
+                            <div class="col">
+                                {{ moderator!.Province }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
