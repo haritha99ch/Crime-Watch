@@ -1,0 +1,71 @@
+<mat-drawer-container class="overflow-hidden">
+    <mat-drawer #drawer class="" mode="side">
+        <nav class="navbar navbar-expand navbar-dark bg-primary">
+            <label class="fs-3 mt-4">Crime Watch</label>
+        </nav>
+        <div class="mt-3">
+            <button
+                mat-button
+                type="button"
+                routerLink="/Report/Index"
+                (click)="drawer.toggle()"
+                class="full-width nav-item"
+            >
+                <mat-icon fontIcon="home"></mat-icon>
+                Home
+            </button>
+            <button
+                mat-button
+                type="button"
+                routerLink="/Report/Index"
+                (click)="drawer.toggle()"
+                class="full-width nav-item"
+            >
+                <mat-icon fontIcon="description"></mat-icon>
+                Reports
+            </button>
+            <div *ngIf="currentUser">
+                <button
+                    *ngIf="currentUser.User.Account.IsModerator"
+                    mat-button
+                    type="button"
+                    routerLink="/Account/Index"
+                    (click)="drawer.toggle()"
+                    class="full-width nav-item"
+                >
+                    <mat-icon fontIcon="pending"></mat-icon>
+                    Pending Reports
+                </button>
+            </div>
+        </div>
+    </mat-drawer>
+    <nav class="navbar navbar-light bg-primary justify-content-between">
+        <a class="navbar-brand" (click)="drawer.toggle()"
+            ><img src="../../../assets/crimeWatchLogo.png" height="35px" />Crime
+            Watch</a
+        >
+        <div>
+            <button
+                mat-flat-button
+                *ngIf="!currentUser"
+                routerLink="/Account/Signin"
+            >
+                Signin
+            </button>
+            <div *ngIf="currentUser">
+                <button mat-flat-button [matMenuTriggerFor]="menu">
+                    {{ currentUser.User.FirstName }}
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="Signout()">Signout</button>
+                    <button mat-menu-item routerLink="/Account/Index">
+                        View Account
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+    </nav>
+    <div class="overflow-auto content-wrapper">
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>

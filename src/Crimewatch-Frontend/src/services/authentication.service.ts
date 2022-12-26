@@ -8,6 +8,7 @@ import Witness from "crimewatch-shared/Models/Witness";
     providedIn: "root",
 })
 export class AuthenticationService {
+    public isSignedin: any;
     constructor(private readonly jwtHelper: JwtHelperService) {}
 
     public SetToken(token: string) {
@@ -16,6 +17,7 @@ export class AuthenticationService {
     }
     public RemoveToken(): boolean {
         localStorage.removeItem("token");
+        this.isSignedin = false;
         return true;
     }
     public IsAuthenticated(): boolean {
@@ -35,6 +37,7 @@ export class AuthenticationService {
         if (!token) return null!;
         const decodedToken: any = this.jwtHelper.decodeToken(token);
         const user: Witness | Moderator = decodedToken.user;
+        this.isSignedin = true;
         return user;
     }
 }

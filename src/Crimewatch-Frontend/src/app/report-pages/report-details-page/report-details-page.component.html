@@ -1,5 +1,5 @@
-<div class="row h-100 p-2">
-    <div class="col-xl-6">
+<div class="row h-100 p-2 report-details overflow-hidden">
+    <div class="col height">
         <mat-card>
             <mat-card-title-group>
                 <mat-card-title>{{ reportDetails.Caption }}</mat-card-title>
@@ -76,22 +76,20 @@
             </mat-card-footer>
         </mat-card>
     </div>
-    <div class="col-xl-6">
-        <div class="mb-1">
-            <mat-accordion>
-                <mat-expansion-panel
-                    (opened)="panelOpenState = true"
-                    (closed)="panelOpenState = false"
-                >
-                    <mat-expansion-panel-header>
-                        <mat-panel-title> + Add New Evidence </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <app-evidence-create-item
-                        (onSubmit)="onSubmit($event)"
-                    ></app-evidence-create-item>
-                </mat-expansion-panel>
-            </mat-accordion>
-        </div>
+    <div class="col height overflow-auto">
+        <mat-accordion>
+            <mat-expansion-panel
+                (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false"
+            >
+                <mat-expansion-panel-header>
+                    <mat-panel-title> + Add New Evidence </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-evidence-create-item
+                    (onSubmit)="onSubmit($event)"
+                ></app-evidence-create-item>
+            </mat-expansion-panel>
+        </mat-accordion>
         <app-report-evidence-item
             *ngFor="let evidence of reportDetails.Evidences"
             [evidenceItem]="evidence"

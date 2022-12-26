@@ -28,8 +28,6 @@ export class AccountIndexPageComponent implements OnInit {
     }
     ngOnInit(): void {
         this.GetCurrentUser();
-        console.log(this.moderator);
-        console.log(this.witness);
     }
 
     public GetCurrentUser() {

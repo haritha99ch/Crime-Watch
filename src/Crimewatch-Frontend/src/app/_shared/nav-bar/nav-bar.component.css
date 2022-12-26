@@ -1,0 +1,13 @@
+.full-width {
+    width: 100%;
+}
+
+.content-wrapper {
+    max-height: 93vh;
+    min-height: 93vh;
+}
+.nav-item {
+    background-color: rgba(0, 0, 0, 0);
+    color: aliceblue;
+    border-style: none;
+}

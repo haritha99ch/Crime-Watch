@@ -13,6 +13,8 @@ import { JwtModule } from "@auth0/angular-jwt";
 
 import { MatRippleModule, MatNativeDateModule } from "@angular/material/core";
 import { MatCardModule } from "@angular/material/card";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatMenuModule } from "@angular/material/menu";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatButtonModule } from "@angular/material/button";
@@ -33,6 +35,7 @@ import { EvidenceCreateItemComponent } from "./report-pages/evidence-create-item
 import { AccountCreatePageComponent } from "./account-pages/account-create-page/account-create-page.component";
 import { AccountSigninPageComponent } from "./account-pages/account-signin-page/account-signin-page.component";
 import { AccountIndexPageComponent } from './account-pages/account-index-page/account-index-page.component';
+import { NavBarComponent } from './_shared/nav-bar/nav-bar.component';
 
 @NgModule({
     declarations: [
@@ -47,6 +50,7 @@ import { AccountIndexPageComponent } from './account-pages/account-index-page/ac
         AccountCreatePageComponent,
         AccountSigninPageComponent,
         AccountIndexPageComponent,
+        NavBarComponent,
     ],
     imports: [
         BrowserModule,
@@ -78,6 +82,8 @@ import { AccountIndexPageComponent } from './account-pages/account-index-page/ac
         MatDatepickerModule,
         MatNativeDateModule,
         MatSlideToggleModule,
+        MatSidenavModule,
+        MatMenuModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

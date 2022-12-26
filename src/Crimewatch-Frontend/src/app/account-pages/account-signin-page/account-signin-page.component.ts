@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
 import { AuthenticationService } from "src/services/authentication.service";
@@ -12,6 +12,8 @@ import { WitnessService } from "src/services/witness.service";
 })
 export class AccountSigninPageComponent {
     hide: boolean = true;
+    @Output()
+    public onSignin;
     inValideLogin: boolean = false;
     public signinInfo: SigninViewModel;
     constructor(
@@ -24,6 +26,7 @@ export class AccountSigninPageComponent {
             Email: "",
             Password: "",
         };
+        this.onSignin = new EventEmitter();
     }
 
     public onSubmit(): void {
@@ -44,5 +47,6 @@ export class AccountSigninPageComponent {
         });
         if (userfound) return;
         this.inValideLogin = true;
+        this.onSignin.emit();
     }
 }

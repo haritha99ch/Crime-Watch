@@ -8,7 +8,7 @@ import { ReportDetailsPageComponent } from "./report-pages/report-details-page/r
 import { ReportIndexPageComponent } from "./report-pages/report-index-page/report-index-page.component";
 
 const routes: Routes = [
-    { path: "", redirectTo: "Account/Signin", pathMatch: "full" },
+    { path: "", redirectTo: "Report/Index", pathMatch: "full" },
     { path: "Report/Index", component: ReportIndexPageComponent },
     { path: "Report/Create", component: ReportCreatePageComponent },
     { path: "Report/Details/:id", component: ReportDetailsPageComponent },
