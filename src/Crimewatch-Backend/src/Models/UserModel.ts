@@ -33,7 +33,7 @@ const UserSchema: Schema = new Schema<UserDocument>({
         required: true,
     },
     Notifications: {
-        type: [NotificationModel.schema],
+        type: [Schema.Types.ObjectId],
     },
 });
 export default model<UserDocument>("User", UserSchema);
