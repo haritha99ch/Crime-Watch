@@ -1,6 +1,7 @@
 import { model, Schema } from "mongoose";
 import { UserDocument } from "crimewatch-shared/Models/User";
 import AccountModel from "./AccountModel";
+import NotificationModel from "./NotificationModel";
 
 const UserSchema: Schema = new Schema<UserDocument>({
     FirstName: {
@@ -30,6 +31,9 @@ const UserSchema: Schema = new Schema<UserDocument>({
     Account: {
         type: AccountModel.schema,
         required: true,
+    },
+    Notifications: {
+        type: [NotificationModel.schema],
     },
 });
 export default model<UserDocument>("User", UserSchema);
