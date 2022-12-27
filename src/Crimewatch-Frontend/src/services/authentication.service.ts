@@ -32,11 +32,15 @@ export class AuthenticationService {
         if (isModerator) return true;
         return false;
     }
-    public GetCurrentUser(): Witness | Moderator {
+    public GetCurrentUser():
+        | (Witness & { _id: string })
+        | (Moderator & { _id: string }) {
         const token = localStorage.getItem("token");
         if (!token) return null!;
         const decodedToken: any = this.jwtHelper.decodeToken(token);
-        const user: Witness | Moderator = decodedToken.user;
+        const user:
+            | (Witness & { _id: string })
+            | (Moderator & { _id: string }) = decodedToken.user;
         this.isSignedin = true;
         return user;
     }

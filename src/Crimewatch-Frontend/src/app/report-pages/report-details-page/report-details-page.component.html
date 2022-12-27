@@ -1,5 +1,8 @@
 <div class="row h-100 p-2 report-details overflow-hidden">
-    <div class="col height">
+    <div class="info d-flex align-items-center justify-content-center" *ngIf="infoLoading">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div class="col info">
         <mat-card>
             <mat-card-title-group>
                 <mat-card-title>{{ reportDetails.Caption }}</mat-card-title>
@@ -43,28 +46,63 @@
                                     reportDetails.Moderator.User.LastName
                                 }}</label
                             >
-                            <div
-                                *ngIf="reportDetails.Status === 'Under Review'"
-                            >
-                                <mat-icon
-                                    fontIcon="preview"
-                                    color="warn"
-                                ></mat-icon>
-                                Under Review
-                            </div>
-                            <div *ngIf="reportDetails.Status === 'Pending'">
-                                <mat-icon
-                                    fontIcon="pending"
-                                    color="accent"
-                                ></mat-icon>
-                                Pending
-                            </div>
-                            <div *ngIf="reportDetails.Status === 'Approved'">
-                                <mat-icon
-                                    fontIcon="check-circle"
-                                    color="primary"
-                                ></mat-icon>
-                                Approved
+                            <div>
+                                <mat-chip-listbox aria-label="Fish selection">
+                                    <mat-chip-option
+                                        [disabled]="
+                                            !currentUser?.User?.Account
+                                                ?.IsModerator
+                                        "
+                                        color=""
+                                        [selected]="
+                                            reportDetails.Status ===
+                                            'Under Review'
+                                        "
+                                        (click)="Review()"
+                                        >Review
+                                    </mat-chip-option>
+                                    <mat-chip-option
+                                        color="primary"
+                                        [disabled]="
+                                            !currentUser?.User?.Account
+                                                ?.IsModerator
+                                        "
+                                        [selected]="
+                                            reportDetails.Status === 'Approved'
+                                        "
+                                        (click)="Approve()"
+                                        >Approve
+                                    </mat-chip-option>
+                                    <mat-chip-option
+                                        color="warn"
+                                        [disabled]="
+                                            !currentUser?.User?.Account
+                                                ?.IsModerator
+                                        "
+                                        [selected]="
+                                            reportDetails.Status === 'Declined'
+                                        "
+                                        (click)="Declined()"
+                                        >Decline
+                                    </mat-chip-option>
+                                </mat-chip-listbox>
+                                <div>
+                                    <mat-form-field
+                                        class="full-width"
+                                        appearance="outline"
+                                    >
+                                        <mat-label>Body</mat-label>
+                                        <textarea
+                                            matInput
+                                            placeholder="Ex. It makes me feel..."
+                                            [(ngModel)]="
+                                                reportDetails.ModeratorNote
+                                            "
+                                            name="body"
+                                            required
+                                        ></textarea>
+                                    </mat-form-field>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -76,7 +114,7 @@
             </mat-card-footer>
         </mat-card>
     </div>
-    <div class="col height overflow-auto">
+    <div class="col info overflow-auto">
         <mat-accordion>
             <mat-expansion-panel
                 (opened)="panelOpenState = true"

@@ -13,6 +13,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 
 import { MatRippleModule, MatNativeDateModule } from "@angular/material/core";
 import { MatCardModule } from "@angular/material/card";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
@@ -84,6 +85,7 @@ import { NavBarComponent } from './_shared/nav-bar/nav-bar.component';
         MatSlideToggleModule,
         MatSidenavModule,
         MatMenuModule,
+        MatProgressSpinnerModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

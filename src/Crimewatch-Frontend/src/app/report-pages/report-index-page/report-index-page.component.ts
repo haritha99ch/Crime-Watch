@@ -8,12 +8,14 @@ import { ReportService } from "src/services/report.service";
     styleUrls: ["./report-index-page.component.css"],
 })
 export class ReportIndexPageComponent implements OnInit {
+    isLoading: boolean = true;
+
     public reportList?: ReportViewModel[];
     constructor(private readonly reportService: ReportService) {}
     ngOnInit(): void {
         this.reportService.GetAll().subscribe((reports) => {
             this.reportList = reports;
-            console.log(reports);
+            this.isLoading = false;
         });
     }
 }
