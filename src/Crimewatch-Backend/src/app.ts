@@ -1,5 +1,6 @@
 import express from "express";
 import Default from "./Configs/Default";
+import cors from "cors";
 import DbContext from "./Context/DbContext";
 import Routes from "./Routes/Routes";
 import { createServer } from "http";
@@ -11,7 +12,12 @@ app.use(express.json({ limit: "50mb" }));
 app.use("/API", Routes);
 
 const httpServer = createServer(app);
-const io = new Server(httpServer);
+const io = new Server(httpServer, {
+    cors: {
+        origin: "http://localhost:4200",
+        methods: ["GET", "POST"],
+    },
+});
 
 io.on("connection", (socket) => {
     console.log("User connected");

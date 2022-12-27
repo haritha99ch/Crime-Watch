@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import Moderator from "crimewatch-shared/Models/Moderator";
 import Witness from "crimewatch-shared/Models/Witness";
 import { AuthenticationService } from "src/services/authentication.service";
+import { NotificationService } from "src/services/notification.service";
 
 @Component({
     selector: "app-nav-bar",
@@ -12,9 +13,12 @@ import { AuthenticationService } from "src/services/authentication.service";
 export class NavBarComponent implements OnInit {
     showFiller = false;
     isLoggedin: any;
-    public currentUser!: Witness | Moderator;
+    public currentUser!:
+        | (Witness & { _id: string })
+        | (Moderator & { _id: string });
     constructor(
         private readonly authenticationService: AuthenticationService,
+        private readonly notificationService: NotificationService,
         private readonly router: Router
     ) {}
     ngOnInit(): void {
@@ -24,8 +28,15 @@ export class NavBarComponent implements OnInit {
                 this.GetUser();
             }
         });
+        this.notificationService.messages.subscribe((message) => {
+            console.log(message);
+        });
+        this.SendMessage();
     }
 
+    SendMessage() {
+        this.notificationService.SendMessage(this.currentUser._id);
+    }
     private GetUser() {
         this.currentUser = this.authenticationService.GetCurrentUser();
     }

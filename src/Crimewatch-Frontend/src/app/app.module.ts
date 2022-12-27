@@ -35,8 +35,10 @@ import { ReportCreatePageComponent } from "./report-pages/report-create-page/rep
 import { EvidenceCreateItemComponent } from "./report-pages/evidence-create-item/evidence-create-item.component";
 import { AccountCreatePageComponent } from "./account-pages/account-create-page/account-create-page.component";
 import { AccountSigninPageComponent } from "./account-pages/account-signin-page/account-signin-page.component";
-import { AccountIndexPageComponent } from './account-pages/account-index-page/account-index-page.component';
-import { NavBarComponent } from './_shared/nav-bar/nav-bar.component';
+import { AccountIndexPageComponent } from "./account-pages/account-index-page/account-index-page.component";
+import { NavBarComponent } from "./_shared/nav-bar/nav-bar.component";
+import { NotificationService } from "src/services/notification.service";
+import { WebsocketService } from "src/services/websocket.service";
 
 @NgModule({
     declarations: [
@@ -87,7 +89,7 @@ import { NavBarComponent } from './_shared/nav-bar/nav-bar.component';
         MatMenuModule,
         MatProgressSpinnerModule,
     ],
-    providers: [],
+    providers: [NotificationService, WebsocketService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
