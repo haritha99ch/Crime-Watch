@@ -5,6 +5,7 @@ import DbContext from "./Context/DbContext";
 import Routes from "./Routes/Routes";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import User from "crimewatch-shared/Models/User";
 
 const app = express();
 
@@ -19,15 +20,28 @@ const io = new Server(httpServer, {
     },
 });
 
+let onlineUsers: { userId: string; socketId: string }[] = [];
+
 io.on("connection", (socket) => {
-    console.log("User connected");
+    console.log(`User connected`);
+    socket.on("newUser", (userid) => {
+        if (!onlineUsers.some((user) => user.userId === userid))
+            onlineUsers.push({ userId: userid, socketId: socket.id });
+    });
+
     socket.on("disconnect", () => {
-        console.log("User disconnected");
+        console.log(`User disconnected`);
+        onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
     });
-    socket.on("message", (socket) => {
-        console.log(socket);
-        io.emit("message", { type: "new-message", text: socket });
-    });
+    socket.on(
+        "notification",
+        (notification: { to: string; reportId: string; message: string }) => {
+            io.to(
+                onlineUsers.find((user) => user.userId === notification.to)
+                    ?.socketId!
+            ).emit("notification", notification);
+        }
+    );
 });
 
 httpServer.listen(Default.server.port!, async () => {

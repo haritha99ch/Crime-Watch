@@ -69,8 +69,8 @@ class NotificationService {
                 return true;
             })
             .catch((e) => {
-                return false;
                 console.log(e);
+                return false;
             });
         return notificationSeen;
     }

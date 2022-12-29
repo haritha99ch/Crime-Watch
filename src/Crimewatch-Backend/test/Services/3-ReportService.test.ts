@@ -21,8 +21,6 @@ describe("Report services test", () => {
         const insertReport = await _reportRepository.Create(
             newReport
         );
-        console.log(insertReport);
-
         expect(newReport.Body).to.equals(insertReport.Body);
     });
 });

@@ -9,6 +9,7 @@ import EvidenceViewModel from "crimewatch-shared/ViewModels/EvidenceViewModel";
 import { ReportDetailsViewModel } from "crimewatch-shared/ViewModels/ReportDetailsViewModel";
 import { AuthenticationService } from "src/services/authentication.service";
 import { EvidenceService } from "src/services/evidence.service";
+import { NotificationService } from "src/services/notification.service";
 import { ReportService } from "src/services/report.service";
 
 @Component({
@@ -57,7 +58,8 @@ export class ReportDetailsPageComponent implements OnInit {
         private readonly route: ActivatedRoute,
         private readonly reportService: ReportService,
         private readonly evidenceService: EvidenceService,
-        private readonly authenticationService: AuthenticationService
+        private readonly authenticationService: AuthenticationService,
+        private readonly notificationService: NotificationService
     ) {}
     ngOnInit(): void {
         // this.reportDetails = new ReportDetailsViewModel();
@@ -76,9 +78,12 @@ export class ReportDetailsPageComponent implements OnInit {
             }
             this.infoLoading = false;
         });
-        console.log("hmm");
-
         console.log(this.currentUser?._id);
+        this.notificationService.messages.subscribe(
+            (message: { to: string; reportId: string; message: string }) => {
+                console.log(message);
+            }
+        );
     }
 
     private GetUser() {
@@ -90,6 +95,11 @@ export class ReportDetailsPageComponent implements OnInit {
             .CreateForReport(this.reportDetails._id!, newEvidence)
             .subscribe((evidence) => {
                 this.reportDetails.Evidences?.push(evidence);
+                this.notificationService.SendMessage({
+                    to: this.reportDetails.Moderator?._id,
+                    reportId: this.reportDetails._id,
+                    message: "New Evidence Added",
+                });
             });
     }
     private GetModeratorOptions() {

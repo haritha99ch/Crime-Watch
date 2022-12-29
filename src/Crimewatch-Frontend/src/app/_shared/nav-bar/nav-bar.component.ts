@@ -35,7 +35,11 @@ export class NavBarComponent implements OnInit {
     }
 
     SendMessage() {
-        this.notificationService.SendMessage(this.currentUser._id);
+        const newMessage: { to: string; notification: string } = {
+            to: this.currentUser?._id,
+            notification: "User conected",
+        };
+        this.notificationService.SendMessage(newMessage);
     }
     private GetUser() {
         this.currentUser = this.authenticationService.GetCurrentUser();

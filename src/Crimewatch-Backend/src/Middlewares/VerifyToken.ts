@@ -11,7 +11,6 @@ export default (request: Request, response: Response, next: NextFunction) => {
         const baerer = bearerHeader.split(" ");
         const token = baerer[1];
         const decoded: any = jwt.verify(token, "key");
-        console.log(decoded.user.User.Account.IsModerator);
 
         // request.body.isModerator = decoded.User.IsModerator;
         // console.log(request.body.isModerator);

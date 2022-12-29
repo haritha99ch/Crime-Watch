@@ -35,8 +35,6 @@ class EvidenceController {
         response: Response<EvidenceDocument>,
         next: NextFunction
     ) {
-        console.log("pass");
-
         const evidence = await this._evidenceRepository.GetById(
             request.params.evidenceId
         );
