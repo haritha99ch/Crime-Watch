@@ -64,14 +64,30 @@
                 Signin
             </button>
             <div *ngIf="currentUser">
-                <button mat-flat-button [matMenuTriggerFor]="menu">
+                <button mat-flat-button [matMenuTriggerFor]="userActionMenu">
                     {{ currentUser.User.FirstName }}
                 </button>
-                <mat-menu #menu="matMenu">
+                <mat-menu #userActionMenu="matMenu">
                     <button mat-menu-item (click)="Signout()">Signout</button>
                     <button mat-menu-item routerLink="/Account/Index">
                         View Account
                     </button>
+                </mat-menu>
+                <button mat-button [matMenuTriggerFor]="notificationList">
+                    <mat-icon
+                        class="mx-3"
+                        [matBadge]="currentUser.User.Notifications?.length!"
+                        matBadgeColor="warn"
+                        >home</mat-icon
+                    >
+                </button>
+                <mat-menu #notificationList="matMenu">
+                    <button
+                        mat-menu-item
+                        *ngFor="
+                            let notification of currentUser.User.Notifications
+                        "
+                    >{{notification.Message}}</button>
                 </mat-menu>
             </div>
         </div>

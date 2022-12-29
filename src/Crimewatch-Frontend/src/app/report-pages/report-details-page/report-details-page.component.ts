@@ -22,37 +22,7 @@ export class ReportDetailsPageComponent implements OnInit {
     public currentUser?:
         | (Witness & { _id?: string })
         | (Moderator & { _id?: string });
-    reportDetails: ReportDetailsViewModel = {
-        Author: {
-            User: {
-                FirstName: "",
-                LastName: "",
-                DOB: null!,
-                Gender: null!,
-                Age: null!,
-                PhoneNumber: null!,
-                Account: null!,
-            },
-            _id: null!,
-        },
-        Caption: "",
-        Body: "",
-        Date: null!,
-        Location: {
-            No: "",
-            Street1: "",
-            Street2: "",
-            Street3: "",
-            City: "",
-            Province: null!,
-        },
-        Categories: [],
-        File: {
-            File: null!,
-        },
-        Evidences: [],
-        Status: Status.Pending,
-    };
+    reportDetails?: ReportDetailsViewModel;
     panelOpenState = false;
     constructor(
         private readonly route: ActivatedRoute,
@@ -70,9 +40,9 @@ export class ReportDetailsPageComponent implements OnInit {
         });
         this.evidenceService.GetAllForReport(id!).subscribe((evidences) => {
             if (this.currentUser?.User.Account.IsModerator) {
-                this.reportDetails.Evidences = evidences;
+                this.reportDetails!.Evidences = evidences;
             } else {
-                this.reportDetails.Evidences = evidences.filter((r) => {
+                this.reportDetails!.Evidences = evidences.filter((r) => {
                     return r.Status !== "Pending";
                 })!;
             }
@@ -92,39 +62,47 @@ export class ReportDetailsPageComponent implements OnInit {
     onSubmit(newEvidence: any) {
         newEvidence.Author = "63a46f8ceb230701cc95d719";
         this.evidenceService
-            .CreateForReport(this.reportDetails._id!, newEvidence)
+            .CreateForReport(this.reportDetails!._id!, newEvidence)
             .subscribe((evidence) => {
-                this.reportDetails.Evidences?.push(evidence);
+                this.reportDetails!.Evidences?.push(evidence);
+                this.notificationService.Create(
+                    this.reportDetails!.Moderator?._id.toString()!,
+                    {
+                        ReportId: this.reportDetails!._id?.toString()!,
+                        Message: "New Evidence Added",
+                        Seen: false,
+                    }
+                );
                 this.notificationService.SendMessage({
-                    to: this.reportDetails.Moderator?._id,
-                    reportId: this.reportDetails._id,
+                    to: this.reportDetails!.Moderator?._id,
+                    reportId: this.reportDetails!._id,
                     message: "New Evidence Added",
                 });
             });
     }
     private GetModeratorOptions() {
         this.reportService
-            .BeModerator(this.currentUser!._id!, this.reportDetails._id!)
+            .BeModerator(this.currentUser!._id!, this.reportDetails!._id!)
             .subscribe((report) => {
-                this.reportDetails.Moderator = report.Moderator;
+                this.reportDetails!.Moderator = report.Moderator;
             });
     }
     public Approve() {
         this.GetModeratorOptions();
-        this.reportService.Approve(this.reportDetails._id!).subscribe(() => {
-            this.reportDetails.Status = Status.Approved;
+        this.reportService.Approve(this.reportDetails!._id!).subscribe(() => {
+            this.reportDetails!.Status = Status.Approved;
         });
     }
     public Review() {
         this.GetModeratorOptions();
-        this.reportService.Rereview(this.reportDetails._id!).subscribe(() => {
-            this.reportDetails.Status = Status.UnderReview;
+        this.reportService.Rereview(this.reportDetails!._id!).subscribe(() => {
+            this.reportDetails!.Status = Status.UnderReview;
         });
     }
     public Declined() {
         this.GetModeratorOptions();
-        this.reportService.Decline(this.reportDetails._id!).subscribe(() => {
-            this.reportDetails.Status = Status.Declined;
+        this.reportService.Decline(this.reportDetails!._id!).subscribe(() => {
+            this.reportDetails!.Status = Status.Declined;
         });
     }
 }

@@ -32,10 +32,6 @@ const UserSchema: Schema = new Schema<UserDocument>({
         type: AccountModel.schema,
         required: true,
     },
-    Notifications: {
-        type: [Schema.Types.ObjectId],
-        autopopulate: true,
-    },
 });
 export default model<UserDocument>(
     "User",

@@ -16,6 +16,7 @@ export class NavBarComponent implements OnInit {
     public currentUser!:
         | (Witness & { _id: string })
         | (Moderator & { _id: string });
+    public notificationCount: number = 0;
     constructor(
         private readonly authenticationService: AuthenticationService,
         private readonly notificationService: NotificationService,
@@ -26,8 +27,10 @@ export class NavBarComponent implements OnInit {
         this.router.events.subscribe((event) => {
             if (event.constructor.name === "NavigationEnd") {
                 this.GetUser();
+                
             }
         });
+        console.log(this.currentUser);
         this.notificationService.messages.subscribe((message) => {
             console.log(message);
         });

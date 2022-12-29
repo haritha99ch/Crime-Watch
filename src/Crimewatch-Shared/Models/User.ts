@@ -11,9 +11,7 @@ class User {
     Age!: number;
     PhoneNumber!: number;
     Account!: Account;
-    Notifications?:
-        | (Notification & { _id: string }[])
-        | Schema.Types.ObjectId[];
+    Notifications?: Notification[];
 }
 export default User;
 export interface UserDocument extends User, Document {}

@@ -34,7 +34,7 @@ class NotificationService {
             .Create(notification)
             .then(async (doc) => {
                 const update: UpdateQuery<WitnessDocument> = {
-                    $push: { "User.Notifications": doc._id },
+                    $push: { Notifications: doc._id },
                 };
                 await this._witnessRepository.UpdateById(witnessId, update);
                 return doc;
@@ -49,7 +49,7 @@ class NotificationService {
             .Create(notification)
             .then(async (doc) => {
                 const update: UpdateQuery<WitnessDocument> = {
-                    $push: { "User.Notifications": doc._id },
+                    $push: { Notifications: doc._id },
                 };
                 await this._moderatorRepository.UpdateById(moderatorId, update);
                 return doc;

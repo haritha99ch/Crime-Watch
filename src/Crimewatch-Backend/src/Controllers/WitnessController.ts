@@ -6,13 +6,17 @@ import IRepository from "../Services/IRepository";
 import Repository from "../Services/Repository";
 import WitnessAccountService from "../Services/WitnessAccountService";
 import jwt from "jsonwebtoken";
+import { NotificationDocument } from "crimewatch-shared/Models/Notification";
+import NotificationService from "../Services/NotificationService";
 
 class WitnessController {
     private readonly _witnessRepository: IRepository<WitnessDocument>;
     private readonly witnessAccountService: WitnessAccountService;
+    private readonly notificationService: NotificationService;
     constructor() {
         this._witnessRepository = new Repository<WitnessDocument>(WitnessModel);
         this.witnessAccountService = new WitnessAccountService();
+        this.notificationService = new NotificationService();
     }
 
     public async Create(

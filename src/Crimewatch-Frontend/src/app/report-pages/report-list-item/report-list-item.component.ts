@@ -8,6 +8,7 @@ import ReportViewModel from "crimewatch-shared/ViewModels/ReportViewModel";
 })
 export class ReportListItemComponent implements OnInit {
     @Input()
-    public reportItem!: ReportViewModel;
+    public reportItem?: ReportViewModel;
+    constructor() {}
     ngOnInit(): void {}
 }

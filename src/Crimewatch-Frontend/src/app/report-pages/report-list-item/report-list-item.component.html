@@ -1,5 +1,5 @@
 <mat-card
-    routerLink="/Report/Details/{{ reportItem._id }}"
+    routerLink="/Report/Details/{{ reportItem?._id }}"
     class="h-25 m-2"
     matRipple
 >
@@ -7,7 +7,7 @@
         <div class="col-md-4">
             <img
                 mat-card-image
-                [src]="reportItem.File.File"
+                [src]="reportItem?.File?.File"
                 class="card-img"
                 alt="Card image"
             />
@@ -15,21 +15,21 @@
         <div class="col-md-8 h-100">
             <div class="h-75 overflow-hidden">
                 <mat-card-header>
-                    <mat-card-title>{{ reportItem.Caption }}</mat-card-title>
+                    <mat-card-title>{{ reportItem?.Caption }}</mat-card-title>
                     <mat-card-subtitle>
-                        {{ reportItem.Author.User.FirstName }}
-                        {{ reportItem.Author.User.LastName }} -
-                        {{ reportItem.Date }} |
-                        {{ reportItem.Location.Street1 }} -<mat-icon
+                        {{ reportItem?.Author?.User?.FirstName }}
+                        {{ reportItem?.Author?.User?.LastName }} -
+                        {{ reportItem?.Date }} |
+                        {{ reportItem?.Location?.Street1 }} -<mat-icon
                             fontIcon="location_on"
                         ></mat-icon>
-                        {{ reportItem.Location.City }} -{{
-                            reportItem.Location.Province
+                        {{ reportItem?.Location?.City }} -{{
+                            reportItem?.Location?.Province
                         }}
                     </mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
-                    <p>{{ reportItem.Body }}</p>
+                    <p>{{ reportItem?.Body }}</p>
                 </mat-card-content>
             </div>
             <mat-card-footer>
@@ -37,27 +37,27 @@
                     <div class="col-sm-8">
                         <mat-chip-option
                             disabled
-                            *ngFor="let category of reportItem.Categories"
+                            *ngFor="let category of reportItem?.Categories"
                         >
                             {{ category }}
                         </mat-chip-option>
                     </div>
                     <div class="col-sm-4">
-                        <div *ngIf="reportItem.Status === 'Under Review'">
+                        <div *ngIf="reportItem?.Status === 'Under Review'">
                             <mat-icon
                                 fontIcon="preview"
                                 color="warn"
                             ></mat-icon>
                             Under Review
                         </div>
-                        <div *ngIf="reportItem.Status === 'Pending'">
+                        <div *ngIf="reportItem?.Status === 'Pending'">
                             <mat-icon
                                 fontIcon="pending"
                                 color="accent"
                             ></mat-icon>
                             Pending
                         </div>
-                        <div *ngIf="reportItem.Status === 'Approved'">
+                        <div *ngIf="reportItem?.Status === 'Approved'">
                             <mat-icon
                                 fontIcon="check-circle"
                                 color="primary"

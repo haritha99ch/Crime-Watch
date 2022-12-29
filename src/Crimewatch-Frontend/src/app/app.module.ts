@@ -13,6 +13,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 
 import { MatRippleModule, MatNativeDateModule } from "@angular/material/core";
 import { MatCardModule } from "@angular/material/card";
+import { MatBadgeModule } from "@angular/material/badge";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatMenuModule } from "@angular/material/menu";
@@ -39,6 +40,7 @@ import { AccountIndexPageComponent } from "./account-pages/account-index-page/ac
 import { NavBarComponent } from "./_shared/nav-bar/nav-bar.component";
 import { NotificationService } from "src/services/notification.service";
 import { WebsocketService } from "src/services/websocket.service";
+import { NotificationItemComponent } from "./_shared/notification-item/notification-item.component";
 
 @NgModule({
     declarations: [
@@ -54,6 +56,7 @@ import { WebsocketService } from "src/services/websocket.service";
         AccountSigninPageComponent,
         AccountIndexPageComponent,
         NavBarComponent,
+        NotificationItemComponent,
     ],
     imports: [
         BrowserModule,
@@ -88,6 +91,7 @@ import { WebsocketService } from "src/services/websocket.service";
         MatSidenavModule,
         MatMenuModule,
         MatProgressSpinnerModule,
+        MatBadgeModule,
     ],
     providers: [NotificationService, WebsocketService],
     bootstrap: [AppComponent],

@@ -23,19 +23,23 @@ class NotificationController {
         );
     }
 
-    public async Create(
+    public async NewNotificationForWitness(
         request: Request<{ id: string }, {}, Notification>,
         response: Response<NotificationDocument>,
         next: NextFunction
     ) {
-        if (await this._witnessRepository.GetById(request.params.id)) {
-            const newNotification =
-                await this.notificationService.NewNotificationForWitness(
-                    request.params.id,
-                    request.body
-                );
-            return response.send(newNotification);
-        }
+        const newNotification =
+            await this.notificationService.NewNotificationForWitness(
+                request.params.id,
+                request.body
+            );
+        return response.send(newNotification);
+    }
+    public async NewNotificationForModerator(
+        request: Request<{ id: string }, {}, Notification>,
+        response: Response<NotificationDocument>,
+        next: NextFunction
+    ) {
         const newNotification =
             await this.notificationService.NewNotificationForModerator(
                 request.params.id,

@@ -36,14 +36,14 @@ export class NotificationService {
         notification: Notification
     ): Observable<NotificationViewModel> {
         return this.http.post<NotificationViewModel>(
-            `/Notification/Create/${userId}`,
+            `/API/Notification/Create/${userId}`,
             notification,
             httpOptions
         );
     }
     public Seen(notificationId: string): Observable<boolean> {
         return this.http.patch<boolean>(
-            `/Notification/Seen/${notificationId}`,
+            `/API/Notification/Seen/${notificationId}`,
             notificationId,
             httpOptions
         );

@@ -5,12 +5,21 @@ const notificationController = new NotificationController();
 
 const NotificationRouter = express.Router();
 
-const _create = "/Create/:id";
+const _createForWitness = "/Create/Witness/:id";
+const _createForModerator = "/Create/Moderator/:id";
 const _seen = "/Seen/:id";
 
 NotificationRouter.post(
-    _create,
-    notificationController.Create.bind(notificationController)
+    _createForWitness,
+    notificationController.NewNotificationForWitness.bind(
+        notificationController
+    )
+);
+NotificationRouter.post(
+    _createForModerator,
+    notificationController.NewNotificationForModerator.bind(
+        notificationController
+    )
 );
 NotificationRouter.patch(
     _seen,

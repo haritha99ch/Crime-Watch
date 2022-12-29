@@ -1,21 +1,25 @@
 <div class="row h-100 p-2 report-details overflow-hidden">
-    <div class="info d-flex align-items-center justify-content-center" *ngIf="infoLoading">
+    <div
+        class="info d-flex align-items-center justify-content-center"
+        *ngIf="infoLoading"
+    >
         <mat-spinner></mat-spinner>
     </div>
     <div class="col info">
         <mat-card>
             <mat-card-title-group>
-                <mat-card-title>{{ reportDetails.Caption }}</mat-card-title>
+                <mat-card-title>{{ reportDetails?.Caption }}</mat-card-title>
                 <mat-card-subtitle>
-                    {{ reportDetails.Author.User.FirstName }}
-                    {{ reportDetails.Author.User.LastName }} -
-                    {{ reportDetails.Date }}</mat-card-subtitle
+                    {{ reportDetails?.Author?.User?.FirstName }}
+                    {{ reportDetails?.Author?.User?.LastName }} -
+                    {{ reportDetails?.Date }}</mat-card-subtitle
                 >
             </mat-card-title-group>
             <mat-card-content>
                 <img
-                    class="rounded mx-auto d-block"
-                    [src]="reportDetails.File.File"
+                    class="rounded"
+                    style="width: 100%"
+                    [src]="reportDetails?.File?.File"
                 />
             </mat-card-content>
             <hr />
@@ -23,15 +27,15 @@
                 <mat-card-content>
                     <div class="row">
                         <div class="col-sm-6">
-                            <p>{{ reportDetails.Location.No }}</p>
+                            <p>{{ reportDetails?.Location?.No }}</p>
                             <p>
-                                {{ reportDetails.Location.Street1 }},
-                                {{ reportDetails.Location.Street2 }}
+                                {{ reportDetails?.Location?.Street1 }},
+                                {{ reportDetails?.Location?.Street2 }}
                             </p>
-                            <p>{{ reportDetails.Location.Street3 }}</p>
+                            <p>{{ reportDetails?.Location?.Street3 }}</p>
                             <p>
-                                {{ reportDetails.Location.City }},
-                                {{ reportDetails.Location.Province }}
+                                {{ reportDetails?.Location?.City }},
+                                {{ reportDetails?.Location?.Province }}
                             </p>
                         </div>
                         <div class="col-sm-6">
@@ -39,11 +43,11 @@
                             ><label
                                 class="fs-6"
                                 for="moderator"
-                                *ngIf="reportDetails.Moderator"
+                                *ngIf="reportDetails?.Moderator"
                             >
-                                {{ reportDetails.Moderator.User.FirstName }}
+                                {{ reportDetails?.Moderator?.User?.FirstName }}
                                 {{
-                                    reportDetails.Moderator.User.LastName
+                                    reportDetails?.Moderator?.User?.LastName
                                 }}</label
                             >
                             <div>
@@ -55,7 +59,7 @@
                                         "
                                         color=""
                                         [selected]="
-                                            reportDetails.Status ===
+                                            reportDetails?.Status ===
                                             'Under Review'
                                         "
                                         (click)="Review()"
@@ -68,7 +72,7 @@
                                                 ?.IsModerator
                                         "
                                         [selected]="
-                                            reportDetails.Status === 'Approved'
+                                            reportDetails?.Status === 'Approved'
                                         "
                                         (click)="Approve()"
                                         >Approve
@@ -80,7 +84,7 @@
                                                 ?.IsModerator
                                         "
                                         [selected]="
-                                            reportDetails.Status === 'Declined'
+                                            reportDetails?.Status === 'Declined'
                                         "
                                         (click)="Declined()"
                                         >Decline
@@ -95,9 +99,6 @@
                                         <textarea
                                             matInput
                                             placeholder="Ex. It makes me feel..."
-                                            [(ngModel)]="
-                                                reportDetails.ModeratorNote
-                                            "
                                             name="body"
                                             required
                                         ></textarea>
@@ -109,7 +110,7 @@
                 </mat-card-content>
                 <hr />
                 <mat-card-content>
-                    <p>{{ reportDetails.Body }}</p>
+                    <p>{{ reportDetails?.Body }}</p>
                 </mat-card-content>
             </mat-card-footer>
         </mat-card>
@@ -129,7 +130,7 @@
             </mat-expansion-panel>
         </mat-accordion>
         <app-report-evidence-item
-            *ngFor="let evidence of reportDetails.Evidences"
+            *ngFor="let evidence of reportDetails?.Evidences"
             [evidenceItem]="evidence"
         ></app-report-evidence-item>
     </div>

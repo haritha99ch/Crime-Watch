@@ -1,10 +1,12 @@
 import Province from "../Enums/Province";
 import User from "./User";
-import { Document } from "mongoose";
+import Notification from "./Notification";
+import { Document, Schema } from "mongoose";
 
 class Moderator {
     PoliceId!: string;
     User!: User;
+    Notifications?: Schema.Types.ObjectId[] | String[] | Notification[];
     Province!: Province;
 }
 export default Moderator;

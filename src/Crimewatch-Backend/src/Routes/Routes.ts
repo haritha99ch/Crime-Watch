@@ -13,6 +13,6 @@ Routes.use("/Witness", WitnessRouter);
 Routes.use("/Moderator", ModeratorRouter);
 Routes.use("/Report", ReportRouter);
 Routes.use("/Evidence", EvidenceRouter);
-Routes.unsubscribe("/Notification", NotificationRouter);
+Routes.use("/Notification", NotificationRouter);
 
 export default Routes;
