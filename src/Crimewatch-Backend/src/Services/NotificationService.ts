@@ -1,6 +1,4 @@
-import Moderator, {
-    ModeratorDocument,
-} from "crimewatch-shared/Models/Moderator";
+import { ModeratorDocument } from "crimewatch-shared/Models/Moderator";
 import Notification, {
     NotificationDocument,
 } from "crimewatch-shared/Models/Notification";
@@ -10,7 +8,6 @@ import NotificationViewModel from "crimewatch-shared/ViewModels/NotificationView
 import { UpdateQuery } from "mongoose";
 import ModeratorModel from "../Models/ModeratorModel";
 import NotificationModel from "../Models/NotificationModel";
-import ReportModel from "../Models/ReportModel";
 import WitnessModel from "../Models/WitnessModel";
 import IRepository from "./IRepository";
 import Repository from "./Repository";
@@ -47,7 +44,7 @@ class NotificationService {
     public async NewNotificationForModerator(
         moderatorId: string,
         notification: Notification
-    ): Promise<NotificationViewModel> {
+    ): Promise<NotificationDocument> {
         const newNotification = await this._notificationRepository
             .Create(notification)
             .then(async (doc) => {
@@ -59,7 +56,7 @@ class NotificationService {
             });
         return newNotification;
     }
-    public async NotificationSeen(notificationId: string): Promise<Boolean> {
+    public async NotificationSeen(notificationId: string): Promise<boolean> {
         const update: UpdateQuery<NotificationDocument> = {
             $set: { Seen: true },
         };
@@ -75,3 +72,4 @@ class NotificationService {
         return notificationSeen;
     }
 }
+export default NotificationService;

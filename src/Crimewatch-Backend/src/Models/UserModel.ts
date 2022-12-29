@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 import { UserDocument } from "crimewatch-shared/Models/User";
 import AccountModel from "./AccountModel";
-import NotificationModel from "./NotificationModel";
+import mongooseAutopopulate from "mongoose-autopopulate";
 
 const UserSchema: Schema = new Schema<UserDocument>({
     FirstName: {
@@ -34,6 +34,10 @@ const UserSchema: Schema = new Schema<UserDocument>({
     },
     Notifications: {
         type: [Schema.Types.ObjectId],
+        autopopulate: true,
     },
 });
-export default model<UserDocument>("User", UserSchema);
+export default model<UserDocument>(
+    "User",
+    UserSchema.plugin(mongooseAutopopulate)
+);
