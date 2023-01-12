@@ -76,7 +76,7 @@
                 <button mat-button [matMenuTriggerFor]="notificationList">
                     <mat-icon
                         class="mx-3"
-                        [matBadge]="currentUser.User.Notifications?.length!"
+                        [matBadge]="currentUser.Notifications!.length"
                         matBadgeColor="warn"
                         >home</mat-icon
                     >
@@ -84,10 +84,10 @@
                 <mat-menu #notificationList="matMenu">
                     <button
                         mat-menu-item
-                        *ngFor="
-                            let notification of currentUser.User.Notifications
-                        "
-                    >{{notification.Message}}</button>
+                        *ngFor="let notification of currentUser.Notifications"
+                    >
+                        <app-notification-item [notification]="notification"></app-notification-item>
+                    </button>
                 </mat-menu>
             </div>
         </div>

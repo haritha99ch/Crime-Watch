@@ -27,10 +27,9 @@ export class NavBarComponent implements OnInit {
         this.router.events.subscribe((event) => {
             if (event.constructor.name === "NavigationEnd") {
                 this.GetUser();
-                
             }
         });
-        console.log(this.currentUser);
+        console.log(this.currentUser.Notifications);
         this.notificationService.messages.subscribe((message) => {
             console.log(message);
         });

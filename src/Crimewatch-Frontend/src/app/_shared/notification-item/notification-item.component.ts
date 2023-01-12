@@ -11,18 +11,12 @@ import { WitnessService } from "src/services/witness.service";
 })
 export class NotificationItemComponent implements OnInit {
     @Input()
-    public notification: {
+    public notification?: {
         ReportId: string;
         Message: string;
         Seen: boolean;
     };
     public by?: Witness | Moderator;
-    constructor() {
-        this.notification = {
-            ReportId: "",
-            Message: "",
-            Seen: false,
-        };
-    }
+    constructor() {}
     ngOnInit(): void {}
 }

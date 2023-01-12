@@ -3,12 +3,14 @@ import { ActivatedRoute } from "@angular/router";
 import Status from "crimewatch-shared/Enums/Status";
 import Evidence from "crimewatch-shared/Models/Evidence";
 import Moderator from "crimewatch-shared/Models/Moderator";
+import Notification from "crimewatch-shared/Models/Notification";
 import User from "crimewatch-shared/Models/User";
 import Witness from "crimewatch-shared/Models/Witness";
 import EvidenceViewModel from "crimewatch-shared/ViewModels/EvidenceViewModel";
 import { ReportDetailsViewModel } from "crimewatch-shared/ViewModels/ReportDetailsViewModel";
 import { AuthenticationService } from "src/services/authentication.service";
 import { EvidenceService } from "src/services/evidence.service";
+import { ModeratorService } from "src/services/moderator.service";
 import { NotificationService } from "src/services/notification.service";
 import { ReportService } from "src/services/report.service";
 
@@ -28,6 +30,7 @@ export class ReportDetailsPageComponent implements OnInit {
         private readonly route: ActivatedRoute,
         private readonly reportService: ReportService,
         private readonly evidenceService: EvidenceService,
+        private readonly moderatorService: ModeratorService,
         private readonly authenticationService: AuthenticationService,
         private readonly notificationService: NotificationService
     ) {}
@@ -37,6 +40,7 @@ export class ReportDetailsPageComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get("id");
         this.reportService.Details(id!).subscribe((report) => {
             this.reportDetails = report;
+            console.log(this.reportDetails);
         });
         this.evidenceService.GetAllForReport(id!).subscribe((evidences) => {
             if (this.currentUser?.User.Account.IsModerator) {
@@ -48,7 +52,6 @@ export class ReportDetailsPageComponent implements OnInit {
             }
             this.infoLoading = false;
         });
-        console.log(this.currentUser?._id);
         this.notificationService.messages.subscribe(
             (message: { to: string; reportId: string; message: string }) => {
                 console.log(message);
@@ -60,25 +63,31 @@ export class ReportDetailsPageComponent implements OnInit {
         this.currentUser = this.authenticationService.GetCurrentUser();
     }
     onSubmit(newEvidence: any) {
-        newEvidence.Author = "63a46f8ceb230701cc95d719";
-        this.evidenceService
-            .CreateForReport(this.reportDetails!._id!, newEvidence)
-            .subscribe((evidence) => {
-                this.reportDetails!.Evidences?.push(evidence);
-                this.notificationService.Create(
-                    this.reportDetails!.Moderator?._id.toString()!,
-                    {
-                        ReportId: this.reportDetails!._id?.toString()!,
-                        Message: "New Evidence Added",
-                        Seen: false,
-                    }
-                );
-                this.notificationService.SendMessage({
-                    to: this.reportDetails!.Moderator?._id,
-                    reportId: this.reportDetails!._id,
-                    message: "New Evidence Added",
-                });
+        newEvidence.Author = this.currentUser?._id;
+        //Posting notification to the server
+        const notification: Notification = {
+            ReportId: this.reportDetails?._id?.toString()!,
+            Message: "New Evidence",
+            Seen: false,
+        };
+        this.notificationService
+            .CreateForModerator(
+                this.reportDetails!.Moderator?._id.toString()!,
+                notification
+            )
+            .subscribe((notification) => {
+                this.evidenceService
+                    .CreateForReport(this.reportDetails!._id!, newEvidence)
+                    .subscribe((evidence) => {
+                        this.reportDetails!.Evidences?.push(evidence);
+                    });
             });
+        //sending socket notification to the moderator
+        this.notificationService.SendMessage({
+            to: this.reportDetails!.Moderator?._id,
+            reportId: this.reportDetails!._id,
+            message: "New Evidence Added",
+        });
     }
     private GetModeratorOptions() {
         this.reportService

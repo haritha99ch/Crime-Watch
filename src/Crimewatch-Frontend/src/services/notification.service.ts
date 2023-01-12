@@ -31,12 +31,24 @@ export class NotificationService {
         this.messages.next(message);
     }
 
-    public Create(
+    public CreateForWitness(
         userId: string,
         notification: Notification
     ): Observable<NotificationViewModel> {
         return this.http.post<NotificationViewModel>(
-            `/API/Notification/Create/${userId}`,
+            `/API/Notification/Create/Witness/${userId}`,
+            notification,
+            httpOptions
+        );
+    }
+    public CreateForModerator(
+        userId: string,
+        notification: Notification
+    ): Observable<NotificationViewModel> {
+        console.log(notification);
+
+        return this.http.post<NotificationViewModel>(
+            `/API/Notification/Create/Moderator/${userId}`,
             notification,
             httpOptions
         );

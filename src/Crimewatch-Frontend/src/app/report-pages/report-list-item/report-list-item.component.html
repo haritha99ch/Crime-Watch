@@ -19,7 +19,7 @@
                     <mat-card-subtitle>
                         {{ reportItem?.Author?.User?.FirstName }}
                         {{ reportItem?.Author?.User?.LastName }} -
-                        {{ reportItem?.Date }} |
+                        {{ reportItem?.Date | date : "dd/MM/yyyy" }} |
                         {{ reportItem?.Location?.Street1 }} -<mat-icon
                             fontIcon="location_on"
                         ></mat-icon>

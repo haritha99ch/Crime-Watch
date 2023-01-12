@@ -40,11 +40,17 @@ class NotificationController {
         response: Response<NotificationDocument>,
         next: NextFunction
     ) {
+        console.log("pass");
+
+        console.log(request.body.Message);
+
         const newNotification =
             await this.notificationService.NewNotificationForModerator(
                 request.params.id,
                 request.body
             );
+        console.log(newNotification);
+
         return response.send(newNotification);
     }
     public async Seen(

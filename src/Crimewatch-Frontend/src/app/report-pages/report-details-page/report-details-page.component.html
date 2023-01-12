@@ -12,7 +12,7 @@
                 <mat-card-subtitle>
                     {{ reportDetails?.Author?.User?.FirstName }}
                     {{ reportDetails?.Author?.User?.LastName }} -
-                    {{ reportDetails?.Date }}</mat-card-subtitle
+                    {{ reportDetails?.Date | date: 'dd/MM/yyyy' }}</mat-card-subtitle
                 >
             </mat-card-title-group>
             <mat-card-content>

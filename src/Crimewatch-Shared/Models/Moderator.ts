@@ -6,7 +6,7 @@ import { Document, Schema } from "mongoose";
 class Moderator {
     PoliceId!: string;
     User!: User;
-    Notifications?: Schema.Types.ObjectId[] | String[] | Notification[];
+    Notifications?: any[];
     Province!: Province;
 }
 export default Moderator;

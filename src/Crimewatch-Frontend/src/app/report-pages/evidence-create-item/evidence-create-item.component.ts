@@ -1,18 +1,24 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import Status from "crimewatch-shared/Enums/Status";
+import Moderator from "crimewatch-shared/Models/Moderator";
+import Witness from "crimewatch-shared/Models/Witness";
 import EvidenceViewModel from "crimewatch-shared/ViewModels/EvidenceViewModel";
+import { AuthenticationService } from "src/services/authentication.service";
 
 @Component({
     selector: "app-evidence-create-item",
     templateUrl: "./evidence-create-item.component.html",
     styleUrls: ["./evidence-create-item.component.css"],
 })
-export class EvidenceCreateItemComponent {
+export class EvidenceCreateItemComponent implements OnInit {
+    public currentUser!:
+        | (Witness & { _id: string })
+        | (Moderator & { _id: string });
     public newEvidence: EvidenceViewModel;
     public provinces: string[] = [];
     @Output()
     public onSubmit = new EventEmitter<EvidenceViewModel>();
-    constructor() {
+    constructor(private readonly authenticationService: AuthenticationService) {
         this.newEvidence = {
             Author: {
                 User: {
@@ -49,6 +55,9 @@ export class EvidenceCreateItemComponent {
         this.provinces.push("South");
         this.provinces.push("Uva");
         this.provinces.push("West");
+    }
+    ngOnInit(): void {
+        this.currentUser = this.authenticationService.GetCurrentUser();
     }
 
     public onButtonClicked() {

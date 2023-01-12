@@ -4,7 +4,7 @@ import { Document, Schema } from "mongoose";
 
 class Witness {
     User!: User;
-    Notifications?: Schema.Types.ObjectId[] | String[] | Notification[];
+    Notifications?: any[];
 }
 export default Witness;
 export interface WitnessDocument extends Witness, Document {}

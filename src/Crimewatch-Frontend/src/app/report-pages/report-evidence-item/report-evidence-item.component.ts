@@ -19,37 +19,7 @@ export class ReportEvidenceItemComponent implements OnInit {
         | (Witness & { _id?: string })
         | (Moderator & { _id?: string });
     @Input()
-    public evidenceItem: EvidenceViewModel = {
-        Author: {
-            User: {
-                FirstName: "",
-                LastName: "",
-                DOB: null!,
-                Age: null!,
-                Gender: null!,
-                PhoneNumber: null!,
-                Account: {
-                    Email: "",
-                    Password: "",
-                    IsModerator: null!,
-                },
-            },
-            _id: null!,
-        },
-        Caption: "",
-        Body: "",
-        Date: null!,
-        Location: {
-            No: "",
-            Street1: "",
-            Street2: "",
-            Street3: "",
-            City: "",
-            Province: null!,
-        },
-        Files: [],
-        Status: Status.Pending,
-    };
+    public evidenceItem?: EvidenceViewModel
     constructor(
         private readonly evidenceService: EvidenceService,
         private readonly authenticationService: AuthenticationService
@@ -63,27 +33,27 @@ export class ReportEvidenceItemComponent implements OnInit {
     }
     private GetModeratorOptions() {
         this.evidenceService
-            .BeModerator(this.currentUser!._id!, this.evidenceItem._id!)
+            .BeModerator(this.currentUser!._id!, this.evidenceItem!._id!)
             .subscribe((report) => {
-                this.evidenceItem.Moderator = report.Moderator;
+                this.evidenceItem!.Moderator = report.Moderator;
             });
     }
     public Approve() {
         this.GetModeratorOptions();
-        this.evidenceService.Approve(this.evidenceItem._id!).subscribe(() => {
-            this.evidenceItem.Status = Status.Approved;
+        this.evidenceService.Approve(this.evidenceItem!._id!).subscribe(() => {
+            this.evidenceItem!.Status = Status.Approved;
         });
     }
     public Review() {
         this.GetModeratorOptions();
-        this.evidenceService.Rereview(this.evidenceItem._id!).subscribe(() => {
-            this.evidenceItem.Status = Status.UnderReview;
+        this.evidenceService.Rereview(this.evidenceItem!._id!).subscribe(() => {
+            this.evidenceItem!.Status = Status.UnderReview;
         });
     }
     public Declined() {
         this.GetModeratorOptions();
-        this.evidenceService.Decline(this.evidenceItem._id!).subscribe(() => {
-            this.evidenceItem.Status = Status.Declined;
+        this.evidenceService.Decline(this.evidenceItem!._id!).subscribe(() => {
+            this.evidenceItem!.Status = Status.Declined;
         });
     }
 }
