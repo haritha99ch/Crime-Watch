@@ -22,7 +22,7 @@ export class ReportDataFormComponent implements OnInit {
                     FirstName: "",
                     LastName: "",
                     DOB: null!,
-                    Gender:null!,
+                    Gender: null!,
                     Age: null!,
                     PhoneNumber: null!,
                     Account: null!,
@@ -45,6 +45,7 @@ export class ReportDataFormComponent implements OnInit {
                 File: "../../../assets/imgPlaceholder.png",
             },
             Status: Status.Pending,
+            ModeratorNote: "",
         };
         this.provinces.push("Central");
         this.provinces.push("East");

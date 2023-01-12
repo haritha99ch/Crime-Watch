@@ -12,7 +12,9 @@
                 <mat-card-subtitle>
                     {{ reportDetails?.Author?.User?.FirstName }}
                     {{ reportDetails?.Author?.User?.LastName }} -
-                    {{ reportDetails?.Date | date: 'dd/MM/yyyy' }}</mat-card-subtitle
+                    {{
+                        reportDetails?.Date | date : "dd/MM/yyyy"
+                    }}</mat-card-subtitle
                 >
             </mat-card-title-group>
             <mat-card-content>
@@ -90,20 +92,6 @@
                                         >Decline
                                     </mat-chip-option>
                                 </mat-chip-listbox>
-                                <div>
-                                    <mat-form-field
-                                        class="full-width"
-                                        appearance="outline"
-                                    >
-                                        <mat-label>Body</mat-label>
-                                        <textarea
-                                            matInput
-                                            placeholder="Ex. It makes me feel..."
-                                            name="body"
-                                            required
-                                        ></textarea>
-                                    </mat-form-field>
-                                </div>
                             </div>
                         </div>
                     </div>
