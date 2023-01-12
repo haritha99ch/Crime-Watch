@@ -40,7 +40,6 @@ export class ReportDetailsPageComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get("id");
         this.reportService.Details(id!).subscribe((report) => {
             this.reportDetails = report;
-            console.log(this.reportDetails);
         });
         this.evidenceService.GetAllForReport(id!).subscribe((evidences) => {
             if (this.currentUser?.User.Account.IsModerator) {
@@ -81,6 +80,7 @@ export class ReportDetailsPageComponent implements OnInit {
                     .subscribe((evidence) => {
                         this.reportDetails!.Evidences?.push(evidence);
                     });
+                this.panelOpenState = false;
             });
         //sending socket notification to the moderator
         this.notificationService.SendMessage({
