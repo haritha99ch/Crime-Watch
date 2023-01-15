@@ -78,4 +78,11 @@ export class ReportService {
             httpOptions
         );
     }
+    public Star(reportId: string, witnessId: string): Observable<boolean> {
+        return this.http.patch<boolean>(
+            `/API/Report/Star/${reportId}/${witnessId}`,
+            {},
+            httpOptions
+        );
+    }
 }

@@ -20,10 +20,11 @@ export class ReportDetailsPageComponent implements OnInit {
     reportDetails?: ReportDetailsViewModel;
     panelOpenState = false;
     currentUserIsAuthor: boolean = false;
+    currentUserStared: boolean = false;
+
     public currentUser?:
         | (Witness & { _id?: string })
         | (Moderator & { _id?: string });
-
     constructor(
         private readonly route: ActivatedRoute,
         private readonly router: Router,
@@ -40,6 +41,12 @@ export class ReportDetailsPageComponent implements OnInit {
             this.reportDetails = report;
             if (report.Author._id === this.currentUser?._id)
                 this.currentUserIsAuthor = true;
+            if (
+                this.reportDetails.Stared?.includes(
+                    this.currentUser?._id as any
+                )
+            )
+                this.currentUserStared = true;
         });
         this.evidenceService.GetAllForReport(id!).subscribe((evidences) => {
             if (this.currentUser?.User.Account.IsModerator) {
@@ -93,6 +100,13 @@ export class ReportDetailsPageComponent implements OnInit {
         this.router.navigate(["/Account/Signin"], {
             queryParams: { redirectURL: this.route.snapshot.url },
         });
+    }
+    onStarClicked(): void {
+        this.reportService
+            .Star(this.reportDetails?._id!, this.currentUser?._id!)
+            .subscribe((isStared) => {
+                this.currentUserStared = isStared;
+            });
     }
     private GetModeratorOptions() {
         this.reportService
