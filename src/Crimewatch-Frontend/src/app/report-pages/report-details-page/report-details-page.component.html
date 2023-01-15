@@ -8,7 +8,17 @@
     <div class="col info">
         <mat-card>
             <mat-card-title-group>
-                <mat-card-title>{{ reportDetails?.Caption }}</mat-card-title>
+                <mat-card-title
+                    >{{ reportDetails?.Caption }}
+                    <button *ngIf="currentUser"
+                        mat-icon-button
+                        [color]="currentUserStared ? 'accent' : 'grey'"
+                        aria-label="Delete report"
+                        (click)="onStarClicked()"
+                    >
+                        <mat-icon>star</mat-icon>
+                    </button>
+                </mat-card-title>
                 <mat-card-subtitle>
                     {{ reportDetails?.Author?.User?.FirstName }}
                     {{ reportDetails?.Author?.User?.LastName }} -
