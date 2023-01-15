@@ -54,6 +54,10 @@ const ReportSchema: Schema = new Schema<ReportDocument>({
         required: false,
         autopopulate: true,
     },
+    Stared: {
+        type: [Schema.Types.ObjectId],
+        default: [],
+    },
     ModeratorNote: {
         type: String,
     },

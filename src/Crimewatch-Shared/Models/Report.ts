@@ -20,6 +20,7 @@ class Report {
     Moderator?:
         | Schema.Types.ObjectId
         | (Moderator & { _id: Schema.Types.ObjectId });
+    Stared?: Schema.Types.ObjectId[];
     ModeratorNote?: string;
 }
 export default Report;
