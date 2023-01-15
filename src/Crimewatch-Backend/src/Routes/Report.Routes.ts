@@ -16,6 +16,7 @@ const _beMod = "/Moderator/:moderatorId/:reportId";
 const _approve = "/Approve/:reportId";
 const _decline = "/Decline/:reportId";
 const _reReview = "/Review/:reportId";
+const _star = "/Star/:reportId/:witnessId";
 
 ReportRouter.post(
     _create,
@@ -38,6 +39,11 @@ ReportRouter.patch(
     _beMod,
     VerifyToken,
     reportController.BeModeratorById.bind(reportController)
+);
+ReportRouter.patch(
+    _star,
+    VerifyToken,
+    reportController.Star.bind(reportController)
 );
 ReportRouter.patch(
     _approve,

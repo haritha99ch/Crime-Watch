@@ -3,14 +3,17 @@ import { Request, Response, NextFunction } from "express";
 import ReportModel from "../Models/ReportModel";
 import IRepository from "../Services/IRepository";
 import ModeratorReportService from "../Services/ModeratorReportService";
+import ReportService from "../Services/ReportService";
 import Repository from "../Services/Repository";
 
 class ReportController {
     private readonly _reportRepository: IRepository<ReportDocument>;
     private readonly moderatorReportService: ModeratorReportService;
+    private readonly reportService: ReportService;
     constructor() {
         this._reportRepository = new Repository<ReportDocument>(ReportModel);
         this.moderatorReportService = new ModeratorReportService();
+        this.reportService = new ReportService();
     }
 
     public async Create(
@@ -98,6 +101,17 @@ class ReportController {
             request.params.reportId
         );
         return response.send(reportRereviewing);
+    }
+    public async Star(
+        request: Request<{ reportId: string; witnessId: string }>,
+        response: Response<boolean>,
+        next: NextFunction
+    ) {
+        const stared = await this.reportService.StarReport(
+            request.params.reportId,
+            request.params.witnessId
+        );
+        return response.send(stared);
     }
 }
 export default ReportController;
