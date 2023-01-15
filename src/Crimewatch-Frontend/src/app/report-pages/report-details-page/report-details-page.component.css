@@ -7,3 +7,6 @@
     min-height: 92vh;
     max-height: 92vh;
 }
+.full-width {
+    width: 100%;
+}

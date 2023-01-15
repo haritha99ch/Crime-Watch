@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
 import { AuthenticationService } from "src/services/authentication.service";
 import { ModeratorService } from "src/services/moderator.service";
@@ -16,10 +16,12 @@ export class AccountSigninPageComponent {
     public onSignin;
     inValideLogin: boolean = false;
     public signinInfo: SigninViewModel;
+    redirectURL: any;
     constructor(
         private readonly witnessService: WitnessService,
         private readonly moderatorService: ModeratorService,
         private readonly router: Router,
+        private route: ActivatedRoute,
         private readonly authenticationService: AuthenticationService
     ) {
         this.signinInfo = {
@@ -35,14 +37,26 @@ export class AccountSigninPageComponent {
         this.moderatorService.Signin(this.signinInfo).subscribe((token) => {
             if (!token) return;
             userfound = true;
-            this.router.navigateByUrl("Report/Index");
+            let params = this.route.snapshot.queryParams;
+            if (params["redirectURL"]) this.redirectURL = params["redirectURL"];
+            if (this.redirectURL) {
+                this.router.navigate(this.redirectURL);
+            } else {
+                this.router.navigate(["Report/Index"]);
+            }
             return;
         });
         if (userfound) return;
         this.witnessService.Signin(this.signinInfo).subscribe((token) => {
             if (!token) return;
             userfound = true;
-            this.router.navigateByUrl("Report/Index");
+            let params = this.route.snapshot.queryParams;
+            if (params["redirectURL"]) this.redirectURL = params["redirectURL"];
+            if (this.redirectURL) {
+                this.router.navigate(this.redirectURL);
+            } else {
+                this.router.navigate(["Report/Index"]);
+            }
             return true;
         });
         if (userfound) return;

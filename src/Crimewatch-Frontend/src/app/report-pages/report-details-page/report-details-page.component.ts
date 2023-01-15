@@ -36,16 +36,11 @@ export class ReportDetailsPageComponent implements OnInit {
         // this.reportDetails = new ReportDetailsViewModel();
         this.GetUser();
         const id = this.route.snapshot.paramMap.get("id");
-        this.reportService.Details(id!).subscribe(
-            (report) => {
-                this.reportDetails = report;
-                if (report.Author === this.currentUser)
-                    this.currentUserIsAuthor = true;
-            },
-            (error) => {
-                this.router.navigate(["/Account/Signin"]);
-            }
-        );
+        this.reportService.Details(id!).subscribe((report) => {
+            this.reportDetails = report;
+            if (report.Author === this.currentUser)
+                this.currentUserIsAuthor = true;
+        });
         this.evidenceService.GetAllForReport(id!).subscribe((evidences) => {
             if (this.currentUser?.User.Account.IsModerator) {
                 this.reportDetails!.Evidences = evidences;
@@ -92,6 +87,11 @@ export class ReportDetailsPageComponent implements OnInit {
             to: this.reportDetails!.Moderator?._id,
             reportId: this.reportDetails!._id,
             message: "New Evidence Added",
+        });
+    }
+    onSigninClicked(): void {
+        this.router.navigate(["/Account/Signin"], {
+            queryParams: { redirectURL: this.route.snapshot.url },
         });
     }
     private GetModeratorOptions() {

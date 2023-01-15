@@ -104,7 +104,17 @@
         </mat-card>
     </div>
     <div class="col info overflow-auto">
-        <mat-accordion>
+        <button
+            *ngIf="!currentUser"
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="full-width"
+            (click)="onSigninClicked()"
+        >
+            Signin To Post Evidences
+        </button>
+        <mat-accordion *ngIf="currentUser">
             <mat-expansion-panel
                 (opened)="panelOpenState = true"
                 (closed)="panelOpenState = false"
