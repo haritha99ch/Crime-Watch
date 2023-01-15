@@ -1,16 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import Status from "crimewatch-shared/Enums/Status";
-import Evidence from "crimewatch-shared/Models/Evidence";
 import Moderator from "crimewatch-shared/Models/Moderator";
 import Notification from "crimewatch-shared/Models/Notification";
-import User from "crimewatch-shared/Models/User";
 import Witness from "crimewatch-shared/Models/Witness";
-import EvidenceViewModel from "crimewatch-shared/ViewModels/EvidenceViewModel";
 import { ReportDetailsViewModel } from "crimewatch-shared/ViewModels/ReportDetailsViewModel";
 import { AuthenticationService } from "src/services/authentication.service";
 import { EvidenceService } from "src/services/evidence.service";
-import { ModeratorService } from "src/services/moderator.service";
 import { NotificationService } from "src/services/notification.service";
 import { ReportService } from "src/services/report.service";
 
@@ -21,16 +17,18 @@ import { ReportService } from "src/services/report.service";
 })
 export class ReportDetailsPageComponent implements OnInit {
     infoLoading: boolean = true;
+    reportDetails?: ReportDetailsViewModel;
+    panelOpenState = false;
+    currentUserIsAuthor: boolean = false;
     public currentUser?:
         | (Witness & { _id?: string })
         | (Moderator & { _id?: string });
-    reportDetails?: ReportDetailsViewModel;
-    panelOpenState = false;
+
     constructor(
         private readonly route: ActivatedRoute,
+        private readonly router: Router,
         private readonly reportService: ReportService,
         private readonly evidenceService: EvidenceService,
-        private readonly moderatorService: ModeratorService,
         private readonly authenticationService: AuthenticationService,
         private readonly notificationService: NotificationService
     ) {}
@@ -38,9 +36,16 @@ export class ReportDetailsPageComponent implements OnInit {
         // this.reportDetails = new ReportDetailsViewModel();
         this.GetUser();
         const id = this.route.snapshot.paramMap.get("id");
-        this.reportService.Details(id!).subscribe((report) => {
-            this.reportDetails = report;
-        });
+        this.reportService.Details(id!).subscribe(
+            (report) => {
+                this.reportDetails = report;
+                if (report.Author === this.currentUser)
+                    this.currentUserIsAuthor = true;
+            },
+            (error) => {
+                this.router.navigate(["/Account/Signin"]);
+            }
+        );
         this.evidenceService.GetAllForReport(id!).subscribe((evidences) => {
             if (this.currentUser?.User.Account.IsModerator) {
                 this.reportDetails!.Evidences = evidences;

@@ -29,7 +29,6 @@ export class NavBarComponent implements OnInit {
                 this.GetUser();
             }
         });
-        console.log(this.currentUser.Notifications);
         this.notificationService.messages.subscribe((message) => {
             console.log(message);
         });
