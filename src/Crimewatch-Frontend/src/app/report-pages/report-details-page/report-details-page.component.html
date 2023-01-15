@@ -40,7 +40,7 @@
                                 {{ reportDetails?.Location?.Province }}
                             </p>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-5">
                             <label class="fs-6">Moderated By:</label
                             ><label
                                 class="fs-6"
@@ -53,7 +53,9 @@
                                 }}</label
                             >
                             <div>
-                                <mat-chip-listbox aria-label="Fish selection">
+                                <mat-chip-listbox
+                                    aria-label="moderator options"
+                                >
                                     <mat-chip-option
                                         [disabled]="
                                             !currentUser?.User?.Account
@@ -93,6 +95,15 @@
                                     </mat-chip-option>
                                 </mat-chip-listbox>
                             </div>
+                        </div>
+                        <div class="col-1" *ngIf="currentUserIsAuthor">
+                            <button
+                                mat-fab
+                                color="warn"
+                                aria-label="Delete report"
+                            >
+                                <mat-icon>delete</mat-icon>
+                            </button>
                         </div>
                     </div>
                 </mat-card-content>

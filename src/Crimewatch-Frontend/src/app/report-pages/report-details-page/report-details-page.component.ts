@@ -38,7 +38,7 @@ export class ReportDetailsPageComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get("id");
         this.reportService.Details(id!).subscribe((report) => {
             this.reportDetails = report;
-            if (report.Author === this.currentUser)
+            if (report.Author._id === this.currentUser?._id)
                 this.currentUserIsAuthor = true;
         });
         this.evidenceService.GetAllForReport(id!).subscribe((evidences) => {
