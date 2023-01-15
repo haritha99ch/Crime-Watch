@@ -1,5 +1,6 @@
 import express from "express";
 import EvidenceController from "../Controllers/EvidenceController";
+import VerifyToken from "../Middlewares/VerifyToken";
 
 const EvidenceRouter = express.Router();
 
@@ -17,6 +18,7 @@ const _reReview = "/Review/:evidenceId";
 
 EvidenceRouter.post(
     _create,
+    VerifyToken,
     evidenceController.CreateForReport.bind(evidenceController)
 );
 EvidenceRouter.get(
@@ -29,22 +31,27 @@ EvidenceRouter.get(
 );
 EvidenceRouter.delete(
     _delete,
+    VerifyToken,
     evidenceController.RemoveFromReport.bind(evidenceController)
 );
 EvidenceRouter.patch(
     _beMod,
+    VerifyToken,
     evidenceController.BeModeratorById.bind(evidenceController)
 );
 EvidenceRouter.patch(
     _approve,
+    VerifyToken,
     evidenceController.ApproveById.bind(evidenceController)
 );
 EvidenceRouter.patch(
     _decline,
+    VerifyToken,
     evidenceController.DeclineById.bind(evidenceController)
 );
 EvidenceRouter.patch(
     _reReview,
+    VerifyToken,
     evidenceController.RereviewById.bind(evidenceController)
 );
 export default EvidenceRouter;
