@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import Status from "crimewatch-shared/Enums/Status";
 import Moderator from "crimewatch-shared/Models/Moderator";
@@ -12,7 +13,11 @@ import { ModeratorService } from "src/services/moderator.service";
 import { NotificationService } from "src/services/notification.service";
 import { ReportService } from "src/services/report.service";
 import { WitnessService } from "src/services/witness.service";
-
+import { DeleteConfirmItemComponent } from "../delete-confirm-item/delete-confirm-item.component";
+export interface DialogData {
+    animal: string;
+    name: string;
+}
 @Component({
     selector: "app-report-details-page",
     templateUrl: "./report-details-page.component.html",
@@ -34,7 +39,8 @@ export class ReportDetailsPageComponent implements OnInit {
         private readonly reportService: ReportService,
         private readonly evidenceService: EvidenceService,
         private readonly authenticationService: AuthenticationService,
-        private readonly notificationService: NotificationService
+        private readonly notificationService: NotificationService,
+        public dialog: MatDialog
     ) {}
     ngOnInit(): void {
         // this.reportDetails = new ReportDetailsViewModel();
@@ -121,6 +127,18 @@ export class ReportDetailsPageComponent implements OnInit {
             .subscribe((isStared) => {
                 this.currentUserStared = isStared;
             });
+    }
+    onDeleteClicked(): void {
+        const dialogRef = this.dialog.open(DeleteConfirmItemComponent);
+
+        dialogRef.afterClosed().subscribe((result) => {
+            if (!result) return;
+            this.reportService
+                .Delete(this.reportDetails?._id!)
+                .subscribe((deleted) => {
+                    this.router.navigate(["/Report/Index"]);
+                });
+        });
     }
     private GetModeratorOptions() {
         this.reportService

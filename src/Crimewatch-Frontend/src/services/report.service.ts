@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import Report, { ReportDocument } from "crimewatch-shared/Models/Report";
+import Report from "crimewatch-shared/Models/Report";
 import ReportViewModel from "crimewatch-shared/ViewModels/ReportViewModel";
 import ReportDetailsViewModel from "crimewatch-shared/ViewModels/ReportDetailsViewModel";
 import { Observable } from "rxjs";
@@ -44,6 +44,12 @@ export class ReportService {
         return this.http.patch<ReportDetailsViewModel>(
             `/API/Report/Update/${reportId}`,
             update,
+            httpOptions
+        );
+    }
+    public Delete(reportId: string): Observable<boolean> {
+        return this.http.delete<boolean>(
+            `/API/Report/Delete/${reportId}`,
             httpOptions
         );
     }

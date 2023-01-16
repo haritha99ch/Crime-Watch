@@ -10,7 +10,8 @@
             <mat-card-title-group>
                 <mat-card-title
                     >{{ reportDetails?.Caption }}
-                    <button *ngIf="currentUser"
+                    <button
+                        *ngIf="currentUser"
                         mat-icon-button
                         [color]="currentUserStared ? 'accent' : 'grey'"
                         aria-label="Delete report"
@@ -28,11 +29,7 @@
                 >
             </mat-card-title-group>
             <mat-card-content>
-                <img
-                    class="rounded"
-                    style="width: 100%"
-                    [src]="reportDetails?.File?.File"
-                />
+                <img class="rounded" [src]="reportDetails?.File?.File" />
             </mat-card-content>
             <hr />
             <mat-card-footer>
@@ -109,8 +106,17 @@
                         <div class="col-1" *ngIf="currentUserIsAuthor">
                             <button
                                 mat-fab
+                                color="primary"
+                                aria-label="Edit report"
+                                (click)="onDeleteClicked()"
+                            >
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button
+                                mat-fab
                                 color="warn"
                                 aria-label="Delete report"
+                                (click)="onDeleteClicked()"
                             >
                                 <mat-icon>delete</mat-icon>
                             </button>
