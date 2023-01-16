@@ -5,17 +5,25 @@ import ModeratorEvidenceService from "../Services/ModeratorEvidenceService";
 import IRepository from "../Services/IRepository";
 import Repository from "../Services/Repository";
 import EvidenceModel from "../Models/EvidenceModel";
+import NotificationService from "../Services/NotificationService";
+import { ReportDocument } from "crimewatch-shared/Models/Report";
+import ReportModel from "../Models/ReportModel";
+import Notification from "crimewatch-shared/Models/Notification";
 
 class EvidenceController {
     private readonly reportEvidenceService: ReportEvidenceService;
     private readonly moderatorEvidenceService: ModeratorEvidenceService;
+    private readonly notificationService: NotificationService;
     private readonly _evidenceRepository: IRepository<EvidenceDocument>;
+    private readonly _reportRepository: IRepository<ReportDocument>;
     constructor() {
         this.reportEvidenceService = new ReportEvidenceService();
         this.moderatorEvidenceService = new ModeratorEvidenceService();
         this._evidenceRepository = new Repository<EvidenceDocument>(
             EvidenceModel
         );
+        this._reportRepository = new Repository<ReportDocument>(ReportModel);
+        this.notificationService = new NotificationService();
     }
 
     public async CreateForReport(
@@ -28,6 +36,27 @@ class EvidenceController {
                 request.params.reportId,
                 request.body
             );
+        const report = await this._reportRepository.GetById(
+            request.params.reportId
+        );
+        for (let i = 0; i < report.Stared!.length; i++) {
+            const newNotification: Notification = {
+                ReportId: request.params.reportId,
+                Message: "New Evidence is added",
+                Seen: false,
+            };
+            console.log(`${report!.Stared![i]}, ${(report.Author as any)._id}`);
+
+            if (
+                report!.Stared![i].toString() !==
+                (report.Author as any)._id.toString()
+            ) {
+                await this.notificationService.NewNotificationForWitness(
+                    report?.Stared![i],
+                    newNotification
+                );
+            }
+        }
         return response.send(evidence);
     }
     public async GetEvidenceById(

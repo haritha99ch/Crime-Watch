@@ -30,7 +30,7 @@ export class WitnessService {
     }
     public Details(id: string): Observable<WitnessDocument> {
         return this.http.get<WitnessDocument>(
-            `/API/Details/${id}`,
+            `/API/Witness/Details/${id}`,
             httpOptions
         );
     }
@@ -52,8 +52,8 @@ export class WitnessService {
         });
         return response;
     }
-    public SignOut(): boolean{
-        const signOut = this.authenticationService.RemoveToken()
-        return false
+    public SignOut(): boolean {
+        const signOut = this.authenticationService.RemoveToken();
+        return false;
     }
 }

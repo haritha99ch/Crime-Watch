@@ -5,10 +5,13 @@ import Moderator from "crimewatch-shared/Models/Moderator";
 import Notification from "crimewatch-shared/Models/Notification";
 import Witness from "crimewatch-shared/Models/Witness";
 import { ReportDetailsViewModel } from "crimewatch-shared/ViewModels/ReportDetailsViewModel";
+import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
 import { AuthenticationService } from "src/services/authentication.service";
 import { EvidenceService } from "src/services/evidence.service";
+import { ModeratorService } from "src/services/moderator.service";
 import { NotificationService } from "src/services/notification.service";
 import { ReportService } from "src/services/report.service";
+import { WitnessService } from "src/services/witness.service";
 
 @Component({
     selector: "app-report-details-page",
@@ -95,6 +98,17 @@ export class ReportDetailsPageComponent implements OnInit {
             reportId: this.reportDetails!._id,
             message: "New Evidence Added",
         });
+        for (let i = 0; i < this.reportDetails!.Stared!.length; i++) {
+            if (
+                this.reportDetails!.Stared![i].toString() !==
+                this.reportDetails?.Author._id
+            )
+                this.notificationService.SendMessage({
+                    to: this.reportDetails!.Stared![i],
+                    reportId: this.reportDetails!._id,
+                    message: "New Evidence Added",
+                });
+        }
     }
     onSigninClicked(): void {
         this.router.navigate(["/Account/Signin"], {
