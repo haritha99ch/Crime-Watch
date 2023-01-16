@@ -1,15 +1,9 @@
 import express from "express";
 import Default from "./Configs/Default";
-import cors from "cors";
 import DbContext from "./Context/DbContext";
 import Routes from "./Routes/Routes";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import User, { UserDocument } from "crimewatch-shared/Models/User";
-import Repository from "./Services/Repository";
-import UserModel from "./Models/UserModel";
-import ModeratorModel from "./Models/ModeratorModel";
-import { ModeratorDocument } from "crimewatch-shared/Models/Moderator";
 
 const app = express();
 
