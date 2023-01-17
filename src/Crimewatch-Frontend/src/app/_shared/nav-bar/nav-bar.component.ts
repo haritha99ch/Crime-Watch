@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import Moderator from "crimewatch-shared/Models/Moderator";
 import Notification from "crimewatch-shared/Models/Notification";
@@ -25,25 +26,28 @@ export class NavBarComponent implements OnInit {
         private readonly notificationService: NotificationService,
         private readonly moderatorService: ModeratorService,
         private readonly witnessService: WitnessService,
-        private readonly router: Router
+        private readonly router: Router,
+        public snackBar: MatSnackBar
     ) {}
     ngOnInit(): void {
         this.GetUser();
         this.router.events.subscribe((event) => {
             if (event.constructor.name === "NavigationEnd") {
                 this.GetUser();
+                if (!this.currentUser) return;
             }
         });
         this.notificationService.messages.subscribe((message) => {
             const notification: Notification = {
                 ReportId: message.reportId,
                 Message: message.message,
+                Date: message.Date,
                 Seen: false,
             };
             this.currentUser.Notifications?.push(notification);
-            console.log(message);
+            this.openSnackBar("New evidence add on your report", "Dismiss");
         });
-        this.SendMessage();
+        // this.SendMessage();
     }
 
     SendMessage() {
@@ -81,5 +85,11 @@ export class NavBarComponent implements OnInit {
         console.log("pass");
         this.authenticationService.RemoveToken();
         this.router.navigateByUrl("");
+    }
+
+    openSnackBar(message: string, action: string) {
+        this.snackBar.open(message, action, {
+            duration: 2000,
+        });
     }
 }

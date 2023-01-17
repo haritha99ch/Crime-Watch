@@ -1,7 +1,10 @@
 <div
+    [ngClass]="seen ? 'text-secondary' : 'text-primary'"
     class="notification-card"
+    (click)="onClick()"
     routerLink="/Report/Details/{{ notification?.ReportId }}"
 >
-    <p>{{ notification?.Message }}</p>
+    <p><mat-icon>note_add</mat-icon>{{ notification?.Message }}</p>
+    <p>{{ notification?.Date | date : "dd/MM/yyyy" }}</p>
     <hr />
 </div>

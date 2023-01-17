@@ -54,12 +54,13 @@ class NotificationController {
         return response.send(newNotification);
     }
     public async Seen(
-        request: Request<{ id: string }, {}, Notification>,
+        request: Request<{ id: string }>,
         response: Response<boolean>,
         next: NextFunction
     ) {
         const notificationSeen =
             await this.notificationService.NotificationSeen(request.params.id);
+
         return response.send(notificationSeen);
     }
 }

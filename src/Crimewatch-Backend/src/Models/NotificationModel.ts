@@ -10,6 +10,10 @@ const NotificationSchema: Schema = new Schema<NotificationDocument>({
         type: String,
         required: true,
     },
+    Date: {
+        type: Date,
+        required: true,
+    },
     Seen: {
         type: Boolean,
         required: true,

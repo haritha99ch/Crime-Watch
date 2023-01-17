@@ -13,6 +13,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 
 import { MatRippleModule, MatNativeDateModule } from "@angular/material/core";
 import { MatCardModule } from "@angular/material/card";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
@@ -42,7 +43,7 @@ import { NavBarComponent } from "./_shared/nav-bar/nav-bar.component";
 import { NotificationService } from "src/services/notification.service";
 import { WebsocketService } from "src/services/websocket.service";
 import { NotificationItemComponent } from "./_shared/notification-item/notification-item.component";
-import { DeleteConfirmItemComponent } from './report-pages/delete-confirm-item/delete-confirm-item.component';
+import { DeleteConfirmItemComponent } from "./report-pages/delete-confirm-item/delete-confirm-item.component";
 
 @NgModule({
     declarations: [
@@ -96,6 +97,7 @@ import { DeleteConfirmItemComponent } from './report-pages/delete-confirm-item/d
         MatProgressSpinnerModule,
         MatBadgeModule,
         MatDialogModule,
+        MatSnackBarModule,
     ],
     providers: [NotificationService, WebsocketService],
     bootstrap: [AppComponent],

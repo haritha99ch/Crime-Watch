@@ -56,7 +56,6 @@ export class NotificationService {
     public Seen(notificationId: string): Observable<boolean> {
         return this.http.patch<boolean>(
             `/API/Notification/Seen/${notificationId}`,
-            notificationId,
             httpOptions
         );
     }

@@ -83,6 +83,7 @@ export class ReportDetailsPageComponent implements OnInit {
         const notification: Notification = {
             ReportId: this.reportDetails?._id?.toString()!,
             Message: "New Evidence",
+            Date: new Date(),
             Seen: false,
         };
         this.notificationService
@@ -96,6 +97,7 @@ export class ReportDetailsPageComponent implements OnInit {
                     .subscribe((evidence) => {
                         this.reportDetails!.Evidences?.push(evidence);
                     });
+                if (!this.currentUserStared) this.onStarClicked();
                 this.panelOpenState = false;
             });
         //sending socket notification to the moderator
@@ -103,6 +105,7 @@ export class ReportDetailsPageComponent implements OnInit {
             to: this.reportDetails!.Moderator?._id,
             reportId: this.reportDetails!._id,
             message: "New Evidence Added",
+            Date: new Date(),
         });
         for (let i = 0; i < this.reportDetails!.Stared!.length; i++) {
             if (
@@ -113,6 +116,7 @@ export class ReportDetailsPageComponent implements OnInit {
                     to: this.reportDetails!.Stared![i],
                     reportId: this.reportDetails!._id,
                     message: "New Evidence Added",
+                    Date: new Date(),
                 });
         }
     }
