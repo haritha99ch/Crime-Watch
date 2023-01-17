@@ -1,19 +1,14 @@
 <mat-card
     routerLink="/Report/Details/{{ reportItem?._id }}"
-    class="h-25 m-2"
+    class="m-2"
     matRipple
 >
-    <div class="row h-100">
-        <div class="col-md-4">
-            <img
-                mat-card-image
-                [src]="reportItem?.File?.File"
-                class="card-img"
-                alt="Card image"
-            />
+    <div class="row fill">
+        <div class="col-md-4 ">
+            <img [src]="reportItem?.File?.File" alt="Card image" />
         </div>
-        <div class="col-md-8 h-100">
-            <div class="h-75 overflow-hidden">
+        <div class="col-md-8">
+            <div class="overflow-hidden">
                 <mat-card-header>
                     <mat-card-title>{{ reportItem?.Caption }}</mat-card-title>
                     <mat-card-subtitle>
