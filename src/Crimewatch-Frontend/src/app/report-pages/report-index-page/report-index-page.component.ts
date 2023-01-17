@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import Status from "crimewatch-shared/Enums/Status";
 import Moderator from "crimewatch-shared/Models/Moderator";
 import Witness from "crimewatch-shared/Models/Witness";
 import ReportViewModel from "crimewatch-shared/ViewModels/ReportViewModel";
@@ -30,7 +31,6 @@ export class ReportIndexPageComponent implements OnInit {
                     return r.Status !== "Pending";
                 })!;
             }
-            this.reportList = reports;
             this.isLoading = false;
         });
     }

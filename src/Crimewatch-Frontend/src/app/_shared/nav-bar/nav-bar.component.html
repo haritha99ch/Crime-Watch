@@ -52,7 +52,7 @@
     </mat-drawer>
     <nav class="navbar navbar-light bg-primary justify-content-between">
         <a class="navbar-brand" (click)="drawer.toggle()"
-            ><img src="../../../assets/crimeWatchLogo.png" height="35px" />Crime
+            ><img src="../../../assets/crimeWatchLogo.png" height="35px" /> Crime
             Watch</a
         >
         <div>
@@ -86,7 +86,9 @@
                         mat-menu-item
                         *ngFor="let notification of currentUser.Notifications"
                     >
-                        <app-notification-item [notification]="notification"></app-notification-item>
+                        <app-notification-item
+                            [notification]="notification"
+                        ></app-notification-item>
                     </button>
                 </mat-menu>
             </div>

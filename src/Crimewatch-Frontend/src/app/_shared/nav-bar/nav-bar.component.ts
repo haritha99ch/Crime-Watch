@@ -57,7 +57,8 @@ export class NavBarComponent implements OnInit {
         this.currentUser = this.authenticationService.GetCurrentUser();
         this.RefreshUser();
     }
-    private RefreshUser() {
+    private RefreshUser(): void {
+        if (!this.currentUser) return;
         if (this.currentUser.User.Account.IsModerator) {
             this.moderatorService
                 .Details(this.currentUser._id!)
