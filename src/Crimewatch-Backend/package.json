@@ -3,9 +3,14 @@
     "version": "1.0.0",
     "description": "IMS backend",
     "main": "index.js",
+    "engine": {
+        "node": ">=12.0.0"
+    },
     "scripts": {
         "test": "mocha --require ts-node/register --watch-extentions ts 'test/**/*.test.ts'",
-        "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
+        "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+        "build": "ts-node-dev --respawn --transpile-only src/app.ts",
+        "start": "ts-node-dev src/app.ts"
     },
     "author": "Haritha Rathnayake",
     "license": "ISC",

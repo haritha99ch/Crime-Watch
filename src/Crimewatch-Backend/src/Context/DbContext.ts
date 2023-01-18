@@ -14,6 +14,18 @@ export default {
                 return false;
             });
     },
+    async ConnectDbProd() {
+        const con = await mongoose
+            .connect(Default.mongo.productionurl!)
+            .then(() => {
+                console.log("Connected to mongodb");
+                return connection;
+            })
+            .catch((e) => {
+                console.log(e);
+                return false;
+            });
+    },
     async DisconnectDb() {
         await connection.close();
     },

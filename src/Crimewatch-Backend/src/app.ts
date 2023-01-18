@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
     );
 });
 
-httpServer.listen(Default.server.port!, async () => {
+httpServer.listen(Default.server.port!, Default.server.hostname!, async () => {
     await DbContext.ConnectDb();
     console.log(
         `Application listening at http://localhost:${Default.server.port!}`
