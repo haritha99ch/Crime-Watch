@@ -53,7 +53,7 @@ class EvidenceController {
                 (report.Author as any)._id.toString()
             ) {
                 await this.notificationService.NewNotificationForWitness(
-                    report?.Stared![i],
+                    report?.Stared![i].toString(),
                     newNotification
                 );
             }
