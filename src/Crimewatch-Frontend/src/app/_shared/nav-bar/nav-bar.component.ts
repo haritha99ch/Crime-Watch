@@ -37,6 +37,7 @@ export class NavBarComponent implements OnInit {
                 if (!this.currentUser) return;
             }
         });
+        // if (!this.currentUser) return;
         this.notificationService.messages.subscribe((message) => {
             const notification: Notification = {
                 ReportId: message.reportId,
@@ -44,6 +45,8 @@ export class NavBarComponent implements OnInit {
                 Date: message.Date,
                 Seen: false,
             };
+            console.log(message);
+
             this.currentUser.Notifications?.push(notification);
             this.openSnackBar("New evidence add on your report", "Dismiss");
         });
@@ -81,10 +84,9 @@ export class NavBarComponent implements OnInit {
         }
     }
     public Signout() {
-        if (!this.currentUser) return;
-        console.log("pass");
         this.authenticationService.RemoveToken();
-        this.router.navigateByUrl("");
+        this.router.navigateByUrl("/Report/Index");
+        console.log("pass");
     }
 
     openSnackBar(message: string, action: string) {

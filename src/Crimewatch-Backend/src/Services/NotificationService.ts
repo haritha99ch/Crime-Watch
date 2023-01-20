@@ -29,36 +29,26 @@ class NotificationService {
     public async NewNotificationForWitness(
         witnessId: string,
         notification: Notification
-    ): Promise<NotificationDocument> {
-        const newNotification = await this._notificationRepository
-            .Create(notification)
-            .then(async (doc) => {
-                const update: UpdateQuery<WitnessDocument> = {
-                    $push: { Notifications: doc._id },
-                };
-                await this._witnessRepository.UpdateById(witnessId, update);
-                return doc;
-            });
-        return newNotification;
+    ): Promise<Notification> {
+        const update: UpdateQuery<WitnessDocument> = {
+            $push: { Notifications: notification },
+        };
+        await this._witnessRepository.UpdateById(witnessId, update);
+        return notification;
     }
     public async NewNotificationForModerator(
         moderatorId: string,
         notification: Notification
-    ): Promise<NotificationDocument> {
-        const newNotification = await this._notificationRepository
-            .Create(notification)
-            .then(async (doc) => {
-                const update: UpdateQuery<WitnessDocument> = {
-                    $push: { Notifications: doc._id },
-                };
-                await this._moderatorRepository.UpdateById(moderatorId, update);
-                return doc;
-            });
-        return newNotification;
+    ): Promise<Notification> {
+        const update: UpdateQuery<WitnessDocument> = {
+            $push: { Notifications: notification },
+        };
+        await this._moderatorRepository.UpdateById(moderatorId, update);
+        return notification;
     }
     public async NotificationSeen(notificationId: string): Promise<boolean> {
         const update: UpdateQuery<NotificationDocument> = {
-            $set: { Seen: true },
+            $set: { "Notifications.$[element].Seen": true },
         };
         const notificationSeen = await this._notificationRepository
             .UpdateById(notificationId, update)

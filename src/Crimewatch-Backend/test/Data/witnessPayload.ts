@@ -1,5 +1,6 @@
 import Witness from "crimewatch-shared/Models/Witness";
 import { faker } from "@faker-js/faker";
+import Gender from "crimewatch-shared/Enums/Gender";
 
 export const witnessPayload: Witness = {
     User: {
@@ -13,5 +14,6 @@ export const witnessPayload: Witness = {
             Password: faker.internet.password(),
             IsModerator: false,
         },
+        Gender: Gender.Female,
     },
 };

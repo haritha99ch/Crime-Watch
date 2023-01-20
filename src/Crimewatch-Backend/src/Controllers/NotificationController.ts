@@ -25,7 +25,7 @@ class NotificationController {
 
     public async NewNotificationForWitness(
         request: Request<{ id: string }, {}, Notification>,
-        response: Response<NotificationDocument>,
+        response: Response<Notification>,
         next: NextFunction
     ) {
         const newNotification =
@@ -37,7 +37,7 @@ class NotificationController {
     }
     public async NewNotificationForModerator(
         request: Request<{ id: string }, {}, Notification>,
-        response: Response<NotificationDocument>,
+        response: Response<Notification>,
         next: NextFunction
     ) {
         console.log("pass");

@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+import Gender from "crimewatch-shared/Enums/Gender";
 import Province from "crimewatch-shared/Enums/Province";
 import Status from "crimewatch-shared/Enums/Status";
 import Moderator from "crimewatch-shared/Models/Moderator";
@@ -15,6 +16,7 @@ export const moderatorPayload: Moderator = {
             Password: faker.internet.password(),
             IsModerator: true,
         },
+        Gender:Gender.Male
     },
     PoliceId: faker.word.verb.name,
     Province: Province.Uva,
