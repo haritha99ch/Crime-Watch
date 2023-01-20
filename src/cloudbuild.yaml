@@ -5,7 +5,7 @@ steps:
           - "-c"
           - |
               cd ../
-              npm install . --loglevel=verbose
+              npm install . --loglevel=verbose --force
 
     - name: "gcr.io/cloud-builders/npm"
       args: ["run"]
