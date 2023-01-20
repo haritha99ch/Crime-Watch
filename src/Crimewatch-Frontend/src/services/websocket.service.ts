@@ -19,6 +19,8 @@ export class WebsocketService {
         this.socket = io("http://localhost:9090");
         const currentUserId = this.authenticationService.GetCurrentUser()?._id;
         if (currentUserId) {
+            console.log(currentUserId);
+
             this.socket.emit("newUser", currentUserId);
         }
         const observable = new Observable((observer) => {

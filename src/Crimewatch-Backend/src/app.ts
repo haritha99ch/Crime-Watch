@@ -21,15 +21,19 @@ const io = new Server(httpServer, {
 let onlineUsers: { userId: string; socketId: string }[] = [];
 
 io.on("connection", (socket) => {
-    console.log(`User connected`);
+    console.log(`New connection`);
     socket.on("newUser", (userid) => {
         if (!onlineUsers.some((user) => user.userId === userid))
             onlineUsers.push({ userId: userid, socketId: socket.id });
+        console.log("online users");
+        console.log(onlineUsers);
     });
 
     socket.on("disconnect", () => {
         console.log(`User disconnected`);
         onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
+        console.log("online users");
+        console.log(onlineUsers);
     });
     socket.on(
         "notification",

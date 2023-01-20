@@ -30,14 +30,14 @@ export class NavBarComponent implements OnInit {
         public snackBar: MatSnackBar
     ) {}
     ngOnInit(): void {
-        // this.GetUser();
+        this.GetUser();
         this.router.events.subscribe((event) => {
             if (event.constructor.name === "NavigationEnd") {
                 this.GetUser();
                 if (!this.currentUser) return;
             }
         });
-        if (!this.currentUser) return;
+        // if (!this.currentUser) return;
         this.notificationService.messages.subscribe((message) => {
             const notification: Notification = {
                 ReportId: message.reportId,
@@ -45,6 +45,8 @@ export class NavBarComponent implements OnInit {
                 Date: message.Date,
                 Seen: false,
             };
+            console.log(message);
+
             this.currentUser.Notifications?.push(notification);
             this.openSnackBar("New evidence add on your report", "Dismiss");
         });
