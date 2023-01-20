@@ -49,10 +49,8 @@ io.on("connection", (socket) => {
         }
     );
 });
-
+const hostname = "0.0.0.0";
 httpServer.listen(Default.server.port!, async () => {
     await DbContext.ConnectDbProd();
-    console.log(
-        `Application listening at http://localhost:${Default.server.port!}`
-    );
+    console.log(httpServer.address());
 });

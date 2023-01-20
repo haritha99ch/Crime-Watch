@@ -43,6 +43,7 @@ class EvidenceController {
             const newNotification: Notification = {
                 ReportId: request.params.reportId,
                 Message: "New Evidence is added",
+                Date: new Date(),
                 Seen: false,
             };
             console.log(`${report!.Stared![i]}, ${(report.Author as any)._id}`);
@@ -52,7 +53,7 @@ class EvidenceController {
                 (report.Author as any)._id.toString()
             ) {
                 await this.notificationService.NewNotificationForWitness(
-                    report?.Stared![i],
+                    report?.Stared![i].toString(),
                     newNotification
                 );
             }
