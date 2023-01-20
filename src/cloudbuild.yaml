@@ -3,12 +3,15 @@ steps:
       args: ["cache", "clean", "--force"]
 
     - name: "gcr.io/cloud-builders/npm"
+      args: ["update", "--loglevel=verbose"]
+
+    - name: "gcr.io/cloud-builders/npm"
       entrypoint: "bash"
       args:
           - "-c"
           - |
               cd ../
-              npm update && npm install . --loglevel=verbose
+              npm install . --loglevel=verbose
 
     - name: "gcr.io/cloud-builders/npm"
       args: ["run"]
