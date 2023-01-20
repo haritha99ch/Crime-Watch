@@ -6,7 +6,6 @@ const MONGO_URL = process.env.MONGO_URL;
 const MONGO_URL_TEST = process.env.MONGO_URL_TEST;
 const MONGO_URL_PROD = process.env.MONGO_URL_PROD;
 const SERVER_PORT = process.env.SERVER_PORT;
-const MONGO_URL_PROD = process.env.MONGO_URL_PROD;
 
 export default {
     mongo: {
@@ -15,7 +14,6 @@ export default {
         productionurl: MONGO_URL_PROD,
     },
     server: {
-        hostname: SERVER_HOST,
         port: SERVER_PORT,
     },
 };
