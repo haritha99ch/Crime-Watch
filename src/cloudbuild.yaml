@@ -1,6 +1,7 @@
 steps:
     - name: "gcr.io/cloud-builders/npm"
       args: ["install", "."]
+      dir: "$PROJECT_ROOT"
 
     - name: "gcr.io/cloud-builders/npm"
       args: ["run"]
