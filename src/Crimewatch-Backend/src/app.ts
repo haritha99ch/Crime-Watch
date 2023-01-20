@@ -34,6 +34,10 @@ io.on("connection", (socket) => {
     socket.on(
         "notification",
         (notification: { to: string; reportId: string; message: string }) => {
+            console.log("revieved");
+
+            console.log(notification);
+
             io.to(
                 onlineUsers.find((user) => user.userId === notification.to)
                     ?.socketId!
@@ -43,7 +47,7 @@ io.on("connection", (socket) => {
 });
 
 httpServer.listen(Default.server.port!, async () => {
-    await DbContext.ConnectDb();
+    await DbContext.ConnectDbProd();
     console.log(
         `Application listening at http://localhost:${Default.server.port!}`
     );

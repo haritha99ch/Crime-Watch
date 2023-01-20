@@ -30,7 +30,7 @@ export class NavBarComponent implements OnInit {
         public snackBar: MatSnackBar
     ) {}
     ngOnInit(): void {
-        this.GetUser();
+        // this.GetUser();
         this.router.events.subscribe((event) => {
             if (event.constructor.name === "NavigationEnd") {
                 this.GetUser();
