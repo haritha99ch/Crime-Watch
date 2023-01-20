@@ -13,7 +13,9 @@ describe("create a new witness", () => {
         const _witnessRepository = new Repository<WitnessDocument>(
             WitnessModel
         );
+        console.log(witnessPayload);
         const insertWitness = await _witnessRepository.Create(newWitness);
+
         expect(newWitness.User.FirstName).to.equals(
             insertWitness.User.FirstName
         );

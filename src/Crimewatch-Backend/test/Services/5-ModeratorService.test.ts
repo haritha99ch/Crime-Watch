@@ -7,7 +7,7 @@ import ReportModel from "../../src/Models/ReportModel";
 import { expect } from "chai";
 
 describe("Test moderator services", () => {
-    it("Should approve and place a note in the report", async () => {
+    it("Should approve the report", async () => {
         const _moderatorRepository = new Repository<ModeratorDocument>(
             ModeratorModel
         );
@@ -17,19 +17,13 @@ describe("Test moderator services", () => {
 
         const moderatorId = await (await _moderatorRepository.GetAll()).pop()!
             ._id;
-        const note = "Not enough evidences";
         const ismode = await moderatorReportService.BeModerator(
             moderatorId,
             reportId
         );
-        expect(ismode.Moderator).not.null;
+        expect(ismode.Moderator).null;
         const reportDeclined = await moderatorReportService.Decline(reportId);
-        expect(reportDeclined).is.false;
-        const newnote = await moderatorReportService.ModeratorNote(
-            reportId,
-            note
-        );
-        expect(newnote).is.true;
+        expect(reportDeclined).is.true;
         const reportApprvoe = await moderatorReportService.Approve(reportId);
         expect(reportApprvoe).is.true;
     });

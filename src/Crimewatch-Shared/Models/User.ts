@@ -11,7 +11,6 @@ class User {
     Age!: number;
     PhoneNumber!: number;
     Account!: Account;
-    Notifications?: Notification[];
 }
 export default User;
 export interface UserDocument extends User, Document {}

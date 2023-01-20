@@ -21,6 +21,7 @@ export class NotificationItemComponent implements OnInit {
         this.seen = this.notification?.Seen!;
     }
     onClick(): void {
+        return;
         this.notificationService
             .Seen((this.notification as any)._id)
             .subscribe((e) => {
