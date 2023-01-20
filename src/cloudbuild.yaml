@@ -3,6 +3,9 @@ steps:
       args: ["cache", "clean", "--force"]
 
     - name: "gcr.io/cloud-builders/npm"
+      args: ["install", "-g", "npm"]
+
+    - name: "gcr.io/cloud-builders/npm"
       args: ["update", "--loglevel=verbose"]
 
     - name: "gcr.io/cloud-builders/npm"
