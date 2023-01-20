@@ -50,7 +50,7 @@ io.on("connection", (socket) => {
     );
 });
 const hostname = "0.0.0.0";
-httpServer.listen(Default.server.port!, async () => {
+httpServer.listen(8080, async () => {
     await DbContext.ConnectDbProd();
     console.log(httpServer.address());
 });

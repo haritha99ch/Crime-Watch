@@ -16,7 +16,7 @@ export class WebsocketService {
     ) {}
 
     public Connect(): Rx.Subject<MessageEvent> {
-        this.socket = io("http://localhost:8000");
+        this.socket = io("http://localhost:8080");
         const currentUserId = this.authenticationService.GetCurrentUser()?._id;
         if (currentUserId) {
             console.log(currentUserId);
