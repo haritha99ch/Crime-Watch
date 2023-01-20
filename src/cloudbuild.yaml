@@ -11,7 +11,7 @@ steps:
           - "-c"
           - |
               cd ../
-              npm install . --loglevel=verbose
+              npm install . --legacy-peer-deps --loglevel=verbose
 
     - name: "gcr.io/cloud-builders/npm"
       args: ["run"]
