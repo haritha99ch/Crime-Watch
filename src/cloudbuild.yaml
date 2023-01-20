@@ -1,7 +1,11 @@
 steps:
     - name: "gcr.io/cloud-builders/npm"
-      args: ["install", "."]
-      dir: "$PWD"
+      entrypoint: "bash"
+      args:
+          - "-c"
+          - |
+              cd ../
+              npm install .
 
     - name: "gcr.io/cloud-builders/npm"
       args: ["run"]
