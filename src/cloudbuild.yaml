@@ -1,6 +1,6 @@
 steps:
     - name: "gcr.io/cloud-builders/npm"
-      args: ["install", "."]
+      args: ["install"]
 
     - name: "gcr.io/cloud-builders/npm"
-    - args: ["run", "--prefix Crimewatch-Backend dev"]
+    - args: ["run"]
