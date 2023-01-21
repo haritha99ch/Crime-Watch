@@ -1,5 +1,7 @@
-import Evidence, { EvidenceDocument } from "crimewatch-shared/Models/Evidence";
-import { ReportDocument } from "crimewatch-shared/Models/Report";
+import Evidence, {
+    EvidenceDocument,
+} from "../../../Crimewatch-Shared/Models/Evidence";
+import { ReportDocument } from "../../../Crimewatch-Shared/Models/Report";
 import { FilterQuery, UpdateQuery } from "mongoose";
 import EvidenceModel from "../Models/EvidenceModel";
 import ReportModel from "../Models/ReportModel";

@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import Moderator from "crimewatch-shared/Models/Moderator";
-import Witness from "crimewatch-shared/Models/Witness";
-import ReportViewModel from "crimewatch-shared/ViewModels/ReportViewModel";
+import Moderator from "../../../../../Crimewatch-Shared/Models/Moderator";
+import Witness from "../../../../../Crimewatch-Shared/Models/Witness";
+import ReportViewModel from "../../../../../Crimewatch-Shared/ViewModels/ReportViewModel";
 import { Schema } from "mongoose";
 import { AuthenticationService } from "src/services/authentication.service";
 import { ReportService } from "src/services/report.service";

@@ -1,5 +1,5 @@
-import { ModeratorDocument } from "crimewatch-shared/Models/Moderator";
-import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
+import { ModeratorDocument } from "../../../Crimewatch-Shared/Models/Moderator";
+import SigninViewModel from "../../../Crimewatch-Shared/ViewModels/SigninViewModel";
 import { FilterQuery } from "mongoose";
 import ModeratorModel from "../Models/ModeratorModel";
 import IRepository from "./IRepository";

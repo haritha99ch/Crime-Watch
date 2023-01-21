@@ -1,6 +1,6 @@
 import { expect } from "chai";
-import { ReportDocument } from "crimewatch-shared/Models/Report";
-import { WitnessDocument } from "crimewatch-shared/Models/Witness";
+import { ReportDocument } from "../../../Crimewatch-Shared/Models/Report";
+import { WitnessDocument } from "../../../Crimewatch-Shared/Models/Witness";
 import ReportModel from "../../src/Models/ReportModel";
 import WitnessModel from "../../src/Models/WitnessModel";
 import ReportEvidenceService from "../../src/Services/ReportEvidenceService";

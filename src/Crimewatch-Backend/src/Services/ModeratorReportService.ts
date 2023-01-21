@@ -1,5 +1,5 @@
-import Status from "crimewatch-shared/Enums/Status";
-import { ReportDocument } from "crimewatch-shared/Models/Report";
+import Status from "../../../Crimewatch-Shared/Enums/Status";
+import { ReportDocument } from "../../../Crimewatch-Shared/Models/Report";
 import { UpdateQuery } from "mongoose";
 import ReportModel from "../Models/ReportModel";
 import IRepository from "./IRepository";

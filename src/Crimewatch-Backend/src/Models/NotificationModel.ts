@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { NotificationDocument } from "crimewatch-shared/Models/Notification";
+import { NotificationDocument } from "../../../Crimewatch-Shared/Models/Notification";
 
 const NotificationSchema: Schema = new Schema<NotificationDocument>({
     ReportId: {

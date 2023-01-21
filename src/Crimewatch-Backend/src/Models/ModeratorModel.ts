@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { ModeratorDocument } from "crimewatch-shared/Models/Moderator";
+import { ModeratorDocument } from "../../../Crimewatch-Shared/Models/Moderator";
 import UserModel from "./UserModel";
 import mongooseAutopopulate from "mongoose-autopopulate";
 import NotificationModel from "./NotificationModel";

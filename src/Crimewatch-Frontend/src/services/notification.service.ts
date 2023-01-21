@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import Notification from "crimewatch-shared/Models/Notification";
-import NotificationViewModel from "crimewatch-shared/ViewModels/NotificationViewModel";
+import Notification from "../../../Crimewatch-Shared/Models/Notification";
+import NotificationViewModel from "../../../Crimewatch-Shared/ViewModels/NotificationViewModel";
 import { map, Observable, Subject } from "rxjs";
 import { WebsocketService } from "./websocket.service";
 

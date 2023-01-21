@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import Evidence, { EvidenceDocument } from "crimewatch-shared/Models/Evidence";
-import EvidenceViewModel from "crimewatch-shared/ViewModels/EvidenceViewModel";
+import Evidence, {
+    EvidenceDocument,
+} from "../../../Crimewatch-Shared/Models/Evidence";
+import EvidenceViewModel from "../../../Crimewatch-Shared/ViewModels/EvidenceViewModel";
 import { Observable } from "rxjs";
 
 const httpOptions = {
