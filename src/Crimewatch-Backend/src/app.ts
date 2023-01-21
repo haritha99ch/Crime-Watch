@@ -9,6 +9,9 @@ const app = express();
 
 app.use(express.json({ limit: "50mb" }));
 app.use("/API", Routes);
+app.get("/", (req, res) => {
+    return res.send("crime-watch-api");
+});
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
