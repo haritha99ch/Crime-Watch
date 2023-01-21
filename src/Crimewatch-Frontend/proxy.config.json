@@ -1,8 +1,0 @@
-{
-    "/API/*": {
-        "target": "https://crime-watch-375407.as.r.appspot.com/",
-        "secure": false,
-        "loglevel": "debug",
-        "changeOrigin": false
-    }
-}
