@@ -19,7 +19,7 @@ export class ReportEvidenceItemComponent implements OnInit {
         | (Witness & { _id?: string })
         | (Moderator & { _id?: string });
     @Input()
-    public evidenceItem?: EvidenceViewModel
+    public evidenceItem?: EvidenceViewModel;
     constructor(
         private readonly evidenceService: EvidenceService,
         private readonly authenticationService: AuthenticationService

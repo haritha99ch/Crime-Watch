@@ -1,20 +1,15 @@
 steps:
     - name: "gcr.io/cloud-builders/npm"
+      dir: "/workspace/src"
       args: ["cache", "clean", "--force"]
 
     - name: "gcr.io/cloud-builders/npm"
       args: ["install", "-g", "npm"]
 
     - name: "gcr.io/cloud-builders/npm"
-      args: ["update", "--loglevel=verbose"]
+      dir: "/workspace/src"
+      args: ["install", ".", "--loglevel=verbose"]
 
     - name: "gcr.io/cloud-builders/npm"
-      entrypoint: "bash"
-      args:
-          - "-c"
-          - |
-              cd ../
-              npm install . --legacy-peer-deps --loglevel=verbose
-
-    - name: "gcr.io/cloud-builders/npm"
-      args: ["run"]
+      dir: "/workspace/src"
+      args: ["run", "--loglevel=verbose"]

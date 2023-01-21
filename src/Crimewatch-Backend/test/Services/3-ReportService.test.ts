@@ -18,9 +18,7 @@ describe("Report services test", () => {
         const newReport = reportPayload;
         newReport.Author = witnessId;
 
-        const insertReport = await _reportRepository.Create(
-            newReport
-        );
+        const insertReport = await _reportRepository.Create(newReport);
         expect(newReport.Body).to.equals(insertReport.Body);
     });
 });
