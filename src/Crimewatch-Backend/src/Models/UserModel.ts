@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { UserDocument } from "crimewatch-shared/Models/User";
+import { UserDocument } from "../../../Crimewatch-Shared/Models/User";
 import AccountModel from "./AccountModel";
 import mongooseAutopopulate from "mongoose-autopopulate";
 

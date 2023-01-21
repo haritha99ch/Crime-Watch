@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
+import SigninViewModel from "../../../../../Crimewatch-Shared/ViewModels/SigninViewModel";
 import { AuthenticationService } from "src/services/authentication.service";
 import { ModeratorService } from "src/services/moderator.service";
 import { WitnessService } from "src/services/witness.service";

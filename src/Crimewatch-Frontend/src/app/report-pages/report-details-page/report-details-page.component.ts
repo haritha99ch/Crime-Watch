@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
-import Status from "crimewatch-shared/Enums/Status";
-import Moderator from "crimewatch-shared/Models/Moderator";
-import Notification from "crimewatch-shared/Models/Notification";
-import Witness from "crimewatch-shared/Models/Witness";
-import { ReportDetailsViewModel } from "crimewatch-shared/ViewModels/ReportDetailsViewModel";
-import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
+import Status from "../../../../../Crimewatch-Shared/Enums/Status";
+import Moderator from "../../../../../Crimewatch-Shared/Models/Moderator";
+import Notification from "../../../../../Crimewatch-Shared/Models/Notification";
+import Witness from "../../../../../Crimewatch-Shared/Models/Witness";
+import { ReportDetailsViewModel } from "../../../../../Crimewatch-Shared/ViewModels/ReportDetailsViewModel";
+import SigninViewModel from "../../../../../Crimewatch-Shared/ViewModels/SigninViewModel";
 import { AuthenticationService } from "src/services/authentication.service";
 import { EvidenceService } from "src/services/evidence.service";
 import { ModeratorService } from "src/services/moderator.service";

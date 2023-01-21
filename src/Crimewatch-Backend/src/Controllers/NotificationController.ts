@@ -1,9 +1,11 @@
-import { ModeratorDocument } from "crimewatch-shared/Models/Moderator";
+import { ModeratorDocument } from "../../../Crimewatch-Shared/Models/Moderator";
 import Notification, {
     NotificationDocument,
-} from "crimewatch-shared/Models/Notification";
-import Report, { ReportDocument } from "crimewatch-shared/Models/Report";
-import { WitnessDocument } from "crimewatch-shared/Models/Witness";
+} from "../../../Crimewatch-Shared/Models/Notification";
+import Report, {
+    ReportDocument,
+} from "../../../Crimewatch-Shared/Models/Report";
+import { WitnessDocument } from "../../../Crimewatch-Shared/Models/Witness";
 import { NextFunction, Request, Response } from "express";
 import ModeratorModel from "../Models/ModeratorModel";
 import WitnessModel from "../Models/WitnessModel";

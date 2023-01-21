@@ -1,8 +1,8 @@
 import Repository from "../../src/Services/Repository";
-import { ModeratorDocument } from "crimewatch-shared/Models/Moderator";
+import { ModeratorDocument } from "../../../Crimewatch-Shared/Models/Moderator";
 import ModeratorModel from "../../src/Models/ModeratorModel";
 import ModeratorReportService from "../../src/Services/ModeratorReportService";
-import { ReportDocument } from "crimewatch-shared/Models/Report";
+import { ReportDocument } from "../../../Crimewatch-Shared/Models/Report";
 import ReportModel from "../../src/Models/ReportModel";
 import { expect } from "chai";
 

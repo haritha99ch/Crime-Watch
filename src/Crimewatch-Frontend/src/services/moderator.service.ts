@@ -3,8 +3,8 @@ import { Injectable } from "@angular/core";
 
 import Moderator, {
     ModeratorDocument,
-} from "crimewatch-shared/Models/Moderator";
-import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
+} from "../../../Crimewatch-Shared/Models/Moderator";
+import SigninViewModel from "../../../Crimewatch-Shared/ViewModels/SigninViewModel";
 import { Observable } from "rxjs";
 import { AuthenticationService } from "./authentication.service";
 

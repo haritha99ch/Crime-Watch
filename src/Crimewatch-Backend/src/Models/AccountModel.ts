@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { AccountDocument } from "crimewatch-shared/Models/Account";
+import { AccountDocument } from "../../../Crimewatch-Shared/Models/Account";
 
 const AccountSchema: Schema = new Schema<AccountDocument>({
     Email: {

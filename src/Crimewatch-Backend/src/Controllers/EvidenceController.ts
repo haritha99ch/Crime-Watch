@@ -1,14 +1,16 @@
 import ReportEvidenceService from "../Services/ReportEvidenceService";
 import { Request, Response, NextFunction } from "express";
-import Evidence, { EvidenceDocument } from "crimewatch-shared/Models/Evidence";
+import Evidence, {
+    EvidenceDocument,
+} from "../../../Crimewatch-Shared/Models/Evidence";
 import ModeratorEvidenceService from "../Services/ModeratorEvidenceService";
 import IRepository from "../Services/IRepository";
 import Repository from "../Services/Repository";
 import EvidenceModel from "../Models/EvidenceModel";
 import NotificationService from "../Services/NotificationService";
-import { ReportDocument } from "crimewatch-shared/Models/Report";
+import { ReportDocument } from "../../../Crimewatch-Shared/Models/Report";
 import ReportModel from "../Models/ReportModel";
-import Notification from "crimewatch-shared/Models/Notification";
+import Notification from "../../../Crimewatch-Shared/Models/Notification";
 
 class EvidenceController {
     private readonly reportEvidenceService: ReportEvidenceService;

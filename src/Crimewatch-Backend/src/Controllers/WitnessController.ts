@@ -1,12 +1,14 @@
-import Witness, { WitnessDocument } from "crimewatch-shared/Models/Witness";
-import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
+import Witness, {
+    WitnessDocument,
+} from "../../../Crimewatch-Shared/Models/Witness";
+import SigninViewModel from "../../../Crimewatch-Shared/ViewModels/SigninViewModel";
 import { Request, Response, NextFunction } from "express";
 import WitnessModel from "../Models/WitnessModel";
 import IRepository from "../Services/IRepository";
 import Repository from "../Services/Repository";
 import WitnessAccountService from "../Services/WitnessAccountService";
 import jwt from "jsonwebtoken";
-import { NotificationDocument } from "crimewatch-shared/Models/Notification";
+import { NotificationDocument } from "../../../Crimewatch-Shared/Models/Notification";
 import NotificationService from "../Services/NotificationService";
 
 class WitnessController {

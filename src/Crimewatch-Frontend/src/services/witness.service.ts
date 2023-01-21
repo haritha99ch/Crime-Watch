@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import Witness, { WitnessDocument } from "crimewatch-shared/Models/Witness";
-import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
+import Witness, {
+    WitnessDocument,
+} from "../../../Crimewatch-Shared/Models/Witness";
+import SigninViewModel from "../../../Crimewatch-Shared/ViewModels/SigninViewModel";
 import { Observable } from "rxjs";
 import { AuthenticationService } from "./authentication.service";
 

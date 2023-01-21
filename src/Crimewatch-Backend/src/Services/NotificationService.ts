@@ -1,10 +1,10 @@
-import { ModeratorDocument } from "crimewatch-shared/Models/Moderator";
+import { ModeratorDocument } from "../../../Crimewatch-Shared/Models/Moderator";
 import Notification, {
     NotificationDocument,
-} from "crimewatch-shared/Models/Notification";
-import { ReportDocument } from "crimewatch-shared/Models/Report";
-import { WitnessDocument } from "crimewatch-shared/Models/Witness";
-import NotificationViewModel from "crimewatch-shared/ViewModels/NotificationViewModel";
+} from "../../../Crimewatch-Shared/Models/Notification";
+import { ReportDocument } from "../../../Crimewatch-Shared/Models/Report";
+import { WitnessDocument } from "../../../Crimewatch-Shared/Models/Witness";
+import NotificationViewModel from "../../../Crimewatch-Shared/ViewModels/NotificationViewModel";
 import { UpdateQuery } from "mongoose";
 import ModeratorModel from "../Models/ModeratorModel";
 import NotificationModel from "../Models/NotificationModel";
