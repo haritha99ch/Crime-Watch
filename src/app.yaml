@@ -1,3 +1,3 @@
 runtime: nodejs
 env: flex
-entrypoint: npm run --prefix Crimewatch-Backend dev
+entrypoint: node /workspace/src/Crimewatch-Backend/src/app.ts
