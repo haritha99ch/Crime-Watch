@@ -15,6 +15,5 @@ steps:
       dir: "/workspace/src"
       args: ["run", "--loglevel=verbose"]
 
-    - name: "gcr.io/$PROJECT_ID/firebase"
-      dir: "/workspace/src/Crimewatch-Backend"
-      args: ["deploy"]
+    - name: "gcr.io/cloud-builders/gcloud"
+      args: ["firebase", "deploy", "--project", "crime-watch-99"]
