@@ -4,6 +4,9 @@ steps:
       args: ["cache", "clean", "--force"]
 
     - name: "gcr.io/cloud-builders/npm"
+      args: ["install", "-g", "typescript"]
+
+    - name: "gcr.io/cloud-builders/npm"
       dir: "/workspace/src"
       args: ["install", "-g", "npm"]
 
