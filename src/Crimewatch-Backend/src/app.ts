@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import Default from "./Configs/Default";
 import DbContext from "./Context/DbContext";
 import Routes from "./Routes/Routes";
@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.json({ limit: "50mb" }));
 app.use("/API", Routes);
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
     return res.send("crime-watch-api");
 });
 
