@@ -19,5 +19,5 @@ steps:
       args: ["run", "--loglevel=verbose"]
 
     - name: "gcr.io/cloud-builders/gcloud"
-      dir: "/workspace/src/Crimewatch-Backend"
+      dir: "/workspace/src"
       args: ["app", "deploy", "--project", "crime-watch-375407"]
