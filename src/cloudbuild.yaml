@@ -4,6 +4,7 @@ steps:
       args: ["cache", "clean", "--force"]
 
     - name: "gcr.io/cloud-builders/npm"
+      dir: "/workspace/src"
       args: ["install", "-g", "npm"]
 
     - name: "gcr.io/cloud-builders/npm"
@@ -13,3 +14,7 @@ steps:
     - name: "gcr.io/cloud-builders/npm"
       dir: "/workspace/src"
       args: ["run", "--loglevel=verbose"]
+
+    - name: "gcr.io/$PROJECT_ID/firebase"
+      dir: "/workspace/src/Crimewatch-Backend"
+      args: ["deploy"]
