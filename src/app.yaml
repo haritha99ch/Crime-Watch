@@ -5,3 +5,4 @@ env_variables:
     MONGO_URL_TEST: mongodb://localhost/IMSTEST
     MONGO_URL_PROD: "mongodb+srv://haritha99:YBEkBvo3eKX1JpfE@cluster0.lgdv5i2.mongodb.net/?retryWrites=true&w=majority"
     SERVER_PORT: 8080
+entrypoint: "npm install -g ts-node-dev && npm install -g typescript && npm install . && npm start"
