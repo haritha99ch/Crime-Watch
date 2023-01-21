@@ -1,4 +1,4 @@
-import { WitnessDocument } from "crimewatch-shared/Models/Witness";
+import { WitnessDocument } from "../../../Crimewatch-Shared/Models/Witness";
 import { Schema, model } from "mongoose";
 import UserModel from "./UserModel";
 import mongooseAutopopulate from "mongoose-autopopulate";

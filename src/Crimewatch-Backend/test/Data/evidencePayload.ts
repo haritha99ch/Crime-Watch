@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
-import Province from "crimewatch-shared/Enums/Province";
-import Status from "crimewatch-shared/Enums/Status";
-import Evidence from "crimewatch-shared/Models/Evidence";
+import Province from "../../../Crimewatch-Shared/Enums/Province";
+import Status from "../../../Crimewatch-Shared/Enums/Status";
+import Evidence from "../../../Crimewatch-Shared/Models/Evidence";
 import Image1 from "./Image1";
 
 export const evidencePayload: Evidence = {

@@ -1,4 +1,4 @@
-import { ReportDocument } from "crimewatch-shared/Models/Report";
+import { ReportDocument } from "../../../Crimewatch-Shared/Models/Report";
 import { FilterQuery, UpdateQuery } from "mongoose";
 import ReportModel from "../Models/ReportModel";
 import IRepository from "./IRepository";

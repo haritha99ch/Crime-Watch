@@ -1,4 +1,4 @@
-import { LocationDocument } from "crimewatch-shared/Models/Location";
+import { LocationDocument } from "../../../Crimewatch-Shared/Models/Location";
 import { Schema, model } from "mongoose";
 
 const LocationSchema: Schema = new Schema<LocationDocument>({

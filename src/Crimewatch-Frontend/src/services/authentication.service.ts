@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 
 import { JwtHelperService } from "@auth0/angular-jwt";
-import Moderator from "crimewatch-shared/Models/Moderator";
-import Witness from "crimewatch-shared/Models/Witness";
+import Moderator from "../../../Crimewatch-Shared/Models/Moderator";
+import Witness from "../../../Crimewatch-Shared/Models/Witness";
 
 @Injectable({
     providedIn: "root",

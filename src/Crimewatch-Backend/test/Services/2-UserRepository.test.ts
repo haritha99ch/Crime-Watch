@@ -1,6 +1,6 @@
 import { expect } from "chai";
-import { ModeratorDocument } from "crimewatch-shared/Models/Moderator";
-import { WitnessDocument } from "crimewatch-shared/Models/Witness";
+import { ModeratorDocument } from "../../../Crimewatch-Shared/Models/Moderator";
+import { WitnessDocument } from "../../../Crimewatch-Shared/Models/Witness";
 import ModeratorModel from "../../src/Models/ModeratorModel";
 import WitnessModel from "../../src/Models/WitnessModel";
 import Repository from "../../src/Services/Repository";

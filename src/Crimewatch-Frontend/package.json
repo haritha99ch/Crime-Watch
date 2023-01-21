@@ -24,7 +24,6 @@
         "@ng-bootstrap/ng-bootstrap": "^14.0.0",
         "@popperjs/core": "^2.11.6",
         "bootstrap": "^5.2.3",
-        "crimewatch-shared": "^1.0.0",
         "jsonwebtoken": "^9.0.0",
         "rxjs": "~7.5.0",
         "socket.io-client": "^4.5.4",

@@ -1,5 +1,5 @@
-import Moderator from "crimewatch-shared/Models/Moderator";
-import Witness from "crimewatch-shared/Models/Witness";
+import Moderator from "../../../Crimewatch-Shared/Models/Moderator";
+import Witness from "../../../Crimewatch-Shared/Models/Witness";
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 

@@ -1,5 +1,5 @@
-import Status from "crimewatch-shared/Enums/Status";
-import { EvidenceDocument } from "crimewatch-shared/Models/Evidence";
+import Status from "../../../Crimewatch-Shared/Enums/Status";
+import { EvidenceDocument } from "../../../Crimewatch-Shared/Models/Evidence";
 import { UpdateQuery } from "mongoose";
 import EvidenceModel from "../Models/EvidenceModel";
 import IRepository from "./IRepository";

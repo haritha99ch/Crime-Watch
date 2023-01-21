@@ -1,11 +1,11 @@
 import { expect } from "chai";
-import { ReportDocument } from "crimewatch-shared/Models/Report";
-import { WitnessDocument } from "crimewatch-shared/Models/Witness";
+import { ReportDocument } from "../../../Crimewatch-Shared/Models/Report";
+import { WitnessDocument } from "../../../Crimewatch-Shared/Models/Witness";
 import ReportModel from "../../src/Models/ReportModel";
 import WitnessModel from "../../src/Models/WitnessModel";
 import Repository from "../../src/Services/Repository";
 import { reportPayload } from "../Data/reportPayload";
-import ReportViewModel from "crimewatch-shared/ViewModels/ReportViewModel";
+import ReportViewModel from "../../../Crimewatch-Shared/ViewModels/ReportViewModel";
 
 describe("Report services test", () => {
     it("Should get a witness id and create a new report", async () => {

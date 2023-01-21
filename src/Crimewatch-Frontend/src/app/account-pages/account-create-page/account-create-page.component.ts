@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import Moderator from "crimewatch-shared/Models/Moderator";
-import User from "crimewatch-shared/Models/User";
-import Witness from "crimewatch-shared/Models/Witness";
+import Moderator from "../../../../../Crimewatch-Shared/Models/Moderator";
+import User from "../../../../../Crimewatch-Shared/Models/User";
+import Witness from "../../../../../Crimewatch-Shared/Models/Witness";
 import { ModeratorService } from "src/services/moderator.service";
 import { WitnessService } from "src/services/witness.service";
 
