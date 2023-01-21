@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import ReportViewModel from "crimewatch-shared/ViewModels/ReportViewModel";
+import ReportViewModel from "../../../../../Crimewatch-Shared/ViewModels/ReportViewModel";
 
 @Component({
     selector: "app-report-list-item",

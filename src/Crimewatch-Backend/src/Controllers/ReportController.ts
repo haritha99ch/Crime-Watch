@@ -1,4 +1,6 @@
-import Report, { ReportDocument } from "crimewatch-shared/Models/Report";
+import Report, {
+    ReportDocument,
+} from "../../../Crimewatch-Shared/Models/Report";
 import { Request, Response, NextFunction } from "express";
 import ReportModel from "../Models/ReportModel";
 import IRepository from "../Services/IRepository";

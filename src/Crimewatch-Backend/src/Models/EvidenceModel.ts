@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
-import { EvidenceDocument } from "crimewatch-shared/Models/Evidence";
+import { EvidenceDocument } from "../../../Crimewatch-Shared/Models/Evidence";
 import LocationModel from "./LocationModel";
 import ModeratorModel from "./ModeratorModel";
-import Status from "crimewatch-shared/Enums/Status";
+import Status from "../../../Crimewatch-Shared/Enums/Status";
 import FileModel from "./FileModel";
 import mongooseAutoPopulate from "mongoose-autopopulate";
 

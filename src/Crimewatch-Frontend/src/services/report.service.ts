@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import Report from "crimewatch-shared/Models/Report";
-import ReportViewModel from "crimewatch-shared/ViewModels/ReportViewModel";
-import ReportDetailsViewModel from "crimewatch-shared/ViewModels/ReportDetailsViewModel";
+import Report from "../../../Crimewatch-Shared/Models/Report";
+import ReportViewModel from "../../../Crimewatch-Shared/ViewModels/ReportViewModel";
+import ReportDetailsViewModel from "../../../Crimewatch-Shared/ViewModels/ReportDetailsViewModel";
 import { Observable } from "rxjs";
 
 const httpOptions = {

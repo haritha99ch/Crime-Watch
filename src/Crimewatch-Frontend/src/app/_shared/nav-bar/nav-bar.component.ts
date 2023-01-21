@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import Moderator from "crimewatch-shared/Models/Moderator";
-import Notification from "crimewatch-shared/Models/Notification";
-import Witness from "crimewatch-shared/Models/Witness";
+import Moderator from "../../../../../Crimewatch-Shared/Models/Moderator";
+import Notification from "../../../../../Crimewatch-Shared/Models/Notification";
+import Witness from "../../../../../Crimewatch-Shared/Models/Witness";
 import { AuthenticationService } from "src/services/authentication.service";
 import { ModeratorService } from "src/services/moderator.service";
 import { NotificationService } from "src/services/notification.service";

@@ -1,7 +1,7 @@
 import Moderator, {
     ModeratorDocument,
-} from "crimewatch-shared/Models/Moderator";
-import SigninViewModel from "crimewatch-shared/ViewModels/SigninViewModel";
+} from "../../../Crimewatch-Shared/Models/Moderator";
+import SigninViewModel from "../../../Crimewatch-Shared/ViewModels/SigninViewModel";
 import { Request, Response, NextFunction } from "express";
 import IRepository from "../Services/IRepository";
 import Repository from "../Services/Repository";

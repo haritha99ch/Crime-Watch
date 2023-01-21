@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 import { Router } from "@angular/router";
-import Province from "crimewatch-shared/Enums/Province";
-import Status from "crimewatch-shared/Enums/Status";
-import ReportViewModel from "crimewatch-shared/ViewModels/ReportViewModel";
+import Province from "../../../../../Crimewatch-Shared/Enums/Province";
+import Status from "../../../../../Crimewatch-Shared/Enums/Status";
+import ReportViewModel from "../../../../../Crimewatch-Shared/ViewModels/ReportViewModel";
 
 @Component({
     selector: "app-report-data-form",

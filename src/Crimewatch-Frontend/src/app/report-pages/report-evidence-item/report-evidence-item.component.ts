@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from "@angular/core";
-import Province from "crimewatch-shared/Enums/Province";
-import Status from "crimewatch-shared/Enums/Status";
-import Moderator from "crimewatch-shared/Models/Moderator";
-import User from "crimewatch-shared/Models/User";
-import Witness from "crimewatch-shared/Models/Witness";
-import EvidenceViewModel from "crimewatch-shared/ViewModels/EvidenceViewModel";
+import Province from "../../../../../Crimewatch-Shared/Enums/Province";
+import Status from "../../../../../Crimewatch-Shared/Enums/Status";
+import Moderator from "../../../../../Crimewatch-Shared/Models/Moderator";
+import User from "../../../../../Crimewatch-Shared/Models/User";
+import Witness from "../../../../../Crimewatch-Shared/Models/Witness";
+import EvidenceViewModel from "../../../../../Crimewatch-Shared/ViewModels/EvidenceViewModel";
 import { AuthenticationService } from "src/services/authentication.service";
 import { EvidenceService } from "src/services/evidence.service";
 

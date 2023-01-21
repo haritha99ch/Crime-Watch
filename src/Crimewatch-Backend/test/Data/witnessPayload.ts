@@ -1,6 +1,6 @@
-import Witness from "crimewatch-shared/Models/Witness";
+import Witness from "../../../Crimewatch-Shared/Models/Witness";
 import { faker } from "@faker-js/faker";
-import Gender from "crimewatch-shared/Enums/Gender";
+import Gender from "../../../Crimewatch-Shared/Enums/Gender";
 
 export const witnessPayload: Witness = {
     User: {
