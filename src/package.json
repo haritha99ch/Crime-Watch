@@ -14,5 +14,10 @@
         "start": "npm run --prefix Crimewatch-Backend dev"
     },
     "author": "Haritha Rathnayake",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "crimewatch-backend": "file:./Crimewatch-Backend",
+        "crimewatch-frontend": "file:./Crimewatch-Frontend",
+        "crimewatch-shared": "file:./Crimewatch-Shared"
+    }
 }
