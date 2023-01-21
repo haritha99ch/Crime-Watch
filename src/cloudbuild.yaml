@@ -16,4 +16,4 @@ steps:
       args: ["run", "--loglevel=verbose"]
 
     - name: "gcr.io/cloud-builders/gcloud"
-      args: ["firebase", "deploy", "--project", "crime-watch-99"]
+      args: ["app", "deploy"]
