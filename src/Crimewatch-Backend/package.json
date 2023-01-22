@@ -10,7 +10,7 @@
         "test": "mocha --require ts-node/register --watch-extentions ts 'test/**/*.test.ts'",
         "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
         "build": "ts-node-dev --respawn --transpile-only src/app.ts",
-        "start": "ts-node-dev src/app.ts"
+        "start": "ts-node-dev --respawn --transpile-only src/app.ts"
     },
     "author": "Haritha Rathnayake",
     "license": "ISC",
@@ -32,6 +32,7 @@
         "@types/mocha": "^10.0.1",
         "@types/node": "^18.11.17",
         "chai": "^4.3.7",
-        "mocha": "^10.2.0"
+        "mocha": "^10.2.0",
+        "crimewatch-frontend": "file:../Crimewatch-Frontend"
     }
 }
