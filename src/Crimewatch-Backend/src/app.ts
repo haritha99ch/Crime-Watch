@@ -9,6 +9,7 @@ import path from "path";
 const app = express();
 app.use(express.json({ limit: "50mb" }));
 app.use("/API", Routes);
+//use angular build
 app.use(
     express.static(
         path.join(
@@ -34,6 +35,7 @@ const io = new Server(httpServer, {
     },
 });
 
+//web socket config
 let onlineUsers: { userId: string; socketId: string }[] = [];
 io.on("connection", (socket) => {
     console.log(`New connection`);
@@ -69,7 +71,7 @@ httpServer.listen(
     Number(Default.server.port),
     Default.server.name,
     async () => {
-        await DbContext.ConnectDb();
+        await DbContext.ConnectDbProd();
         console.log(httpServer.address());
     }
 );

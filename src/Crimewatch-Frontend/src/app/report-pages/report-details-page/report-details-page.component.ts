@@ -78,6 +78,9 @@ export class ReportDetailsPageComponent implements OnInit {
         this.currentUser = this.authenticationService.GetCurrentUser();
     }
     onSubmit(newEvidence: any) {
+        this.panelOpenState = false;
+        console.log(this.panelOpenState);
+
         newEvidence.Author = this.currentUser?._id;
         //Posting notification to the server
         const notification: Notification = {
@@ -100,7 +103,6 @@ export class ReportDetailsPageComponent implements OnInit {
                 this.reportDetails!.Evidences?.push(evidence);
             });
         if (!this.currentUserStared) this.onStarClicked();
-        this.panelOpenState = false;
         //sending socket notification to the moderator
         if (!this.reportDetails?.Moderator?._id) return;
         this.notificationService.SendMessage({
