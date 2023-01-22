@@ -4,12 +4,26 @@ import DbContext from "./Context/DbContext";
 import Routes from "./Routes/Routes";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import path from "path";
 
 const app = express();
 app.use(express.json({ limit: "50mb" }));
 app.use("/API", Routes);
-app.get("/", (req: Request, res: Response) => {
-    return res.send("crime-watch-api");
+app.use(
+    express.static(
+        path.join(
+            __dirname,
+            "../../Crimewatch-Frontend/dist/crimewatch-frontend"
+        )
+    )
+);
+app.get("/*", (req: Request, res: Response) => {
+    res.sendFile(
+        path.join(
+            __dirname,
+            "../../Crimewatch-Frontend/dist/crimewatch-frontend/index.html"
+        )
+    );
 });
 
 const httpServer = createServer(app);
@@ -21,7 +35,6 @@ const io = new Server(httpServer, {
 });
 
 let onlineUsers: { userId: string; socketId: string }[] = [];
-
 io.on("connection", (socket) => {
     console.log(`New connection`);
     socket.on("newUser", (userid) => {
@@ -51,6 +64,7 @@ io.on("connection", (socket) => {
         }
     );
 });
+
 httpServer.listen(
     Number(Default.server.port),
     Default.server.name,
