@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 import Moderator from "../../../Crimewatch-Shared/Models/Moderator";
 import Witness from "../../../Crimewatch-Shared/Models/Witness";
 
@@ -8,16 +9,17 @@ import Witness from "../../../Crimewatch-Shared/Models/Witness";
     providedIn: "root",
 })
 export class AuthenticationService {
-    public isSignedin: any;
+    private isSignedIn = new BehaviorSubject<boolean>(false);
     constructor(private readonly jwtHelper: JwtHelperService) {}
 
     public SetToken(token: string) {
         if (!token) return;
         localStorage.setItem("token", token);
+        this.isSignedIn.next(true);
     }
     public RemoveToken(): boolean {
         localStorage.removeItem("token");
-        this.isSignedin = false;
+        this.isSignedIn.next(false);
         return true;
     }
     public IsAuthenticated(): boolean {
@@ -41,7 +43,10 @@ export class AuthenticationService {
         const user:
             | (Witness & { _id: string })
             | (Moderator & { _id: string }) = decodedToken.user;
-        this.isSignedin = true;
+        this.isSignedIn.next(true);
         return user;
+    }
+    public isUserSignedIn() {
+        return this.isSignedIn.asObservable();
     }
 }

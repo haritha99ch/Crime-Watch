@@ -52,20 +52,20 @@
     </mat-drawer>
     <nav class="navbar navbar-light bg-primary justify-content-between">
         <a class="navbar-brand" (click)="drawer.toggle()"
-            ><img src="../../../assets/crimeWatchLogo.png" height="35px" /> Crime
-            Watch</a
+            ><img src="../../../assets/crimeWatchLogo.png" height="35px" />
+            Crime Watch</a
         >
         <div>
             <button
                 mat-flat-button
-                *ngIf="!currentUser"
+                *ngIf="!isSignedIn"
                 routerLink="/Account/Signin"
             >
                 Signin
             </button>
-            <div *ngIf="currentUser">
+            <div *ngIf="isSignedIn">
                 <button mat-flat-button [matMenuTriggerFor]="userActionMenu">
-                    {{ currentUser.User.FirstName }}
+                    {{ currentUser?.User?.FirstName! }}
                 </button>
                 <mat-menu #userActionMenu="matMenu">
                     <button mat-menu-item (click)="Signout()">Signout</button>
@@ -76,7 +76,7 @@
                 <button mat-button [matMenuTriggerFor]="notificationList">
                     <mat-icon
                         class="mx-3"
-                        [matBadge]="currentUser.Notifications!.length"
+                        [matBadge]="currentUser?.Notifications?.length"
                         matBadgeColor="warn"
                         >home</mat-icon
                     >
@@ -84,7 +84,7 @@
                 <mat-menu #notificationList="matMenu">
                     <div
                         mat-menu-item
-                        *ngFor="let notification of currentUser.Notifications"
+                        *ngFor="let notification of currentUser?.Notifications"
                     >
                         <app-notification-item
                             [notification]="notification"

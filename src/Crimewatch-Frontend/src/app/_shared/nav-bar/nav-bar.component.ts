@@ -17,8 +17,8 @@ import { WebsocketService } from "src/services/websocket.service";
 })
 export class NavBarComponent implements OnInit {
     showFiller = false;
-    isLoggedin: any;
-    public currentUser!:
+    isSignedIn: boolean = false;
+    public currentUser?:
         | (Witness & { _id: string })
         | (Moderator & { _id: string });
     public notificationCount: number = 0;
@@ -32,11 +32,14 @@ export class NavBarComponent implements OnInit {
         public snackBar: MatSnackBar
     ) {}
     ngOnInit(): void {
+        this.currentUser = this.authenticationService.GetCurrentUser();
+        this.authenticationService.isUserSignedIn().subscribe((isSignedIn) => {
+            this.isSignedIn = isSignedIn;
+        });
         this.GetUser();
         this.router.events.subscribe((event) => {
             if (event.constructor.name === "NavigationEnd") {
                 this.GetUser();
-                if (!this.currentUser) return;
             }
         });
         // if (!this.currentUser) return;
@@ -48,32 +51,12 @@ export class NavBarComponent implements OnInit {
                 Seen: false,
             };
             console.log(newNotification);
-            this.currentUser.Notifications?.push(newNotification);
+            this.currentUser?.Notifications?.push(newNotification);
             this.openSnackBar("New evidence add on your report", "Dismiss");
         });
-        // this.notificationService.messages.subscribe((message) => {
-        //     const notification: Notification = {
-        //         ReportId: message.reportId,
-        //         Message: message.message,
-        //         Date: message.Date,
-        //         Seen: false,
-        //     };
-        //     console.log(message);
-
-        //     this.currentUser.Notifications?.push(notification);
-        //     this.openSnackBar("New evidence add on your report", "Dismiss");
-        // });
-        // this.SendMessage();
-    }
-
-    SendMessage() {
-        const newMessage: { to: string; notification: string } = {
-            to: this.currentUser?._id,
-            notification: "User conected",
-        };
-        this.notificationService.SendMessage(newMessage);
     }
     private GetUser() {
+        console.log("hit");
         this.currentUser = this.authenticationService.GetCurrentUser();
         this.RefreshUser();
     }
@@ -86,15 +69,12 @@ export class NavBarComponent implements OnInit {
                     this.currentUser = user as any;
                     console.log(user);
                 });
+            return;
         }
-        if (!this.currentUser.User.Account.IsModerator) {
-            this.witnessService
-                .Details(this.currentUser._id!)
-                .subscribe((user) => {
-                    this.currentUser = user as any;
-                    console.log(user);
-                });
-        }
+        this.witnessService.Details(this.currentUser._id!).subscribe((user) => {
+            this.currentUser = user as any;
+            console.log(user);
+        });
     }
     public Signout() {
         this.authenticationService.RemoveToken();
