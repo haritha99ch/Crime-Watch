@@ -15,7 +15,7 @@ export class WebsocketService {
     ) {}
 
     public Connect(): Rx.Subject<MessageEvent> {
-        this.socket = io("http://localhost:8080", {
+        this.socket = io("https://crime-watch-375407.as.r.appspot.com", {
             forceNew: true,
             transports: ["polling"],
         });

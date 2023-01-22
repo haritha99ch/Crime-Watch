@@ -30,7 +30,7 @@ app.get("/*", (req: Request, res: Response) => {
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: "*",
+        origin: "https://crime-watch-375407.as.r.appspot.com",
         methods: ["GET", "POST"],
     },
 });
