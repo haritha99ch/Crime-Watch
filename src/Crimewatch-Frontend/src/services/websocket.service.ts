@@ -3,7 +3,6 @@ import { io, Socket } from "socket.io-client";
 import { Observable } from "rxjs";
 import * as Rx from "rxjs";
 import { DefaultEventsMap } from "@socket.io/component-emitter";
-import { AnonymousSubject } from "rxjs/internal/Subject";
 import { AuthenticationService } from "./authentication.service";
 
 @Injectable({
@@ -16,7 +15,7 @@ export class WebsocketService {
     ) {}
 
     public Connect(): Rx.Subject<MessageEvent> {
-        this.socket = io("https://crime-watch-375407.as.r.appspot.com", {
+        this.socket = io("http://localhost:8080", {
             forceNew: true,
             transports: ["polling"],
         });

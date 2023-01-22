@@ -20,11 +20,11 @@ export class NotificationService {
         private readonly websocketService: WebsocketService,
         private readonly http: HttpClient
     ) {
-        // this.messages = <Subject<any>>websocketService.Connect().pipe(
-        //     map((response: any): any => {
-        //         return response;
-        //     })
-        // );
+        this.messages = <Subject<any>>websocketService.Connect().pipe(
+            map((response: any): any => {
+                return response;
+            })
+        );
     }
 
     public SendMessage(message: any) {

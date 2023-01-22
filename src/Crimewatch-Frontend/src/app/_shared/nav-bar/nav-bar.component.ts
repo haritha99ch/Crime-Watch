@@ -23,7 +23,7 @@ export class NavBarComponent implements OnInit {
     public notificationCount: number = 0;
     constructor(
         private readonly authenticationService: AuthenticationService,
-        // private readonly notificationService: NotificationService,
+        private readonly notificationService: NotificationService,
         private readonly moderatorService: ModeratorService,
         private readonly witnessService: WitnessService,
         private readonly router: Router,
@@ -38,18 +38,18 @@ export class NavBarComponent implements OnInit {
             }
         });
         // if (!this.currentUser) return;
-        // this.notificationService.messages.subscribe((message) => {
-        //     const notification: Notification = {
-        //         ReportId: message.reportId,
-        //         Message: message.message,
-        //         Date: message.Date,
-        //         Seen: false,
-        //     };
-        //     console.log(message);
+        this.notificationService.messages.subscribe((message) => {
+            const notification: Notification = {
+                ReportId: message.reportId,
+                Message: message.message,
+                Date: message.Date,
+                Seen: false,
+            };
+            console.log(message);
 
-        //     this.currentUser.Notifications?.push(notification);
-        //     this.openSnackBar("New evidence add on your report", "Dismiss");
-        // });
+            this.currentUser.Notifications?.push(notification);
+            this.openSnackBar("New evidence add on your report", "Dismiss");
+        });
         // this.SendMessage();
     }
 
@@ -58,7 +58,7 @@ export class NavBarComponent implements OnInit {
             to: this.currentUser?._id,
             notification: "User conected",
         };
-        // this.notificationService.SendMessage(newMessage);
+        this.notificationService.SendMessage(newMessage);
     }
     private GetUser() {
         this.currentUser = this.authenticationService.GetCurrentUser();

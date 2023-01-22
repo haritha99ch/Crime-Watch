@@ -99,7 +99,7 @@ import { DeleteConfirmItemComponent } from "./report-pages/delete-confirm-item/d
         MatDialogModule,
         MatSnackBarModule,
     ],
-    // providers: [NotificationService, WebsocketService],
+    providers: [NotificationService, WebsocketService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

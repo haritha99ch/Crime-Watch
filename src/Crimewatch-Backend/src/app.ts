@@ -69,7 +69,7 @@ httpServer.listen(
     Number(Default.server.port),
     Default.server.name,
     async () => {
-        await DbContext.ConnectDbProd();
+        await DbContext.ConnectDb();
         console.log(httpServer.address());
     }
 );
