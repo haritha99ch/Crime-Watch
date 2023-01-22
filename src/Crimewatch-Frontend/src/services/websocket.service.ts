@@ -9,12 +9,36 @@ import { AuthenticationService } from "./authentication.service";
     providedIn: "root",
 })
 export class WebsocketService {
-    private socket!: Socket<DefaultEventsMap, DefaultEventsMap>;
-    constructor(
-        private readonly authenticationService: AuthenticationService
-    ) {}
+    private socket;
+    private userId: string = "0";
 
-    public Connect(): Rx.Subject<MessageEvent> {
+    constructor(private readonly authenticationService: AuthenticationService) {
+        this.SetUserId();
+        this.socket = io("http://localhost:8080", {
+            forceNew: true,
+            transports: ["polling"],
+        });
+        this.Connect();
+    }
+
+    private SetUserId() {
+        this.userId = this.authenticationService.GetCurrentUser()?._id;
+    }
+
+    private Connect() {
+        this.socket.emit("user_connected", this.userId);
+    }
+
+    on(eventName: string, callback: (data: any) => void) {
+        this.socket.on(eventName, callback);
+    }
+
+    emit(eventName: string, data: any) {
+        this.socket.emit(eventName, data);
+    }
+    // private socket!: Socket<DefaultEventsMap, DefaultEventsMap>;
+
+    public connect(): Rx.Subject<MessageEvent> {
         this.socket = io("https://crime-watch-375407.as.r.appspot.com", {
             forceNew: true,
             transports: ["polling"],

@@ -8,6 +8,7 @@ import { AuthenticationService } from "src/services/authentication.service";
 import { ModeratorService } from "src/services/moderator.service";
 import { NotificationService } from "src/services/notification.service";
 import { WitnessService } from "src/services/witness.service";
+import { WebsocketService } from "src/services/websocket.service";
 
 @Component({
     selector: "app-nav-bar",
@@ -24,6 +25,7 @@ export class NavBarComponent implements OnInit {
     constructor(
         private readonly authenticationService: AuthenticationService,
         private readonly notificationService: NotificationService,
+        private readonly websocketService: WebsocketService,
         private readonly moderatorService: ModeratorService,
         private readonly witnessService: WitnessService,
         private readonly router: Router,
@@ -38,18 +40,29 @@ export class NavBarComponent implements OnInit {
             }
         });
         // if (!this.currentUser) return;
-        this.notificationService.messages.subscribe((message) => {
-            const notification: Notification = {
-                ReportId: message.reportId,
-                Message: message.message,
-                Date: message.Date,
+        this.websocketService.on("notification", (notification) => {
+            const newNotification: Notification = {
+                ReportId: notification.reportId,
+                Message: notification.message,
+                Date: notification.date,
                 Seen: false,
             };
-            console.log(message);
-
-            this.currentUser.Notifications?.push(notification);
+            console.log(newNotification);
+            this.currentUser.Notifications?.push(newNotification);
             this.openSnackBar("New evidence add on your report", "Dismiss");
         });
+        // this.notificationService.messages.subscribe((message) => {
+        //     const notification: Notification = {
+        //         ReportId: message.reportId,
+        //         Message: message.message,
+        //         Date: message.Date,
+        //         Seen: false,
+        //     };
+        //     console.log(message);
+
+        //     this.currentUser.Notifications?.push(notification);
+        //     this.openSnackBar("New evidence add on your report", "Dismiss");
+        // });
         // this.SendMessage();
     }
 

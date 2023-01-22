@@ -3,7 +3,7 @@ import Default from "./Configs/Default";
 import DbContext from "./Context/DbContext";
 import Routes from "./Routes/Routes";
 import { createServer } from "http";
-import { Server } from "socket.io";
+import { Server, Socket } from "socket.io";
 import path from "path";
 
 const app = express();
@@ -30,25 +30,33 @@ app.get("/*", (req: Request, res: Response) => {
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: "https://crime-watch-375407.as.r.appspot.com",
+        origin: "*",
         methods: ["GET", "POST"],
     },
 });
 
 //web socket config
-let onlineUsers: { userId: string; socketId: string }[] = [];
+let onlineUsers: { userId: string; socket: Socket }[] = [];
 io.on("connection", (socket) => {
     console.log(`New connection`);
-    socket.on("newUser", (userid) => {
-        if (!onlineUsers.some((user) => user.userId === userid))
-            onlineUsers.push({ userId: userid, socketId: socket.id });
+    socket.on("user_connected", (userId) => {
+        console.log(`User ${userId} connected`);
+        if (!onlineUsers.some((user) => user.userId === userId))
+            onlineUsers.push({ userId, socket });
         console.log("online users");
         console.log(onlineUsers);
+        io.emit(
+            "update_users",
+            onlineUsers.map((user) => user.userId)
+        );
     });
-
     socket.on("disconnect", () => {
-        console.log(`User disconnected`);
-        onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
+        console.log("Client disconnected");
+        onlineUsers = onlineUsers.filter((user) => user.socket !== socket);
+        io.emit(
+            "update_users",
+            onlineUsers.map((user) => user.userId)
+        );
         console.log("online users");
         console.log(onlineUsers);
     });
@@ -56,13 +64,11 @@ io.on("connection", (socket) => {
         "notification",
         (notification: { to: string; reportId: string; message: string }) => {
             console.log("revieved");
-
             console.log(notification);
-
-            io.to(
-                onlineUsers.find((user) => user.userId === notification.to)
-                    ?.socketId!
-            ).emit("notification", notification);
+            const user = onlineUsers.find(
+                (user) => user.userId === notification.to
+            );
+            if (user) user.socket.emit("notification", notification);
         }
     );
 });

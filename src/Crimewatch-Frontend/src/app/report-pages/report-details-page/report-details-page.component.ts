@@ -67,11 +67,6 @@ export class ReportDetailsPageComponent implements OnInit {
             }
             this.infoLoading = false;
         });
-        this.notificationService.messages.subscribe(
-            (message: { to: string; reportId: string; message: string }) => {
-                console.log(message);
-            }
-        );
     }
 
     private GetUser() {
@@ -105,22 +100,22 @@ export class ReportDetailsPageComponent implements OnInit {
         if (!this.currentUserStared) this.onStarClicked();
         //sending socket notification to the moderator
         if (!this.reportDetails?.Moderator?._id) return;
-        this.notificationService.SendMessage({
-            to: this.reportDetails.Moderator._id,
-            reportId: this.reportDetails!._id,
+        this.notificationService.SendNotification({
+            to: this.reportDetails.Moderator._id.toString(),
+            reportId: this.reportDetails._id!,
             message: "New Evidence Added",
-            Date: new Date(),
+            date: new Date(),
         });
         for (let i = 0; i < this.reportDetails!.Stared!.length; i++) {
             if (
                 this.reportDetails!.Stared![i].toString() !==
                 this.reportDetails?.Author._id
             )
-                this.notificationService.SendMessage({
-                    to: this.reportDetails!.Stared![i],
-                    reportId: this.reportDetails!._id,
+                this.notificationService.SendNotification({
+                    to: this.reportDetails!.Stared![i].toString(),
+                    reportId: this.reportDetails!._id!,
                     message: "New Evidence Added",
-                    Date: new Date(),
+                    date: new Date(),
                 });
         }
     }

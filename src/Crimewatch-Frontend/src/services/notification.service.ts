@@ -19,16 +19,19 @@ export class NotificationService {
     constructor(
         private readonly websocketService: WebsocketService,
         private readonly http: HttpClient
-    ) {
-        this.messages = <Subject<any>>websocketService.Connect().pipe(
-            map((response: any): any => {
-                return response;
-            })
-        );
-    }
+    ) {}
 
     public SendMessage(message: any) {
         this.messages.next(message);
+    }
+
+    public SendNotification(notification: {
+        to: string;
+        reportId: string;
+        message: string;
+        date: Date;
+    }) {
+        this.websocketService.emit("notification", notification);
     }
 
     public CreateForWitness(
