@@ -39,7 +39,7 @@ export class ReportDetailsPageComponent implements OnInit {
         private readonly reportService: ReportService,
         private readonly evidenceService: EvidenceService,
         private readonly authenticationService: AuthenticationService,
-        private readonly notificationService: NotificationService,
+        // private readonly notificationService: NotificationService,
         public dialog: MatDialog
     ) {}
     ngOnInit(): void {
@@ -67,11 +67,11 @@ export class ReportDetailsPageComponent implements OnInit {
             }
             this.infoLoading = false;
         });
-        this.notificationService.messages.subscribe(
-            (message: { to: string; reportId: string; message: string }) => {
-                console.log(message);
-            }
-        );
+        // this.notificationService.messages.subscribe(
+        //     (message: { to: string; reportId: string; message: string }) => {
+        //         console.log(message);
+        //     }
+        // );
     }
 
     private GetUser() {
@@ -86,39 +86,39 @@ export class ReportDetailsPageComponent implements OnInit {
             Date: new Date(),
             Seen: false,
         };
-        this.notificationService
-            .CreateForModerator(
-                this.reportDetails!.Moderator?._id.toString()!,
-                notification
-            )
-            .subscribe((notification) => {
-                this.evidenceService
-                    .CreateForReport(this.reportDetails!._id!, newEvidence)
-                    .subscribe((evidence) => {
-                        this.reportDetails!.Evidences?.push(evidence);
-                    });
-                if (!this.currentUserStared) this.onStarClicked();
-                this.panelOpenState = false;
+        // this.notificationService
+        //     .CreateForModerator(
+        //         this.reportDetails!.Moderator?._id.toString()!,
+        //         notification
+        //     )
+        //     .subscribe((notification) => {
+        this.evidenceService
+            .CreateForReport(this.reportDetails!._id!, newEvidence)
+            .subscribe((evidence) => {
+                this.reportDetails!.Evidences?.push(evidence);
             });
+        if (!this.currentUserStared) this.onStarClicked();
+        this.panelOpenState = false;
+        // });
         //sending socket notification to the moderator
-        this.notificationService.SendMessage({
-            to: this.reportDetails!.Moderator?._id,
-            reportId: this.reportDetails!._id,
-            message: "New Evidence Added",
-            Date: new Date(),
-        });
-        for (let i = 0; i < this.reportDetails!.Stared!.length; i++) {
-            if (
-                this.reportDetails!.Stared![i].toString() !==
-                this.reportDetails?.Author._id
-            )
-                this.notificationService.SendMessage({
-                    to: this.reportDetails!.Stared![i],
-                    reportId: this.reportDetails!._id,
-                    message: "New Evidence Added",
-                    Date: new Date(),
-                });
-        }
+        // this.notificationService.SendMessage({
+        //     to: this.reportDetails!.Moderator?._id,
+        //     reportId: this.reportDetails!._id,
+        //     message: "New Evidence Added",
+        //     Date: new Date(),
+        // });
+        // for (let i = 0; i < this.reportDetails!.Stared!.length; i++) {
+        //     if (
+        //         this.reportDetails!.Stared![i].toString() !==
+        //         this.reportDetails?.Author._id
+        //     )
+        //         this.notificationService.SendMessage({
+        //             to: this.reportDetails!.Stared![i],
+        //             reportId: this.reportDetails!._id,
+        //             message: "New Evidence Added",
+        //             Date: new Date(),
+        //         });
+        // }
     }
     onSigninClicked(): void {
         this.router.navigate(["/Account/Signin"], {

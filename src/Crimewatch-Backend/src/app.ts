@@ -6,7 +6,6 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 
 const app = express();
-
 app.use(express.json({ limit: "50mb" }));
 app.use("/API", Routes);
 app.get("/", (req: Request, res: Response) => {
@@ -52,8 +51,11 @@ io.on("connection", (socket) => {
         }
     );
 });
-const hostname = "0.0.0.0";
-httpServer.listen(8080, async () => {
-    await DbContext.ConnectDbProd();
-    console.log(httpServer.address());
-});
+httpServer.listen(
+    Number(Default.server.port),
+    Default.server.name,
+    async () => {
+        await DbContext.ConnectDbProd();
+        console.log(httpServer.address());
+    }
+);

@@ -16,7 +16,10 @@ export class WebsocketService {
     ) {}
 
     public Connect(): Rx.Subject<MessageEvent> {
-        this.socket = io("https://crime-watch-375407.as.r.appspot.com");
+        this.socket = io("https://crime-watch-375407.as.r.appspot.com", {
+            forceNew: true,
+            transports: ["polling"],
+        });
         const currentUserId = this.authenticationService.GetCurrentUser()?._id;
         if (currentUserId) {
             console.log(currentUserId);
