@@ -1,6 +1,6 @@
 {
     "/API/*": {
-        "target": "http://localhost:8080",
+        "target": "https://crime-watch-375407.as.r.appspot.com",
         "secure": false,
         "loglevel": "debug",
         "changeOrigin": true
