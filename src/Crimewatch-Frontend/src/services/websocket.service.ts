@@ -1,8 +1,5 @@
 import { Injectable } from "@angular/core";
 import { io, Socket } from "socket.io-client";
-import { Observable } from "rxjs";
-import * as Rx from "rxjs";
-import { DefaultEventsMap } from "@socket.io/component-emitter";
 import { AuthenticationService } from "./authentication.service";
 
 @Injectable({
@@ -14,7 +11,7 @@ export class WebsocketService {
 
     constructor(private readonly authenticationService: AuthenticationService) {
         this.SetUserId();
-        this.socket = io("http://localhost:8080", {
+        this.socket = io("https://crime-watch-375407.as.r.appspot.com", {
             forceNew: true,
             transports: ["polling"],
         });
@@ -36,5 +33,4 @@ export class WebsocketService {
     emit(eventName: string, data: any) {
         this.socket.emit(eventName, data);
     }
-    // private socket!: Socket<DefaultEventsMap, DefaultEventsMap>;
 }
