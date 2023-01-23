@@ -10,16 +10,21 @@ import Witness from "../../../Crimewatch-Shared/Models/Witness";
 })
 export class AuthenticationService {
     private isSignedIn = new BehaviorSubject<boolean>(false);
+    public currentUser?:
+        | (Witness & { _id: string })
+        | (Moderator & { _id: string });
     constructor(private readonly jwtHelper: JwtHelperService) {}
 
     public SetToken(token: string) {
         if (!token) return;
         localStorage.setItem("token", token);
         this.isSignedIn.next(true);
+        this.GetCurrentUser();
     }
     public RemoveToken(): boolean {
         localStorage.removeItem("token");
         this.isSignedIn.next(false);
+        this.GetCurrentUser();
         return true;
     }
     public IsAuthenticated(): boolean {
@@ -44,7 +49,8 @@ export class AuthenticationService {
             | (Witness & { _id: string })
             | (Moderator & { _id: string }) = decodedToken.user;
         this.isSignedIn.next(true);
-        return user;
+        this.currentUser = user;
+        return this.currentUser;
     }
     public isUserSignedIn() {
         return this.isSignedIn.asObservable();

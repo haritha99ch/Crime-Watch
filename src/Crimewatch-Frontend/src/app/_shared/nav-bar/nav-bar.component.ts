@@ -6,7 +6,6 @@ import Notification from "../../../../../Crimewatch-Shared/Models/Notification";
 import Witness from "../../../../../Crimewatch-Shared/Models/Witness";
 import { AuthenticationService } from "src/services/authentication.service";
 import { ModeratorService } from "src/services/moderator.service";
-import { NotificationService } from "src/services/notification.service";
 import { WitnessService } from "src/services/witness.service";
 import { WebsocketService } from "src/services/websocket.service";
 
@@ -24,7 +23,6 @@ export class NavBarComponent implements OnInit {
     public notificationCount: number = 0;
     constructor(
         private readonly authenticationService: AuthenticationService,
-        private readonly notificationService: NotificationService,
         private readonly websocketService: WebsocketService,
         private readonly moderatorService: ModeratorService,
         private readonly witnessService: WitnessService,
@@ -35,6 +33,7 @@ export class NavBarComponent implements OnInit {
         this.currentUser = this.authenticationService.GetCurrentUser();
         this.authenticationService.isUserSignedIn().subscribe((isSignedIn) => {
             this.isSignedIn = isSignedIn;
+            this.currentUser = this.authenticationService.currentUser;
         });
         this.GetUser();
         this.router.events.subscribe((event) => {
