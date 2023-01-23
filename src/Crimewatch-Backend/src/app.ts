@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json({ limit: "50mb" }));
 app.use(
     cors({
-        origin: "https://crime-watch-375407.as.r.appspot.com",
+        origin: "*",
         allowedHeaders: ["Content-Type", "Authorization"],
     })
 );
@@ -37,7 +37,7 @@ app.get("/*", (req: Request, res: Response) => {
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: "https://crime-watch-375407.as.r.appspot.com",
+        origin: "*",
         methods: ["GET", "POST"],
     },
 });
@@ -60,10 +60,6 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("Client disconnected");
         onlineUsers = onlineUsers.filter((user) => user.socket !== socket);
-        io.emit(
-            "update_users",
-            onlineUsers.map((user) => user.userId)
-        );
         console.log("online users");
         console.log(onlineUsers);
     });

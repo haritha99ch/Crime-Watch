@@ -5,7 +5,7 @@
             <mat-card-subtitle>
                 {{ evidenceItem?.Author?.User?.FirstName }}
                 {{ evidenceItem?.Author?.User?.LastName }} -
-                {{ evidenceItem?.Date }} |
+                {{ evidenceItem?.Date | date : "medium" }} |
                 <mat-icon fontIcon="location_on"></mat-icon>
                 {{ evidenceItem?.Location?.Street1 }} -
                 {{ evidenceItem?.Location?.City }} -{{
@@ -80,7 +80,12 @@
             <mat-expansion-panel-header>
                 <mat-panel-title> See Photos </mat-panel-title>
             </mat-expansion-panel-header>
-            <img *ngFor="let file of evidenceItem?.Files" [src]="file.File" />
+            <mat-card-content *ngFor="let file of evidenceItem?.Files">
+                <img
+                    [src]="file.File"
+                    style="object-fit: cover; width: 100%; height: 100%"
+                />
+            </mat-card-content>
         </mat-expansion-panel>
         <mat-expansion-panel
             (opened)="panelOpenState = true"

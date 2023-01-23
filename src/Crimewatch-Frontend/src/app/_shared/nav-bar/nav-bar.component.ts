@@ -66,13 +66,15 @@ export class NavBarComponent implements OnInit {
                 .Details(this.currentUser._id!)
                 .subscribe((user) => {
                     this.currentUser = user as any;
-                    console.log(user);
+                    this.currentUser!.Notifications =
+                        this.currentUser!.Notifications?.reverse();
                 });
             return;
         }
         this.witnessService.Details(this.currentUser._id!).subscribe((user) => {
             this.currentUser = user as any;
-            console.log(user);
+            this.currentUser!.Notifications =
+                this.currentUser!.Notifications?.reverse();
         });
     }
     public Signout() {

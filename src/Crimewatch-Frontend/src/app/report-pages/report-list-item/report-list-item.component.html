@@ -4,7 +4,7 @@
     matRipple
 >
     <div class="row fill">
-        <div class="col-md-4 ">
+        <div class="col-md-4">
             <img [src]="reportItem?.File?.File" alt="Card image" />
         </div>
         <div class="col-md-8">
@@ -14,7 +14,7 @@
                     <mat-card-subtitle>
                         {{ reportItem?.Author?.User?.FirstName }}
                         {{ reportItem?.Author?.User?.LastName }} -
-                        {{ reportItem?.Date | date : "dd/MM/yyyy" }} |
+                        {{ reportItem?.Date | date : "medium" }} |
                         {{ reportItem?.Location?.Street1 }} -<mat-icon
                             fontIcon="location_on"
                         ></mat-icon>

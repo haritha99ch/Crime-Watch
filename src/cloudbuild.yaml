@@ -1,18 +1,11 @@
 steps:
-    # - name: "gcr.io/cloud-builders/npm"
-    #   dir: "/workspace/src"
-    #   args: ["cache", "clean", "--force"]
-
-    # - name: "gcr.io/cloud-builders/npm"
-    #   args: ["install", "-g", "typescript"]
-
-    # - name: "gcr.io/cloud-builders/npm"
-    #   dir: "/workspace/src"
-    #   args: ["install", "-g", "npm"]
-
     - name: "gcr.io/cloud-builders/npm"
       dir: "/workspace/src"
       args: ["install", ".", "--loglevel=verbose"]
+
+    # - name: "gcr.io/cloud-builders/npm"
+    #   dir: "/workspace/src"
+    #   args: ["test", "--loglevel=verbose"]
 
     # - name: "gcr.io/cloud-builders/npm"
     #   dir: "/workspace/src"

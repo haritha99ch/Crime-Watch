@@ -6,13 +6,10 @@ import Moderator from "../../../../../Crimewatch-Shared/Models/Moderator";
 import Notification from "../../../../../Crimewatch-Shared/Models/Notification";
 import Witness from "../../../../../Crimewatch-Shared/Models/Witness";
 import { ReportDetailsViewModel } from "../../../../../Crimewatch-Shared/ViewModels/ReportDetailsViewModel";
-import SigninViewModel from "../../../../../Crimewatch-Shared/ViewModels/SigninViewModel";
 import { AuthenticationService } from "src/services/authentication.service";
 import { EvidenceService } from "src/services/evidence.service";
-import { ModeratorService } from "src/services/moderator.service";
 import { NotificationService } from "src/services/notification.service";
 import { ReportService } from "src/services/report.service";
-import { WitnessService } from "src/services/witness.service";
 import { DeleteConfirmItemComponent } from "../delete-confirm-item/delete-confirm-item.component";
 export interface DialogData {
     animal: string;
@@ -58,12 +55,17 @@ export class ReportDetailsPageComponent implements OnInit {
                 this.currentUserStared = true;
         });
         this.evidenceService.GetAllForReport(id!).subscribe((evidences) => {
+            if (!this.reportDetails)
+                this.reportDetails = new ReportDetailsViewModel();
+            if (!evidences) return;
             if (this.currentUser?.User.Account.IsModerator) {
-                this.reportDetails!.Evidences = evidences;
+                this.reportDetails!.Evidences = evidences.reverse();
             } else {
-                this.reportDetails!.Evidences = evidences.filter((r) => {
-                    return r.Status !== "Pending";
-                })!;
+                this.reportDetails!.Evidences = evidences
+                    .filter((r) => {
+                        return r.Status !== "Pending";
+                    })
+                    .reverse();
             }
             this.infoLoading = false;
         });

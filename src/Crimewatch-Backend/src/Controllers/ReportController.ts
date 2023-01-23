@@ -31,7 +31,8 @@ class ReportController {
         response: Response<ReportDocument[]>,
         next: NextFunction
     ) {
-        const reports = await this._reportRepository.GetAll();
+        let reports = await this._reportRepository.GetAll();
+        reports = reports.reverse();
         return response.send(reports);
     }
     public async GetById(

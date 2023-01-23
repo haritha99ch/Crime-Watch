@@ -10,11 +10,16 @@ export class WebsocketService {
     private userId: string = "0";
 
     constructor(private readonly authenticationService: AuthenticationService) {
+        this.Disconnect();
         this.SetUserId();
         this.socket = io("https://crime-watch-375407.as.r.appspot.com");
         this.Connect();
     }
-
+    private Disconnect() {
+        if (this.socket) {
+            this.socket.disconnect();
+        }
+    }
     private SetUserId() {
         this.userId = this.authenticationService.GetCurrentUser()?._id;
     }

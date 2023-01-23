@@ -24,12 +24,16 @@
                     {{ reportDetails?.Author?.User?.FirstName }}
                     {{ reportDetails?.Author?.User?.LastName }} -
                     {{
-                        reportDetails?.Date | date : "dd/MM/yyyy"
+                        reportDetails?.Date | date : "medium"
                     }}</mat-card-subtitle
                 >
             </mat-card-title-group>
             <mat-card-content>
-                <img class="rounded" [src]="reportDetails?.File?.File" />
+                <img
+                    class="rounded"
+                    [src]="reportDetails?.File?.File"
+                    style="object-fit: cover; width: 100%; height: 100%"
+                />
             </mat-card-content>
             <hr />
             <mat-card-footer>
@@ -151,9 +155,11 @@
                 ></app-evidence-create-item>
             </mat-expansion-panel>
         </mat-accordion>
-        <app-report-evidence-item
-            *ngFor="let evidence of reportDetails?.Evidences"
-            [evidenceItem]="evidence"
-        ></app-report-evidence-item>
+        <div *ngIf="reportDetails?.Evidences">
+            <app-report-evidence-item
+                *ngFor="let evidence of reportDetails?.Evidences"
+                [evidenceItem]="evidence"
+            ></app-report-evidence-item>
+        </div>
     </div>
 </div>
