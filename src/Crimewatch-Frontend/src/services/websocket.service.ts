@@ -11,10 +11,7 @@ export class WebsocketService {
 
     constructor(private readonly authenticationService: AuthenticationService) {
         this.SetUserId();
-        this.socket = io("https://crime-watch-375407.as.r.appspot.com", {
-            forceNew: true,
-            transports: ["polling"],
-        });
+        this.socket = io("https://crime-watch-375407.as.r.appspot.com");
         this.Connect();
     }
 
