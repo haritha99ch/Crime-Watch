@@ -5,9 +5,13 @@ import Routes from "./Routes/Routes";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 import path from "path";
+import cors from "cors";
 
 const app = express();
 app.use(express.json({ limit: "50mb" }));
+app.use(
+    cors({ origin: "*", allowedHeaders: ["Content-Type", "Authorization"] })
+);
 app.use("/API", Routes);
 //use angular build
 app.use(
