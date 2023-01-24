@@ -1,5 +1,5 @@
-<div class="row h-100 p-5">
-    <div class="col-6 ">
+<div class="row h-100 p-2 report-details overflow-hidden">
+    <div class="col info">
         <mat-card>
             <mat-card-title-group>
                 <mat-card-title>Account Infomation</mat-card-title>
@@ -34,7 +34,7 @@
                             <label>Date of Birth:</label>
                         </div>
                         <div class="col">
-                            {{ currentUser!.User.DOB }}
+                            {{ currentUser!.User.DOB | date : "dd/MM/yyyy" }}
                         </div>
                     </div>
                     <div class="row">
@@ -82,5 +82,11 @@
                 </div>
             </mat-card-content>
         </mat-card>
+    </div>
+    <div class="col info overflow-auto">
+        <!-- <app-report-list-item
+            *ngFor="let reportItem of userReports"
+            [reportItem]="reportItem"
+        ></app-report-list-item> -->
     </div>
 </div>

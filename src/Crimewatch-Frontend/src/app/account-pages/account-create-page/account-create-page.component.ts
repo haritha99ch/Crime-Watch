@@ -65,12 +65,12 @@ export class AccountCreatePageComponent {
             this.moderatorService
                 .Create(this.moderator)
                 .subscribe((moderator) => {
-                    this.router.navigateByUrl("Account/Index");
+                    this.router.navigateByUrl("Account/Signin");
                 });
         } else {
             this.witness.User = this.newUser;
             this.witnessService.Create(this.witness).subscribe((witness) => {
-                this.router.navigateByUrl("Account/Index");
+                this.router.navigateByUrl("Account/Signin");
             });
         }
     }

@@ -10,7 +10,7 @@
         "Crimewatch*"
     ],
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "npm run --prefix Crimewatch-Backend test",
         "start": "npm run --prefix Crimewatch-Backend dev"
     },
     "author": "Haritha Rathnayake",

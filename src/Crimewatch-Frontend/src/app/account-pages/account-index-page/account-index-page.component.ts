@@ -4,8 +4,7 @@ import Moderator from "../../../../../Crimewatch-Shared/Models/Moderator";
 import Witness from "../../../../../Crimewatch-Shared/Models/Witness";
 import ReportViewModel from "../../../../../Crimewatch-Shared/ViewModels/ReportViewModel";
 import { AuthenticationService } from "src/services/authentication.service";
-import { ModeratorService } from "src/services/moderator.service";
-import { WitnessService } from "src/services/witness.service";
+import { ReportService } from "src/services/report.service";
 
 @Component({
     selector: "app-account-index-page",
@@ -13,13 +12,14 @@ import { WitnessService } from "src/services/witness.service";
     styleUrls: ["./account-index-page.component.css"],
 })
 export class AccountIndexPageComponent implements OnInit {
-    public currentUser?: Witness | Moderator;
+    public currentUser?:
+        | (Witness & { _id: string })
+        | (Moderator & { _id: string });
     public moderator?: Moderator;
     public witness?: Witness;
     public userReports: ReportViewModel[];
     constructor(
-        private readonly witnessService: WitnessService,
-        private readonly moderatorService: ModeratorService,
+        private readonly reportService: ReportService,
         private readonly authenticationService: AuthenticationService,
         private readonly router: Router
     ) {
@@ -28,14 +28,23 @@ export class AccountIndexPageComponent implements OnInit {
     }
     ngOnInit(): void {
         this.GetCurrentUser();
+        this.GetUserReports();
     }
 
-    public GetCurrentUser() {
+    private GetCurrentUser() {
         this.currentUser = this.authenticationService.GetCurrentUser();
         if (!this.currentUser)
             return this.router.navigateByUrl("/Account/Signin");
         if (!this.currentUser.User.Account.IsModerator)
             return (this.witness = this.currentUser);
         return (this.moderator = this.currentUser as Moderator);
+    }
+
+    private GetUserReports() {
+        this.reportService.GetAll().subscribe((report) => {
+            this.userReports = report.filter(
+                (r) => r.Author._id === this.currentUser?._id
+            );
+        });
     }
 }
