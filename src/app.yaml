@@ -1,0 +1,11 @@
+runtime: nodejs
+env: flex
+env_variables:
+    MONGO_URL: mongodb://localhost/IMS
+    MONGO_URL_TEST: mongodb://localhost/IMSTEST
+    MONGO_URL_PROD: "mongoconnection"
+    SERVER_PORT: 8080
+    SERVER_HOST: 0.0.0.0
+network:
+    session_affinity: true
+entrypoint: "npm install -g ts-node-dev && npm install -g typescript && npm install . && npm start"
