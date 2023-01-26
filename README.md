@@ -13,9 +13,12 @@ This is a MEAN stack web application which is a full-stack JavaScript solution t
 1. Node.js and npm (Node Package Manager) installed on your computer. You can download Node.js from the official website (https://nodejs.org/).
 2. A text editor or integrated development environment (IDE) to write your code
 3. Git installed on your computer.
-4. Addition to that you must install Angular CLI and typescript compiler globally on your computer
+4. Addition to that you must install Angular CLI and typescript compiler globally on your computer.
+5. [Set Environment variables](src/README.md#Setting-Environment-Variables).
 
 ### Initial setup
+
+s
 
 1. Clone the project.
 
@@ -27,14 +30,14 @@ This is a MEAN stack web application which is a full-stack JavaScript solution t
 
 3. Install all the dependencies.
 
-    `npm install .`
+    `src$ npm install .`
 
 4. Build the project. This will build the angular frontend application to be served in the express server.
 
-    `npm run build`
+    `src$ npm run build`
 
 5. Run the project.
 
-    `npm start`
+    `src$ npm start`
 
 6. Navigate to `http://localhost:8080/` for the development application.
