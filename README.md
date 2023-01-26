@@ -18,8 +18,6 @@ This is a MEAN stack web application which is a full-stack JavaScript solution t
 
 ### Initial setup
 
-s
-
 1. Clone the project.
 
     `git clone https://github.com/haritha99ch/Crime-Watch.git`
