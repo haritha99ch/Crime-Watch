@@ -14,7 +14,7 @@ This is a MEAN stack web application which is a full-stack JavaScript solution t
 2. A text editor or integrated development environment (IDE) to write your code
 3. Git installed on your computer.
 4. Addition to that you must install Angular CLI and typescript compiler globally on your computer.
-5. [Set Environment variables](src/README.md#Setting-Environment-Variables).
+5. [Set Environment variables](src/Crimewatch-Backend/README.md#setting-environment-variables).
 
 ### Initial setup
 
