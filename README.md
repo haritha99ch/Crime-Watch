@@ -14,7 +14,6 @@ This is a MEAN stack web application which is a full-stack JavaScript solution t
 2. Addition to that you must install Angular CLI, typescript compiler and mongodb server globally on your computer.
 3. An integrated development environment (IDE) to write your code
 4. Git installed on your computer.
-5. [Set Environment variables](src/Crimewatch-Backend/README.md#setting-environment-variables).
 
 ### Initial setup
 
@@ -25,17 +24,19 @@ This is a MEAN stack web application which is a full-stack JavaScript solution t
 2. Change directory to src
 
     `cd Crime-Watch/src`
+    
+3. [Set Environment variables](src/Crimewatch-Backend/README.md#setting-environment-variables).
 
-3. Install all the dependencies.
+4. Install all the dependencies.
 
     `src$ npm install .`
 
-4. Build the project. This will build the angular frontend application to be served in the express server.
+5. Build the project. This will build the angular frontend application to be served in the express server.
 
     `src$ npm run build`
 
-5. Run the project.
+6. Run the project.
 
     `src$ npm start`
 
-6. Navigate to `http://localhost:8080/` for the development application.
+7. Navigate to `http://localhost:8080/` for the development application.
