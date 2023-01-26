@@ -2,7 +2,7 @@
 
 Crime Watch is an innovative web application that offers a unique solution to the problem of crime. It allows citizens to report any criminal activities or illegal incidents they witness directly to the proper authorities for investigation and judgment. This provides an effective way for law enforcement officials to investigate and judge the outcome of these reported crimes, as well as providing peace of mind for those who have witnessed them.
 
-The Crime Watch system works by allowing users to upload photos, videos, or descriptions related to their incident in order provide evidence and details about what happened. The information is then sent immediately via email or text message directly from their device straight into a secure database maintained by local police departments across the country – ensuring it gets seen right away so appropriate action can be taken swiftly if necessary.
+The Crime Watch system works by allowing users to upload photos, videos, or descriptions related to their incident in order provide evidence and details about what happened. The information is then sent immediately into a secure database maintained by the police department and notify the online police officers ensuring it gets seen right away so appropriate action can be taken swiftly if necessary.
 
 This is a MEAN stack web application which is a full-stack JavaScript solution that uses MongoDB, Express.js, AngularJS, and Node.js
 
