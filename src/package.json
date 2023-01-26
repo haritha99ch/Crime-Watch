@@ -11,7 +11,8 @@
     ],
     "scripts": {
         "test": "npm run --prefix Crimewatch-Backend test",
-        "start": "npm run --prefix Crimewatch-Backend dev"
+        "start": "npm run --prefix Crimewatch-Backend dev",
+        "build": "npm run --prefix Crimewatch-Frontend start"
     },
     "author": "Haritha Rathnayake",
     "license": "ISC",
