@@ -11,9 +11,9 @@ This is a MEAN stack web application which is a full-stack JavaScript solution t
 ### Prerequisite
 
 1. Node.js and npm (Node Package Manager) installed on your computer. You can download Node.js from the official website (https://nodejs.org/).
-2. A text editor or integrated development environment (IDE) to write your code
-3. Git installed on your computer.
-4. Addition to that you must install Angular CLI and typescript compiler globally on your computer.
+2. Addition to that you must install Angular CLI, typescript compiler and mongodb server globally on your computer.
+3. An integrated development environment (IDE) to write your code
+4. Git installed on your computer.
 5. [Set Environment variables](src/Crimewatch-Backend/README.md#setting-environment-variables).
 
 ### Initial setup
