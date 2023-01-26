@@ -24,6 +24,8 @@ The API server for the Crime Watch web application build using Express/TSNode.
     SERVER_PORT = 8080
     SERVER_HOST = localhost
 ```
+**In Windows use the the IP address instead of "localhost" in the connection string.**
+`mongodb://127.0.0.1/IMS`
 
 ### Unit Testing.
 
