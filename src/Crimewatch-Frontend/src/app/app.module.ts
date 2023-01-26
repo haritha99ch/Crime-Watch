@@ -74,7 +74,7 @@ import { DeleteConfirmItemComponent } from "./report-pages/delete-confirm-item/d
                 tokenGetter: () => {
                     return localStorage.getItem("token");
                 },
-                allowedDomains: ["https://crime-watch-375407.as.r.appspot.com"],
+                allowedDomains: ["http://localhost:8080"],
             },
         }),
         MatRippleModule,

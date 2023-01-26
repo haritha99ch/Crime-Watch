@@ -12,7 +12,7 @@ export class WebsocketService {
     constructor(private readonly authenticationService: AuthenticationService) {
         this.Disconnect();
         this.SetUserId();
-        this.socket = io("https://crime-watch-375407.as.r.appspot.com");
+        this.socket = io("http://localhost:8080");
         this.Connect();
     }
     private Disconnect() {
