@@ -25,7 +25,7 @@
                 Reports
             </button>
             <button
-                *ngIf="!currentUser?.User?.Account?.IsModerator"
+                *ngIf="!currentUser?.User?.Account?.IsModerator && isSignedIn"
                 mat-button
                 type="button"
                 routerLink="/Report/Create"
@@ -33,7 +33,7 @@
                 class="full-width nav-item"
             >
                 <mat-icon fontIcon="description"></mat-icon>
-                New Reports
+                New Report
             </button>
             <div *ngIf="currentUser">
                 <button
@@ -48,6 +48,16 @@
                     Pending Reports
                 </button>
             </div>
+            <button
+                mat-button
+                type="button"
+                routerLink="/AboutUs"
+                (click)="drawer.toggle()"
+                class="full-width nav-item"
+            >
+                <mat-icon>groups</mat-icon>
+                About Us
+            </button>
         </div>
     </mat-drawer>
     <nav class="navbar navbar-light bg-primary justify-content-between">

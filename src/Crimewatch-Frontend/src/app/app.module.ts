@@ -5,7 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ReportIndexPageComponent } from "./report-pages/report-index-page/report-index-page.component";
-import { CommonModule, formatDate } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { ReportListItemComponent } from "./report-pages/report-list-item/report-list-item.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -13,6 +13,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 
 import { MatRippleModule, MatNativeDateModule } from "@angular/material/core";
 import { MatCardModule } from "@angular/material/card";
+import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -40,10 +41,9 @@ import { AccountCreatePageComponent } from "./account-pages/account-create-page/
 import { AccountSigninPageComponent } from "./account-pages/account-signin-page/account-signin-page.component";
 import { AccountIndexPageComponent } from "./account-pages/account-index-page/account-index-page.component";
 import { NavBarComponent } from "./_shared/nav-bar/nav-bar.component";
-import { NotificationService } from "src/services/notification.service";
-import { WebsocketService } from "src/services/websocket.service";
 import { NotificationItemComponent } from "./_shared/notification-item/notification-item.component";
 import { DeleteConfirmItemComponent } from "./report-pages/delete-confirm-item/delete-confirm-item.component";
+import { AboutusPageComponent } from "./aboutus-page/aboutus-page/aboutus-page.component";
 
 @NgModule({
     declarations: [
@@ -61,6 +61,7 @@ import { DeleteConfirmItemComponent } from "./report-pages/delete-confirm-item/d
         NavBarComponent,
         NotificationItemComponent,
         DeleteConfirmItemComponent,
+        AboutusPageComponent,
     ],
     imports: [
         BrowserModule,
@@ -98,6 +99,7 @@ import { DeleteConfirmItemComponent } from "./report-pages/delete-confirm-item/d
         MatBadgeModule,
         MatDialogModule,
         MatSnackBarModule,
+        MatToolbarModule,
     ],
     bootstrap: [AppComponent],
 })

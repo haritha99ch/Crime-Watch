@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AboutusPageComponent } from "./aboutus-page/aboutus-page/aboutus-page.component";
 import { AccountCreatePageComponent } from "./account-pages/account-create-page/account-create-page.component";
 import { AccountIndexPageComponent } from "./account-pages/account-index-page/account-index-page.component";
 import { AccountSigninPageComponent } from "./account-pages/account-signin-page/account-signin-page.component";
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path: "Account/Create", component: AccountCreatePageComponent },
     { path: "Account/Signin", component: AccountSigninPageComponent },
     { path: "Account/Index", component: AccountIndexPageComponent },
+    { path: "AboutUs", component: AboutusPageComponent },
 ];
 
 @NgModule({
